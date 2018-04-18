@@ -1,0 +1,159 @@
+.key_words_wrap{
+	position: relative;
+}
+.border_before:before{
+	background-color: #58a5b7;
+}
+.search_box{
+	background-color: #65bdd1;
+	position: relative;
+	margin-top: .44rem;
+}
+.search{
+	padding: .03rem .05rem;
+}
+.search input{
+	display: block;
+	outline: none;
+	border:none;
+	padding: .07rem .075rem .07rem .26rem;
+	width: calc(100% - .36rem);
+	width: -webkit-calc(100% - .36rem);
+}
+.search_icon{
+	display: block;
+	width: .135rem;
+	height: .135rem;
+	position: absolute;
+	top: .1rem;
+	left: .125rem;
+	background: url(../../images/xmn_key_search.png) no-repeat center center;
+	background-size: .135rem .135rem;
+}
+.key_words{
+	display:flex;
+}
+.key_ul{
+	width: .871rem;
+	position: relative;
+}
+.key_ul li{
+	font-size: .13rem;
+	color: #555555;
+	padding: .165rem .175rem;
+	position: relative;
+	background-color: #eeeeee;
+}
+.key_ul .active{
+	background-color: white;
+}
+.key_item_show{
+	background-color: white;
+}
+.key_item_show{
+	flex:1;
+}
+.key_item{
+	/*display: none;*/
+}
+.item_ul{
+	padding: 0 .05rem 0 .22rem;
+}
+.item_ul li{
+	font-size: .12rem;
+	color: #333333;
+	position: relative;
+	padding: .14rem .125rem;
+}
+.key_two_item{
+	display: flex;
+}
+.two_item{
+	font-size: .13rem;
+	color: #555555;
+	position: relative;
+	width: .8rem;
+}
+.two_item p{
+	position: relative;
+}
+.two_item .active{
+	color: #65bdd1;
+}
+.two_item .active:after{
+	content: "";
+	width: 0;
+    height: 0;
+    border: .07rem solid transparent;
+    border-right: .12rem solid #cfcfcf;
+    position: absolute;
+    top: .26rem;
+    right: 0;
+}
+.two_item p{
+	padding: .25rem 0 0 .125rem;
+}
+.two_item_content{
+	flex:1;
+}
+.two_ul{
+	padding: 0 .045rem 0 .125rem;
+}
+.two_ul li{
+	padding: .14rem 0 .14rem .125rem;
+	font-size: .12rem;
+	color: #333333;
+	position: relative;
+}
+html,body{
+	height:100%;
+}
+.h_percent_100{
+	height: 100%;
+}
+.hd_wrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 888;
+    top: 0;
+    left: 0;
+}
+.key_words_show {
+    position: relative;
+    padding-top: .79rem;
+    box-sizing: border-box;
+}
+.key_words {
+    height: 100%;
+}
+.key_ul {
+    width: .871rem;
+    position: relative;
+    height: 100%;
+    max-height: 100%;
+    overflow: scroll;
+}
+.key_ul .active:before{
+	z-index:2;
+    content: " ";
+    position: absolute;
+    right: -1px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+}
+
+
+
+
+
+
+
+
+
+

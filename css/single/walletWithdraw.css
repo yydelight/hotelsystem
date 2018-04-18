@@ -1,0 +1,68 @@
+.withdraw_type_wrap{
+	padding-top: .44rem;
+}
+.withdraw_wrap{
+	padding: .36rem .05rem;
+}
+.input_content{
+	position: relative;
+	width: 100%;
+}
+.input_content input{
+	height: .5rem;
+	padding-left: .52rem;
+	width: calc(100% - .52rem);
+	width: -webkit-calc(100% - .52rem);
+	outline: none;
+	border:none;
+	border-radius: 5px;
+	font-size: .13rem;
+}
+.input_content p{
+	position: absolute;
+	top: .155rem;
+	left: .125rem;
+	font-size: .13rem;
+	color: #333333;
+}
+.withdraw_tips{
+	font-size: .12rem;
+	color: #949494;
+	padding: .13rem 0;
+}
+.next_btn{
+	padding: 0 .19rem;
+}
+.next_btn a{
+	display: block;
+	font-size: .12rem;
+	background-color: #949494;
+	color: white;
+	width: 100%;
+	padding: .14rem 0;
+	text-align: center;
+	border-radius: 5px;
+}
+.withdraw_money{
+	font-size: .13rem;
+	color: #949494;
+	padding: .12rem 0 0 .175rem;
+}
+.withdraw_money i{
+	padding-left: .1rem;
+	color: #333333;
+	font-size: .11rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

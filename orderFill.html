@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单填写</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/orderFill.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<div class="wrap">
+		<!-- 酒店头部 -->
+		<div class="header border_after">
+			<div class="header_left">
+				<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+			</div>
+			<div class="header_title">订单填写</div>
+		</div>
+
+		<div class="scrollWrap">
+			<div class="room_info">
+				<div class="room_det">
+					<div class="room_fac border_after">
+						<p class="room_type">经济房</p>
+						<div class="room_bed">
+							<p>单人床</p>
+							<p>房间wifi</p>
+							<p>有线宽带免费</p>
+						</div>
+						<p>无早</p>
+					</div>
+					<div class="room_date">
+						<p>入住:2月18日</p>
+						<p>离店:2月19日</p>
+						<p>1晚</p>
+						<a class="revise" href="">
+							修改<i class="right_arrow revise_arrow"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="fill_room_wrap">
+				<div class="fill_room border_before">
+					<div class="room room_num border_after">
+						<p>房间数</p>
+						<div class="arrow_wrap">
+							<a href=""><i class="right_arrow"></i></a>
+						</div>
+						<div class="info">
+							<i>1</i>间
+						</div>
+					</div>
+					<div class="room room_time border_after">
+						<p>到店时间</p>
+						<div class="arrow_wrap">
+							<a href=""><i class="right_arrow"></i></a>
+						</div>
+						<div class="info">
+							<i>14:00</i>
+						</div>
+					</div>
+					<div class="room room_person border_after">
+						<p>入住人</p>
+						<div class="input_wrap">
+							<input placeholder="姓名,一间房填一个人">
+						</div>
+					</div>
+					<div class="room room_tel border_after">
+						<p>手机</p>
+						<div class="input_wrap">
+							<input placeholder="用于接受通知">
+						</div>
+					</div>
+				</div>
+				<div class="room room_bill border_after border_before">
+					<p>发票</p>
+					<div class="info">如需要发票,可向酒店索取</div>
+				</div>
+				<div class="tips">特别提示：该酒店的入住时间为14：00，退房标准结算时间为12：00。如提前入住或推迟离店，均须酌情加收一定费用。</div>
+				<div class="room room_money border_after border_before">
+					<p>总额</p>
+					<p class="money"><i class="rmb">¥ </i><i class="total"> 168</i></p>
+					<div class="pay_btn">
+						<a href="orderPay.html">支付</a>
+					</div>
+				</div>
+				<div class="pay_btn reserve_btn">
+					<a href="">预定</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 遮罩层 -->
+	<div class="mask_wrap"></div>
+	<!-- 最晚到店时间选择 -->
+	<div class="select_time">
+		<p class="the_latest_time">最晚到店时间</p>
+		<p class="time_tips">订单支付成功且酒店确认后,酒店将为您全天保留房间,在14:00前到店可能需要等待入住</p>
+		<ul class="time_ul">
+			<li class="active">15分钟内</li>
+			<li>20:00</li>
+			<li>21:00</li>
+			<li>22:00</li>
+			<li>23:00</li>
+			<li>23:59</li>
+			<li>次日01:00</li>
+			<li>次日02:00</li>
+			<li>次日03:00</li>
+			<li>次日04:00</li>
+			<li>次日05:00</li>
+			<li>次日06:00</li>
+		</ul>
+	</div>
+	<!-- 房间数选择 -->
+	<div class="select_num">
+		<p>房间数</p>
+		<ul class="num_ul">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		var roomTime=$(".room_time");
+		var roomNum=$(".room_num");
+		var mask=$(".mask_wrap");
+		var select=$(".select_time");
+		var num=$(".select_num")
+		var scrollWrap=$(".scrollWrap");
+		roomTime.click(function(){
+			mask.show();
+			select.show();
+			scrollWrap.css("overflow","hidden");
+		})
+
+		roomNum.click(function(){
+			mask.show();
+			num.show();
+			scrollWrap.css("overflow","hidden");
+		})
+
+		mask.click(function(){
+			mask.hide();
+			select.hide();
+			num.hide();
+			scrollWrap.css("overflow","scroll");
+		})
+
+
+		var time=$(".time_ul li");
+		time.click(function(){
+			var thisLi=$(this);
+			time.removeClass("active");
+			thisLi.toggleClass("active");
+			$(".room_time .info i").html($(this).text());
+			mask.trigger("click");
+		})
+
+		var number=$(".num_ul li");
+		number.click(function(){
+			var thisLi=$(this);
+			number.removeClass("active");
+			thisLi.toggleClass("active");
+			$(".room_num .info i").html($(this).text());
+			mask.trigger("click");
+		})
+		
+		$(".pay_btn").click(function () {
+			var roomnum=$(".room_num info i").text();
+        })
+
+	})
+	</script>
+</body>
+</html>

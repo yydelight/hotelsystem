@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>城市选择</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="ap\ple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/citySelect.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>	
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="hd_wrapper">
+			<!-- 酒店头部 -->
+			<div class="header border_after">
+				<div class="header_left">
+					<a class="left_arrow"  href="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">城市选择</div>
+			</div>
+
+			<div class="search_box">
+				<div class="search">
+					<input placeholder="城市/行政区/拼音">
+				</div>
+				<span class="search_icon"></span>
+			</div>
+		</div>
+
+		<div class="scrollWrap">
+			<div class="current_city">
+				<p>当前城市</p>
+				<div class="get_current">
+					<p>点击获取当前城市</p>
+				</div>
+			</div>
+
+			<div class="city_wrap"></div>
+
+			<div class="current_hot">
+				<p>当前</p>
+				<p>历史</p>
+				<p>热门</p>
+				<ul class="hot_ul"></ul>
+			</div>
+		</div>
+	</div>
+
+	<script id='template_list' type="text/template"> 
+		<%
+			for(var i in city){
+				var obj=city[i];
+		%>
+			<div class="city_type">
+				<p><%=obj.type%></p>
+				<div class="city_list border_after border_before">
+					<ul class="city_ul">
+						<%
+							for(var k in obj.name){
+								var name=obj.name[k];
+						%>	
+						<li><%=name%></li>
+						<%}%>
+					</ul>
+				</div>
+			</div>
+		<%}%>
+	</script>
+
+	<script id='template_hot' type="text/template">
+		<%
+			for(var i=0;i<25;i++){
+				var letter=String.fromCharCode((65+i));
+		%>
+			<li><%=letter%></li>
+		<%}%>
+	</script>
+
+	<script type="text/javascript">
+	$(function(){
+		ajaxData();
+		function ajaxData(){
+			window.STA.ajax({
+				url:"data/city.json",
+				success:function(data){
+					var bat=window.baidu.template;
+					var list=bat('template_list',data);
+					$(".city_wrap").html(list);
+					var letter=bat('template_hot');
+					$(".hot_ul").html(letter);
+				}
+			})			
+		}
+
+		$(document).on("click",'.hot_ul li',function(){
+			var index=$(this).index();
+			var topArr=[];
+			$(".city_type").each(function(){
+				topArr.push($(this))
+			})
+
+			if(topArr[index+2]&&topArr[index+2].children('p').text()==$(this).text()){
+				var top=topArr[index+2].position().top+$(".scrollWrap").scrollTop()-$(".hd_wrapper").height();
+				$('.scrollWrap').animate({ scrollTop: top},500);
+			}
+		})
+
+		$(document).on("click",'.get_current',function(){
+			var city="";
+			$.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){  
+				city=remote_ip_info.city;
+				$(".get_current p").html(city);
+			});  
+		})
+		
+	})
+	</script>
+
+</body>
+</html>

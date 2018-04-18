@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酒店评论</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="ap\ple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" href="public/css/swiper.min.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="public/js/swiper.jquery.min.js"></script>
+	<style type="text/css">
+		.div_body{
+			width: .07rem;
+			height: .1rem;
+			margin: .09rem auto;
+			position: relative;
+			overflow: hidden;
+			background: white;
+		}
+		.icon{
+			width: 0;
+			height: 0;
+			border: .05rem solid transparent;
+			border-bottom: .05rem solid #949494;
+			position: relative;
+			top: -.05rem;
+			left: 0;
+		}
+		.icon:after{
+			content: "";
+			position: absolute;
+			top: -.04rem;
+			left: -.04rem;
+			border: .05rem solid transparent;
+			border-bottom: .05rem solid #fff;
+		}
+		.down_icon{
+			width: 0;
+			height: 0;
+			border: .05rem solid transparent;
+			border-top: .05rem solid #949494;
+			bottom: -.02rem;
+			left: 0;
+		}
+		.down_icon:after{
+			content: "";
+			position: absolute;
+			bottom: -.02rem;
+			left: 0;
+			border: .05rem solid transparent;
+			border-top: .05rem solid #fff;
+		}
+		.right_arrow{
+			width: 0;
+			height: 0;
+			border: .05rem solid transparent;
+			border-left: .05rem solid #949494;
+			position: relative;
+			top: -.05rem;
+			left: 0;
+		}
+		.right_arrow:after{
+			content: "";
+			position: absolute;
+			top: -.04rem;
+			left: -.04rem;
+			border: .05rem solid transparent;
+			border-left: .05rem solid #fff;
+		}
+		.div_body2{
+			width: .115rem;
+			height: .13rem;
+		}
+		/*左箭头*/
+		.left_grey_arrow{
+		    width: 0;
+		    height: 0;
+		    border: .1rem solid transparent;
+		    border-right: .12rem solid white;
+		    position: relative;
+		    border-radius: 3px;
+		}
+		.left_grey_arrow:after{
+		    content:'';
+		    width:0;
+		    height:0;
+		    border:.1rem solid transparent;
+		    border-right:.12rem solid #65bdd1;
+		    position:absolute;
+		    left:-.07rem;
+		    top:-.1rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="div_body">
+		<p class="down_icon"></p>	
+	</div>
+
+	<div class="div_body">
+		<p class="icon"></p>
+	</div>
+
+	<div class="div_body">
+		<p class="right_arrow"></p>
+	</div>
+
+	<div class="div_body div_body2">
+		<p class="left_grey_arrow"></p>
+	</div>
+</body>

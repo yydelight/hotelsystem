@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酒店点评页面</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/single/hotelReviews.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">酒店点评</div>
+	</div>
+	<!-- 入住酒店 -->
+	<div class="check_in_hotel border_after">
+		<p class="check_in">入住酒店</p>
+		<p class="hotel_name">广州上下九步行街七天连锁酒店</p>
+	</div>
+	<!-- 选择评分 -->
+	<div class="hotel_score">
+		<div class="choose_score border_before choose_before">
+			<p class="choose">选择评分</p>
+			<div class="score_star">
+				<ul class="score_ul">
+					<li class="active">
+						<a href=""><img src="images/xmn_yellow_star_icon.png"></a>
+					</li>
+					<li>
+						<a href=""><img src="images/xmn_score_star_icon.png"></a>
+					</li>
+					<li>
+						<a href=""><img src="images/xmn_score_star_icon.png"></a>
+					</li>
+					<li>
+						<a href=""><img src="images/xmn_score_star_icon.png"></a>
+					</li>
+					<li>
+						<a href=""><img src="images/xmn_score_star_icon.png"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="share_hotel border_before border_after">
+			<textarea></textarea>
+			<div class="text_show">
+				<p>分享一下你对这家酒店的环境,服务和价格等的感受</p>
+				<p>超过100字可获取50元话费等众多好礼!</p>
+			</div>
+		</div>
+		<div class="text_tips border_after tips_after">
+			<p>最少输入10个字,还可以输入<i>1000</i>字</p>
+		</div>
+	</div>
+
+	<!-- 上传照片 --> 
+	<div class="upload_photo border_before border_after">
+		<div class="photo_frame">
+			<figure class="photo_img">
+				<img src="images/xmn_reviews_photo.png">
+				<div class="add_pic">
+					<a href="">添加图片</a>
+				</div>
+			</figure>
+		</div>
+		<div class="photo_arrow">
+			<figure>
+				<img src="images/xmn_photo_arrow.png">
+			</figure>
+			<p class="share_our">上传照片,与大家分享!</p>
+		</div>
+	</div>
+
+	<!-- 发表评论 -->
+	<div class="make_comments">
+		<a class="post_btn" href="">发表评论</a>
+	</div>
+
+
+	<script type="text/javascript">
+	$(function(){
+
+		$(".score_ul li").on('click',function(){
+		    var $ts = $(this);
+		    var hscl = $ts.hasClass("active");
+			var index = $ts.index();
+		    if(hscl){
+		        $(".score_ul li:gt("+(index)+")").removeClass("active").children("a").children("img").attr("src","images/xmn_score_star_icon.png");
+		    }else{
+		        $(".score_ul li:lt("+(index+1)+")").addClass("active").children("a").children("img").attr("src","images/xmn_yellow_star_icon.png");
+		    }
+		    return false;
+		})
+
+		var textarea=$(".share_hotel textarea");
+		var text=$(".text_show");
+		textarea.focus(function(){
+			text.hide();
+		})
+		textarea.blur(function(){
+			if($.trim(textarea.val())==''){
+				text.show();
+			}
+		})
+		text.click(function(){
+			textarea.trigger("focus");
+		})
+		textarea.bind('input propertychange', function() {
+		    // $('#content').html($(this).val().length + ' characters');
+		    var length=1000-($.trim(textarea.val()).length);
+		    // var html="<p>最少输入10个字,还可以输入<i>"+length+"字</i></p>";
+		    $(".text_tips p i").html(length);
+		});
+	})
+	</script>
+</body>
+</html>

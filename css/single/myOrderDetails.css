@@ -1,0 +1,208 @@
+body{
+	background-color: #eeeeee;
+}
+/*全部评价tab栏*/
+.order_details_wrap{
+	padding-top: .44rem;
+}
+.order_details_tab{
+	position: relative;
+	overflow: hidden;
+	padding:.07rem 0;
+	background-color: white;
+}
+.order_state{
+	width: 50%;
+	float: left;
+	text-align: center;
+	position: relative;
+	padding: .045rem 0;
+}
+.order_state p{
+	font-size: .13rem;
+	color: #333333;
+	font-weight: bold;
+}
+.order_details_tab .active p{
+	color: #65bdd1;
+}
+.order_details_tab .active:after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -.065rem;
+	width: 100%;
+	height: .02rem;
+	background-color: #65bdd1;
+}
+.order_show{
+	padding-top: .125rem;
+	/*background-color: #eeeeee;*/
+}
+.make_order{
+	background-color: white;
+	padding: .09rem .125rem .09rem .05rem;
+	overflow: hidden;
+	position: relative;
+}
+.make_order figure{
+	width: .6rem;
+	height: .6rem;
+	padding-right: .125rem;
+	float: left;
+}
+.make_order figure img{
+	width: 100%;
+}
+.hotel_det{
+	float: left;
+	height: .6rem;
+}
+.hotel_det p{
+	font-size: .09rem;
+	color: #949494;
+	line-height: .15rem;
+}
+.hotel_det .hotel_name{
+	font-size: .13rem;
+	color: #555555;
+	padding: .01rem 0 .025rem;
+	line-height: 1.2;
+}
+.hotel_det .breakf{
+	padding-bottom: 0;
+}
+.make_order .right_arrow{
+	left: initial;
+	right: .08rem;
+	top: .34rem;
+}
+.cancel_order{
+	float: right;
+}
+.cancel{
+	display: block;
+    color: red;
+    font-size: .12rem;
+    line-height: 1.2;
+}
+.pay_order{
+	background-color: white;
+	padding: .05rem .125rem;
+	overflow: hidden;
+	position: relative;
+}
+.act_pay{
+	float: left;
+	padding-top: .05rem;
+}
+.act_pay p{
+	font-size: .09rem;
+	color: #949494;
+}
+.act_pay p i{
+	color: #555555;
+}
+.act_pay .rmb{
+	display: inline-block;
+	height: .16rem;
+	transform: scaleY(0.75);
+}
+.money{
+	font-size: .1rem;
+}
+.pay_state{
+	overflow: hidden;
+}
+.pay_state a{
+	display: block;
+	width: .6rem;
+	text-align: center;
+	height: .2rem;
+	line-height: .2rem;
+	float: right;
+	font-size: .12rem;
+	border: 1px solid red;
+	color: red;
+	border-radius: 5px;
+}
+/*历史订单*/
+.comment{
+	float: left;
+	line-height: 1.2;
+	padding-left: .125rem;
+}
+.comment a{
+	color: red;
+	font-size: .1rem;
+}
+.history_order .cancel{
+	width: .1rem;
+	height: .13rem;
+	background: url(../../images/xmn_order_delete.png) no-repeat center center;
+	background-size: 100%;
+}
+.history_order .seal{
+	width: .49rem;
+	height: .49rem;
+	position: absolute;
+	right: .78rem;
+	top: .2rem;
+}
+.history_order .seal img{
+	width: 100%;
+}
+/*遮罩层*/
+/*.mask_wrap{
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.6;
+	display: none;
+}
+.confirm_box{
+	position: absolute;
+	top: 2.09rem;
+	left: .335rem;
+	width: calc(100% - 0.67rem);
+	width: -webkit-calc(100% - 0.67rem);
+	background-color: white;
+	z-index: 3;
+	border-radius: 5px;
+	display: none;
+}
+.confirm_box p{
+	padding-top: .535rem;
+	text-align: center;
+	font-size: .13rem;
+	color: #555555;
+}
+.btn_group{
+	display: flex;	
+	padding: .185rem .088rem;
+}
+.sure_btn,.cancel_btn{
+	float: left;
+	flex:1;
+	margin: 0 .088rem;
+	text-align: center;
+}
+.sure_btn a,.cancel_btn a{
+	display: block;
+	width: 100%;
+	font-size: .12rem;
+	background-color: #65bdd1;
+	color: white;
+	padding: .14rem 0;
+	border-radius: 5px;
+}*/
+
+
+
+
+
+

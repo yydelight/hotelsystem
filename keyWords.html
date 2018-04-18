@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关键字</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="ap\ple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/keyWords.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+	<div class="hd_wrapper">
+		<!-- 酒店头部 -->
+		<div class="header">
+			<div class="header_left">
+				<a class="left_arrow"  href="javascript:history.go(-1);"></a>
+			</div>
+			<div class="header_title">关键字</div>
+		</div>
+
+		<div class="search_box border_before">
+			<div class="search">
+				<input placeholder="关键字、位置、品牌、酒店名">
+			</div>
+			<span class="search_icon"></span>
+		</div>
+	</div>
+
+	<div class="key_words_show h_percent_100">
+		<!-- 关键字 -->
+		<div class="key_words h_percent_100">
+			<ul class="key_ul h_percent_100 border_right">
+				<li class="border_after active">搜索历史</li>
+				<li class="border_after ">热门品牌</li>
+				<li class="border_after ">热门地标</li>
+				<li class="border_after ">机场车站</li>
+				<li class="border_after ">热门景点</li>
+				<li class="border_after ">地铁热线</li>
+				<li class="border_after ">行政区</li>
+				<li class="border_after ">商业区</li>
+			</ul>
+			<div class="key_item_show"></div>
+		</div>
+	</div>
+
+
+	<script id='template_list' type="text/template"> 			
+    	<%if(keyWords.part==1){%>
+        	<div class="key_item h_percent_100">
+        		<ul class="item_ul">
+        			<%
+        				for(var j in keyWords.place){
+        					var pla=keyWords.place[j];
+        			%>
+        			<li class="border_after"><%=pla%></li>
+        			<%}%>	
+        		</ul>
+        	</div>
+        <%}%>
+    	<%if(keyWords.part==2){%>
+    		<div class="key_two_item h_percent_100">
+    			<div class="two_item border_right">
+    				<%
+    					for(var k in keyWords.selectItem){
+    						var pt=keyWords.selectItem[k];
+    				%>
+    					<p class="<%if(k==0){%>active<%}%>"><%=pt.itemTitle%></p>
+    				<%}%>
+    			</div>  
+    			<div class="two_item_content">
+    				<ul class="two_ul h_percent_100">
+        				<%
+        					for(var m in keyWords.selectItem[0].itemList){
+        						var list=keyWords.selectItem[0].itemList[m];
+        				%>
+        					<li class="border_after"><%=list%></li>
+        				<%}%>
+    				</ul>
+    			</div>
+    		</div>
+    	<%}%>
+	</script>		
+	
+	<script id='template_two_list' type="text/template"> 
+		<%
+			for(var m in keyWords.itemList){
+			var pt=keyWords.itemList[m];
+		%>
+			<li class="border_after"><%=pt%></li>
+		<%}%>
+	</script>	
+
+	<script type="text/javascript">
+	$(function(){
+		var key=$(".key_ul li");
+		key.bind('click',function(){
+			var tham=$(this);
+			var index=$(this).index();
+			key.removeClass("active")
+			tham.addClass("active");
+			ajaxData(index,null);
+		})
+			
+		$(document).on("click",'.two_item p',function(){
+			var twoThis=$(this);
+			var twoIndex=$(this).index();
+			var twoItem=$(".two_item p");
+			twoItem.removeClass("active");
+			twoThis.addClass("active");
+			var onePar=$(".key_ul .active").index();
+			ajaxData(onePar,twoIndex);
+		});
+
+		ajaxData(0,null);
+
+		function ajaxData(state,mode){
+			window.STA.ajax({
+				url:"data/keyWords.json",
+				success:function(data){
+					var bat=window.baidu.template;
+					var list="";
+					var twoList="";
+					var key=data.keyWords[state];
+					if(mode==null){
+						list=bat('template_list',{keyWords:key});
+						$(".key_item_show").html(list);
+					}else{
+						twoList=bat('template_two_list',{keyWords:key.selectItem[mode]});
+						$(".two_ul").html(twoList);
+					}
+					
+				}
+			})			
+		}
+
+
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+body{
+	background-color: #e9e9e9;
+}
+.quick_header{
+	background-color: #eeeeee;
+}
+.header_person{
+	padding: .12rem 0 .1rem .13rem;
+}
+.header_person a{
+	display: block;
+	width: .215rem;
+	height: .215rem;
+	background: url(../../images/xmn_index_head.png) no-repeat;
+	background-size: .215rem .215rem;
+}
+.header_nav{
+	padding:0 .125rem .1rem .105rem;
+}
+.nav_ul{
+	overflow: hidden;
+	display: flex;
+	text-align: center;
+}
+.nav_ul li{
+	flex:auto;
+}
+.nav_ul li:nth-child(4){
+	padding-right: 0;
+}
+.nav_ul li a{
+	padding: .035rem .115rem .035rem;
+	font-size: .13rem;
+	color: #707070;
+}
+.nav_ul li a.active{
+	background-color: white;
+	color: #ffa132;
+	border-radius: 50px;
+}
+/*地图*/
+.map_wrap{
+	width:100%;
+	height:4.5rem;
+}
+.map_wrap .anchorBL{
+	display:none;
+}
+/*入住离店*/
+.book_hotel_wrap{
+	width: calc(100% - .25rem );
+	-webkit-width: calc(100% - .25rem );
+	padding: 0 .135rem 0 .115rem;
+	position: absolute;
+	bottom: .16rem;
+}
+.book_hotel{
+	background-color: white;
+	overflow: hidden;
+	padding: .085rem .125rem;
+	border-radius: 5px;
+}
+.check_in_out{
+	float: left;
+	width: calc((100% - .125rem) / 2);
+	-webkit-width: calc((100% - .125rem) / 2);
+}
+.check_in_out p{
+	font-size: .11rem;
+	color: #949494;
+}
+.check_in_out a{
+	display: block;
+	overflow: hidden;
+	background: url(../../images/xmn_right_icon.png) no-repeat right;
+	background-size: .1rem .12rem;
+}
+.check_in_out a h5{
+	color: #555555;
+	font-weight:normal;
+	float: left;
+}
+.check_in_out a h6{
+	color: #949494;
+	font-weight:normal;
+	float: right;
+	padding-right: .17rem;
+	padding-top: .011rem;
+}
+.check_in_out:nth-child(2){
+	padding-left: .125rem;
+}
+.book_hotel_star{
+	width: 100%;
+	clear: both;
+	padding-top: .25rem;
+	position: relative;
+}
+.book_hotel_star a{
+	display: block;
+	font-size: .15rem;
+	color: #555555;
+	background: url(../../images/xmn_right_icon.png) no-repeat right;
+	background-size: .1rem .12rem;
+}
+.book_hotel_wrap .border_star:before{
+	top: .1rem;
+}
+/*选项框*/
+.select_wrap{
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.6;
+	display: none;
+}
+.select_item{
+	width: calc(100% - .14rem);
+	-webkit-width: calc(100% - .14rem);
+	position: absolute;
+	bottom: 0;
+	padding: .07rem;
+	background-color: #eeeeee;
+	z-index: 101;
+	display: none;
+}
+.select{
+	background-color: white;
+}
+.star_select{
+	padding: .07rem .04rem .06rem;
+}
+.select p{
+	font-size: .12rem;
+	color: #949494;
+	font-weight: bold;
+	padding-bottom: .095rem;
+}
+.hotel_ul{
+	overflow: hidden;
+}
+.hotel_ul li{
+	float: left;
+	width: calc((100% - .14rem)/3 );
+	-webkit-width: calc((100% - .14rem)/3 );
+	text-align: center;
+	margin: .02rem;
+}
+.hotel_ul li a{
+	display: block;
+	width: 100%;
+	background-color: white;
+	color: #555555;
+	font-size: .12rem;
+	padding: .07rem 0;
+	border:1px solid #cfcfcf;
+}
+.hotel_ul li a.active{
+	background-color: #65bdd1;
+	color: white;
+	border:1px solid #65bdd1;
+}
+.price_select{
+	padding: .07rem .05rem;
+}
+.price_part{
+	padding-bottom: .165rem;
+}
+.price_ul{
+	overflow: hidden;
+}
+.price_ul li{
+	color: #65bdd1;
+	font-size: .1rem;
+	float: left;
+	padding-right: .29rem;
+}
+.price_ul li:nth-child(6){
+	padding-right: 0;
+}
+.slide_line{
+	width: 100%;
+	height: .245rem;
+	position: relative;
+}
+.slide_left,.slide_right{
+	width: .39rem;
+	height: .245rem;
+	background: url(../../images/xmn_index_slide.png) no-repeat center;
+	background-size: .39rem .245rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 107;
+}
+.slide_right{
+	left: 2.58rem;
+}
+.blue_line{
+	height: .02rem;
+	background-color: #65bdd1;
+	position: absolute;
+	top: .099rem;
+    left: .18rem;
+	width: 2.6rem;
+	z-index: 106;
+}
+.grey_line{
+	height: .02rem;
+	background-color: #eeeeee;
+	position: absolute;
+	top: .099rem;
+    left: 0;
+	width: 2.9rem;
+	z-index: 105;
+}
+.sure_btn{
+	text-align: center;
+	padding: .125rem .24rem;
+}
+.sure_btn a{
+	display: block;
+	width: 100%;
+	background-color: #ff9a14;
+	padding: .14rem 0;
+	border-radius: 5px;
+	font-size: .115rem;
+	color: white;
+}

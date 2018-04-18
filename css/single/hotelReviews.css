@@ -1,0 +1,160 @@
+body{
+	background-color: #eeeeee;
+}
+/*入住酒店*/
+.check_in_hotel{
+	line-height: .49rem;
+	vertical-align: middle;
+	color: #555555;
+	overflow: hidden;
+	background-color: white;
+	position: relative;
+	margin-bottom: .125rem;
+	padding-top: .44rem;
+}
+.check_in{
+	float: left;
+	font-size: .13rem;
+	padding-left: .125rem;
+}
+.hotel_name{
+	float: left;
+	font-size: .14rem;
+	padding-left: .125rem;
+	font-weight: bold;
+}
+/*选择评分*/
+.hotel_score{
+	margin-bottom: .125rem;
+	background-color: white;
+}
+.choose_score{
+	overflow: hidden;
+	line-height:.39rem;
+	vertical-align: middle; 
+}
+.hotel_score .choose_before:before{
+	top: 1.05rem;
+}
+.choose{
+	float: left;
+	font-size: .13rem;
+	padding-left: .125rem;
+	color: #555555;
+}
+.score_star{
+	padding-left: .125rem;
+	float: left;
+}
+.score_ul{
+	overflow: hidden;
+	padding: .1rem 0;
+}
+.score_ul li{
+	padding-right: .09rem;
+	float: left;
+}
+.score_ul li a{ 
+	display: block;
+	width: .195rem;
+	height: .185rem;
+}
+.score_ul li img{
+	width: 100%;
+	vertical-align: top;
+}
+.share_hotel{
+	width: 100%;
+	height: 1.45rem;
+	position: relative;
+}
+.share_hotel textarea{
+	width: 100%;
+	height: 1.43rem;
+	resize:none;
+	outline: none;
+	border-color: #cfcfcf;
+	border: none;
+}
+.text_show{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: .12rem;
+	color: #949494;
+	padding-top: .513rem;
+}
+.text_show p{
+	padding: .037rem 0;
+}
+.text_tips{
+	line-height: .25rem;
+	overflow: hidden;
+	background-color: white;
+}
+.text_tips p{
+	float: right;
+	padding-right: .125rem;
+	font-size: .12rem;
+	color: #9c9c9c;
+}
+.text_tips p i{
+	font-style: normal;
+}
+.tips_after:after{
+	top: 3.14rem;
+}
+/*添加图片*/
+.upload_photo{
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+.photo_frame{
+	float: left;
+}
+.photo_img{
+	padding: .125rem;
+}
+.photo_img img{
+	width: .7rem;
+	height: .7rem;
+}
+.add_pic{
+	padding: .125rem 0 0 .105rem;
+}
+.add_pic a{
+	color: #65bdd1;
+	font-size: .12rem;
+	display: block;
+}
+.photo_arrow{
+	float: left;
+}
+.photo_arrow figure{
+	padding-top: .2rem;
+}
+.photo_arrow img{
+	width: .315rem;
+	height: .2rem;
+}
+.share_our{
+	padding-left: .135rem;
+	font-size: .12rem;
+	color: #949494;
+}
+/*发表评论*/
+.make_comments{
+	padding: .125rem .24rem;
+}
+.post_btn{
+	display: block;
+	background-color: #65bdd1;
+	color: white;
+	font-size: .12rem;
+	padding: .14rem 1.115rem;
+	border-radius: 5px;
+	text-align: center;
+}

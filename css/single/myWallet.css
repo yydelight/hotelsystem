@@ -1,0 +1,101 @@
+.my_balance{
+	padding: .235rem .395rem;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+.wallet_icon{
+	display: block;
+	float: left;
+	width: .35rem;
+	height: .265rem;
+	background: url(../../images/xmn_wallet.png) no-repeat center;
+	background-size: 100% 100%;
+}
+.my_balance p{
+	font-size: .19rem; 
+	float: left;
+	padding: 0 .125rem;
+}
+.my_balance i{
+	font-size: .18rem;
+	color: #ff7e00;
+}
+.recharge{
+	position: relative;
+	display: flex;
+	text-align: center;
+	background-color: white;
+}
+.recharge_pay,.withdraw{
+	display: block;
+	flex:1;
+	line-height: .5rem;
+	color: #555555;
+	background: url(../../images/xmn_wallet_recharge.png) no-repeat left center;
+	background-size: .185rem .185rem;
+	background-position: .475rem;
+	padding-left: .13rem;
+	font-size: .13rem;
+	position: relative;
+}
+.recharge .border_right:before{
+	height: 50%;
+	top: 50%;
+	transform:translateY(-50%);
+	-webkit-transform:translateY(-50%);
+}
+.withdraw{
+	background: url(../../images/xmn_wallet_withdraw.png) no-repeat left center;
+	background-size: .185rem .185rem;
+	background-position: .475rem;
+}
+.wallet_wrap{
+	padding-top: .44rem;
+}
+.my_wallet_wrap{
+	padding-top: .095rem;
+}
+.my_wallet{
+	position: relative;
+	background-color: white;
+}
+.wallet{
+	position: relative;
+	padding: 0 .125rem 0 .24rem;
+	height: .4rem;
+	line-height: .4rem;
+	overflow: hidden;
+	background: url(../../images/xmn_wallet_card.png) no-repeat left center;
+	background-size: .22rem .16rem;
+	background-position: .24rem;
+}
+.wallet p{
+	float: left;
+	padding-left: .34rem;
+}
+.wallet .card{
+	font-size: .11rem;
+	position: absolute;
+	right: .32rem;
+}
+.wallet p a{
+	font-size: .12rem;
+	color: #555555;	
+}
+.arrow_wrap{
+	float: right;
+	margin-top: .165rem;
+}
+.order_return_money{
+	background: url(../../images/xmn_wallet_return.png) no-repeat left center;
+	background-size: .2rem .185rem;
+	background-position: .24rem;
+}
+.order_refund{
+	background: url(../../images/xmn_wallet_refund.png) no-repeat left center;
+	background-size: .185rem .205rem;
+	background-position: .24rem;
+}
+
+

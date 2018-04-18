@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提现</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/walletWithdraw.css">
+	<link rel="stylesheet" type="text/css" href="css/single/orderPay.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">提现</div>
+	</div>
+
+	<!-- 提现 -->
+	<div class="withdraw_type_wrap">
+		<p class="withdraw_money">提现金额:<i>888</i></p>
+		<!-- 支付部分 -->
+		<div class="pay_part border_before">
+			<div class="pay_mode pay_card border_after">
+				<div class="pay">
+					<p class="pay_type">体现到银行卡</p>
+					<p class="pay_tips">支持信用卡储蓄卡</p>
+				</div>
+				<div class="select selected"></div>
+			</div>
+			<div class="pay_mode pay_wechat border_after">
+				<div class="pay">
+					<p class="pay_type">提现到微信</p>
+					<p class="pay_tips">推荐安装微信5.0及以上版本的使用</p>
+				</div>
+				<div class="select selected"></div>
+			</div>
+			<div class="pay_mode pay_alipay border_after">
+				<div class="pay">
+					<p class="pay_type">提现支付宝</p>
+					<p class="pay_tips">推荐有支付宝帐号的用户使用</p>
+				</div>
+				<div class="select select_none"></div>
+			</div>
+		</div>
+	</div>
+	<div class="sure_btn">
+		<a href="">确认支付</a>
+	</div>
+
+	<script type="text/javascript">
+	$(function(){
+		$(".select").on('click',function(){
+			if($(this).hasClass("selected")){
+				$(this).removeClass("selected");
+				$(this).addClass("select_none");
+			}else{
+				$(this).removeClass("select_none");
+				$(this).addClass("selected");
+			}
+		})
+	})
+	</script>
+</body>
+</html>

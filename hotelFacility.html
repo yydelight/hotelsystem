@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酒店设施</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<style type="text/css">
+		i{
+			font-style: normal;
+		}
+		.facility_wrap{
+			padding: .125rem;
+		}
+		.fac{
+			font-size: .12rem;
+			color: #555555;
+			overflow: hidden;
+		}
+		.fac h5{
+			font-size: .14rem;
+			padding-bottom: .125rem;
+		}
+		.fac p{
+			float: left;
+			padding: 0 .35rem .125rem 0;
+		}
+		.hotel_tel_content{
+			text-align: center;
+			font-size: 0;
+		}
+		.hotel_tel{
+			color: #65bdd1;
+			padding: .17rem 0;
+			position: relative;
+			font-size: .125rem;
+		}
+		.border_before:before{
+			background-color: #65bdd1!important;
+		}
+		.border_after:after{
+			background-color: #65bdd1!important;
+		}
+		.hotel_tel p{
+			display: inline-block;
+			font-size: .125rem;
+		}
+		.hotel_tel_icon{
+			display: block;
+			width: .16rem;
+			height: .155rem;
+			background: url(images/xmn_facility_tel.png) no-repeat center center;
+			background-size: .16rem .155rem;
+			vertical-align: top;
+		}
+		.tel{
+			padding-left: .075rem;
+		}
+		.hotel_intro{
+			padding: .125rem;
+		}
+		.intro_title{
+			font-size: .14rem;
+			color: #333333;
+			padding-bottom: .125rem;
+			font-weight: bold;
+		}
+		.room_num{
+			font-size: .125rem;
+			color: #555555;
+			padding-bottom: .125rem;
+		}
+		.intro{
+			font-size: .12rem;
+			color: #333333;
+			padding-bottom: .07rem;
+		}
+
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">广州上下九步行街七天连锁酒店</div>
+	</div>
+
+	<div class="scrollWrap">
+		<!-- 措施 -->
+		<div class="facility_wrap">
+			<div class="fac net_fac">
+				<h5>网络措施</h5>
+				<p>房间wifi</p>
+				<p>公共区域wifi</p>
+				<p>宽带上网</p>
+			</div>
+			<div class="fac room_fac">
+				<h5>房间措施</h5>
+				<p>全天热水</p>
+				<p>吹风机</p>
+				<p>国际长途电话</p>
+				<p>空调</p>
+				<p>免费国内长途</p>
+			</div>
+			<div class="fac common_fac">
+				<h5>通用设施</h5>
+				<p>电梯</p>
+				<p>餐厅</p>
+				<p>免费停车</p>
+			</div>
+			<div class="fac serve_fac">
+				<h5>服务项目</h5>
+				<p>接机服务</p>
+				<p>行李寄存</p>
+				<p>接站服务</p>
+				<p>叫车服务</p>
+				<p>会议室</p>
+				<p>洗衣服务</p>
+			</div>
+			<div class="fac activity_fac">
+				<h5>活动设施</h5>
+				<p>棋牌室</p>
+			</div>
+		</div>
+		<!-- 酒店电话 -->
+		<div class="hotel_tel border_before border_after">
+			<div class="hotel_tel_content">
+				<p class="hotel_tel_icon"></p>
+				<p class="tel">酒店电话：020-89784569</p>	
+			</div>
+		
+		</div>
+		<div class="hotel_intro">
+			<p class="intro_title">酒店介绍：</p>
+			<p class="room_num">房间数：<i class="num">120</i>间</p>
+			<p class="intro">广州市上下九步行街七天连锁酒店位于天河区,距离火车站、汽车客运总站约3公里,距离绵阳机场仅约10公里。距离长虹集团、九州集团仅10分钟左右车程;沃尔玛超市、佰腾数码广场、绵阳科技大楼近在咫尺.</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

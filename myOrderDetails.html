@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的订单</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myOrderDetails.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="hd_wrapper">
+		<!-- 酒店头部 -->
+		<div class="header">
+			<div class="header_left">
+				<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+			</div>
+			<div class="header_title">我的订单</div>
+		</div>
+
+		<!-- 我的订单 -->
+		<div class="order_details_wrap">
+			<div class="order_details_tab border_after">
+				<div class="order_state border_right active" id="making">
+					<p>进行中订单</p>
+				</div>
+				<div class="order_state border_right" id="history">
+					<p>历史订单</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="scrollWrap pad_79">
+		<div class="order_wrap">
+
+		</div>
+	</div>
+</div>
+
+
+	<!-- 弹窗 -->
+	<div class="mask_wrap"></div>
+	<div class="confirm_box">
+		<p>确认删除该订单？</p>
+		<div class="btn_group">
+			<div class="sure_btn">
+				<a href="">确定</a>
+			</div>
+			<div class="cancel_btn">
+				<a href="">取消</a>
+			</div>
+		</div>
+	</div>
+
+	<script id='template_list' val="1" type="text/template"> 
+        <%
+            for(var i in hotelData){
+                var obj=hotelData[i];
+        %>
+	        <div class="order_show">
+				<div class="make_order border_before border_after">
+					<figure>
+						<img src="<%=obj.roomImg%>">
+					</figure>
+					<div class="hotel_det">
+						<p class="hotel_name"><%=obj.hotelName%></p>
+						<p><%=obj.roomName%></p>
+						<p><%=obj.wifi%></p>
+						<p class="breakf"><%=obj.breakf%></p>
+					</div>
+					<a href=""><div class="right_arrow"></div></a>
+					<div class="cancel_order">
+						<a href="" class="cancel">取消订单</a>
+					</div>
+				</div>
+				<div class="pay_order border_after">
+					<div class="act_pay">
+						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.pay%></i></p>
+					</div>
+					<div class="pay_state">
+						<a href="">
+							<%if(obj.state==1){%>已付款<%}%>
+							<%if(obj.state==2){%>去支付<%}%>
+							<%if(obj.state==3){%>到付<%}%>
+						</a>
+					</div>
+				</div>
+			</div>
+        <%}%>
+	</script>	
+
+	<script id='history_list' val="1" type="text/template"> 
+        <%
+            for(var i in hotelData){
+                var obj=hotelData[i];
+        %>
+	        <div class="order_show">
+				<div class="make_order history_order border_before border_after">
+					<figure>
+						<img src="<%=obj.roomImg%>">
+					</figure>
+					<div class="hotel_det">
+						<p class="hotel_name"><%=obj.hotelName%></p>
+						<p><%=obj.roomName%></p>
+						<p><%=obj.wifi%></p>
+						<p class="breakf"><%=obj.breakf%></p>
+					</div>
+					<a href=""><div class="right_arrow"></div></a>
+					<div class="cancel_order">
+						<a href="" class="cancel delete"></a>
+					</div>
+					<div class="seal">
+						<img src="images/xmn_order_<%if(obj.state==1){%>finish<%}%><%if(obj.state==0){%>canceled<%}%>.png">
+					</div>
+				</div>
+				<div class="pay_order border_after">
+					<div class="act_pay">
+						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.pay%></i></p>
+					</div>
+					<p class="comment"><a href="hotelReviews.html">点击评论</a></p>
+					<div class="pay_state">
+						<a href="">再次预定</a>
+					</div>
+				</div>
+			</div>
+        <%}%>
+	</script>	
+
+
+
+	<script type="text/javascript">
+	$(function(){
+		var orderState=$(".order_state");
+		orderState.bind('click',function(){
+			var tham=$(this);
+			var index=$(this).index();
+			orderState.removeClass("active");
+			tham.addClass("active");
+			if(index==0){
+				ajaxData(0);
+			}else if(index==1){
+				ajaxData(1);
+			}
+		})
+
+		ajaxData(0);
+
+		function ajaxData(state){
+            console.log("***",window.sessionStorage)
+			window.STA.ajax({
+				url:"/order/list",
+                dataType : "json",
+				success:function(data){
+				    debugger;
+					var bat=window.baidu.template;
+					var list="";
+					if(state==0){
+						var make=data.makeOrder;
+						list=bat('template_list',{hotelData:make});
+						$(".order_wrap").html(list);
+					}else if(state==1){
+						var history=data.historyOrder;
+						list=bat('history_list',{hotelData:history});
+						$(".order_wrap").html(list);
+					}
+				}
+			})			
+		}
+
+		$(".order_wrap").bind('click',function(e){
+			if(e.target.className=="cancel delete"||e.target.className=="cancel"){
+				$('.mask_wrap').show();
+				$('.confirm_box').show();
+				$(e.target).parent().addClass("loveClick");
+			}
+			return false;
+		})	
+
+		$('.confirm_box').bind('click',function(e){
+			var className=$(e.target).parent()[0].className;
+			if(className=='sure_btn'){
+				var deleteDiv=$(".loveClick").parents(".order_show");
+				deleteDiv.remove();
+			}else if(className=='cancel_btn'){
+				$('.loveClick').removeClass('loveClick');
+			}
+			$('.scrollWrap').css("overflow","scroll");
+			$('.confirm_box').hide();
+			$('.mask_wrap').hide();
+			return false;
+
+		});
+
+	})
+
+
+	</script>
+</body>
+</html>

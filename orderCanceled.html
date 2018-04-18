@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>已取消</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myOrderDetails.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<style type="text/css">
+		.order_wrap{
+			margin-top: -.125rem;
+		}
+		.date{
+			color: #949494;
+			font-size: .08rem;
+		}
+	</style>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">已取消(<i>3</i>)</div>
+	</div>
+
+	<div class="order_wrap">
+
+	</div>
+
+
+	<script type="text/javascript">
+	$(function(){
+		function addOrder(data){
+			var html="";
+			var i=0;
+			// 1代表完成，0代表取消
+			for(order of data){
+				if(order.state!=0){
+					continue;
+				}
+				html+='<div class="order_show">'+
+						'<div class="make_order history_order border_before border_after">'+
+							'<figure>'+
+								'<img src="'+order.roomImg+'">'+
+							'</figure>'+
+							'<div class="hotel_det">'+
+								'<p class="hotel_name">'+order.hotelName+'</p>'+
+								'<p>'+order.roomName+'</p>'+
+								'<p>'+order.wifi+'</p>'+
+								'<p class="breakf">'+order.breakf+'</p>'+
+							'</div>'+
+							'<a href=""><div class="right_arrow"></div></a>'+
+							'<div class="cancel_order">'+
+								'<p class="date">'+order.date+'</p>'+
+							'</div>'+
+							'<div class="seal">'+
+								'<img src="images/xmn_order_canceled.png">'+
+							'</div>'+
+						'</div>'+
+						'<div class="pay_order border_after">'+
+							'<div class="act_pay">'+
+								'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.pay+'</i></p>'+
+							'</div>'+
+							'<div class="pay_state">'+
+								'<a href="">再次预定</a>'+
+							'</div>'+
+						'</div>'+
+					'</div>'
+					i++;
+			}
+			$(".header_title i").html(i);
+			$(".order_wrap").html(html);
+		}
+
+		window.STA.ajax({
+			url:"data/hotelOrder.json",
+			success:function(data){
+				var history=data.historyOrder;
+				addOrder(history);
+			}
+		})
+
+    })
+	</script>
+</body>
+</html>

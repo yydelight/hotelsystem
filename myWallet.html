@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的钱包</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myWallet.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">我的钱包</div>
+	</div>
+
+	<!-- 我的钱包 -->
+	<div class="wallet_wrap">
+		<div class="my_balance border_after">
+			<span class="wallet_icon"></span>
+			<p>账户余额</p>
+			<i><i class="wallet_balance">128</i>元</i>
+		</div>
+		<div class="recharge border_after">
+			<a class="recharge_pay border_right" href="">充值</a>
+			<a class="withdraw" href="walletWithdraw.html">提现</a>
+		</div>
+		<!-- 我的订单 -->
+		<div class="my_wallet_wrap">
+			<ul class="my_wallet border_before">
+				<li class="wallet border_after">
+			 		<p><a href="myCard.html">我的银行卡</a></p>
+			 		<p class="card"><i class="card_num">0</i>张</p>
+			 		<div class="arrow_wrap">
+			 			<a href=""><i class="right_arrow"></i></a>
+			 		</div>
+				</li>
+				<li class="wallet order_return_money border_after">
+					<p><a href="">订单返现</a></p>
+					<div class="arrow_wrap">
+						<a href=""><i class="right_arrow"></i></a>
+					</div>
+				</li>
+				<li class="wallet order_refund border_after">
+					<p><a href="">订单退款</a></p>
+					<div class="arrow_wrap">
+						<a href=""><i class="right_arrow"></i></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.no_card_show{
+	font-size: .13rem;
+	color: #65bdd1;
+	padding-top: 1.785rem;
+	text-align: center;
+	line-height: 1.2;
+	display: none;
+}
+.no_card_show p:nth-child(1){
+	padding-bottom: .1rem;
+}
+.card_wrap{
+	padding: .565rem .05rem .125rem .05rem;
+}
+.card_show{
+	background-color: white;
+	padding: .125rem .14rem;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-bottom: .125rem;
+}
+.card_info{
+	float: left;
+	padding-right: .25rem;
+}
+.card_name{
+	color: #65bdd1;
+	font-size: .13rem;
+}
+.card_type{
+	font-size: .1rem;
+	color: #949494;
+}
+.card_id{
+	float: right;
+	font-size: .11rem;
+	color: #949494;
+	padding-top: .07rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+.point_details_wrap{
+	padding-top: .44rem;
+}
+.point_details{
+	overflow: hidden;
+	padding: .075rem .115rem;
+	position: relative;
+	background-color: white;
+}
+.hotel_item{
+	float: left;
+}
+.hotel_item p:nth-child(1){
+	font-size: .13rem;
+	color: #333333;
+	padding-bottom: .09rem;
+}
+.hotel_item p:nth-child(2){
+	font-size: .12rem;
+	color: #333333;
+	padding-bottom: .095rem;
+}
+.hotel_item p:nth-child(3){
+	font-size: .08rem;
+	color: #949494;
+}
+.point{
+	float: right;
+	padding-top: .185rem;
+	color: #ff9a14;
+}
+.no_more{
+	padding: .19rem 1.03rem;
+}
+.no_more p{
+	font-size: .12rem;
+	color: #65bdd1;
+	border:1px solid #65bdd1;
+	border-radius: 5px;
+	padding: .075rem .105rem;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+

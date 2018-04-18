@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的银行卡</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myCard.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">我的银行卡</div>
+	</div>
+
+	<div class="no_card_show">
+		<p>您仍未绑定任何一张银行卡</p>
+		<p>银行卡绑定，需再银行卡支付过程中进行。</p>
+	</div>
+
+	<div class="card_wrap">
+
+	</div>
+
+	<script type="text/javascript">
+	$(function(){
+
+		// 分割为四位 card.cardId.replace(/(\d{4})(?=\d)/g,"$1"+" ")
+		function addCard(data){
+			var html='';
+			for(card of data){
+
+				html+='<div class="card_show">'+
+							'<div class="card_info">'+
+								'<p class="card_name">'+card.cardName+'</p>'+
+								'<p class="card_type">'+card.cardType+'</p>'+
+							'</div>'+
+							'<p class="card_id">'+card.cardId+'</p>'+
+						'</div>'
+			}
+			$(".card_wrap").html(html);
+		}
+
+		window.STA.ajax({
+			url:"data/myCard.json",
+			success:function(data){
+				var card = data.card;
+				if(card.length>0){
+					$(".no_card_show").hide();
+					addCard(card)
+				}else{
+					$(".no_card_show").show();
+				}
+			}
+		})
+	})
+	</script>
+</body>
+</html>

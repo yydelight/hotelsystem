@@ -1,0 +1,181 @@
+body{
+	background-color:#eeeeee;
+}
+.info_wrap{
+	padding-top: .44rem;
+}
+.order_info{
+	position: relative;
+	font-size: .13rem;
+	background-color: white;
+	overflow: hidden;
+	color: #949494;
+	padding: .115rem .125rem .125rem .175rem;
+}
+.order_info{
+	line-height: .12rem;
+}
+.order_name{
+	float: left;
+}
+.name_p{
+	padding-bottom: .125rem;
+}
+.order_name i{
+	padding-left: .25rem;
+	color: #333333;
+}
+.order_details{
+	float: right;
+}
+.order_details p{
+	color: #65bdd1;
+	font-size: .12rem;
+	padding-right: .155rem;
+}
+.order_details .right_arrow{
+	left: initial;
+	right: .08rem;
+	top: .12rem;
+}
+/*支付部分*/
+.pay_part{
+	margin-top: .125rem;
+	background-color: white;
+	position: relative;
+}
+.need_pay{
+	position: relative;
+	padding: .12rem .175rem;
+	overflow: hidden;
+}
+.need_pay p{
+	font-size: .12rem;
+	color: #949494;
+	float: left;
+}
+.need_pay span{
+	color: #ff9a14;
+	float: left;
+	font-size: .12rem;
+	padding-left: .25rem;
+}
+.pay_balance{
+	padding: .15rem .125rem .15rem .175rem!important;
+}
+.pay_mode{
+	background: url(../../images/xmn_pay_wallet.png) no-repeat center left;
+	background-size: .25rem .195rem;
+	background-position: .175rem;
+	overflow: hidden;
+	position: relative;
+	padding: .11rem .125rem .11rem .175rem;
+}
+.pay_card{
+	background: url(../../images/xmn_pay_card.png) no-repeat center left;
+	background-size: .25rem .195rem;
+	background-position: .175rem;
+}
+.pay_wechat{
+	background: url(../../images/xmn_pay_wechat.png) no-repeat center left;
+	background-size: .25rem .195rem;
+	background-position: .175rem;
+}
+.pay_alipay{
+	background: url(../../images/xmn_pay_alipay.png) no-repeat center left;
+	background-size: .25rem .195rem;
+	background-position: .175rem;
+}
+.pay_mode p{
+	font-size: .13rem;
+	padding-left: .375rem;
+	float: left;
+	line-height: 1;
+}
+.pay_mode p i{
+	color: #ff9a14;
+}
+.pay_mode .rmb{
+	display: inline-block;
+	height: .16rem;
+	transform: scaleY(0.7);
+	vertical-align: middle;
+	padding-left: .15rem;
+}
+.balance{
+	font-size: .11rem;
+}
+.select{
+	float: right;
+	width: .145rem;
+	height: .145rem;
+	border-radius: 50px;
+	font-size: 0;
+}
+.select_none{
+	border: 1px solid #949494;
+}
+.selected{
+	width: .155rem;
+	height: .155rem;
+	background: url(../../images/xmn_pay_select.png) no-repeat center center;
+	background-size: 100%;
+}
+.pay{
+	overflow: hidden;
+    float: left;
+}
+.pay .pay_type{
+	clear: both;
+}
+.pay .pay_tips{
+	clear: both;
+	font-size: .095rem;
+	color: #949494;
+}
+.pay+.select{
+	margin-top: .05rem;
+}
+.sure_btn{
+	padding: .24rem .2rem;
+	text-align: center;
+	width: calc(100% - .4rem);
+	width: calc(100% - .4rem);
+	margin: 0;
+}
+.sure_btn a{
+	display: block;
+	width: 100%;
+	/*height: .4rem;*/
+	/*line-height: .4rem;*/
+	color: white;
+	background-color: #65bdd1;
+	font-size: .12rem;
+	border-radius: 5px;
+}
+.pop_up{
+	position: absolute;
+	top: 2.09rem;
+	left: .335rem;
+	right: .335rem;
+	background: url(../../images/xmn_pay_popup.png);
+	background-size: 100% 100%;
+	display: none;
+}
+.content_wrap{
+	padding: .53rem .1rem .355rem .1rem;
+	color: white;
+	text-align: center;
+}
+.content_wrap p{
+	line-height: 1.2;
+}
+.success{
+	font-size: .13rem;
+	padding-bottom: .165rem;
+}
+.tips{
+	font-size: .11rem;
+}
+
+

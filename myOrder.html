@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的订单</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myOrder.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">我的订单</div>
+	</div>
+	<!-- 个人中心 -->
+	<div class="user_wrap">
+		<div class="user_info">
+			<div class="user_head">
+				<img src="images/xmn_slidebar_person_head.png">
+			</div>
+			<p class="user_tel">150****1274</p>
+		</div>
+	</div>
+	<!-- 我的订单 -->
+	<div class="my_order_wrap">
+		<ul class="my_order border_before">
+			<li class="order border_after">
+		 		<p><a href="myOrderDetails.html">全部订单</a></p>
+		 		<div class="arrow_wrap">
+		 			<a href=""><i class="right_arrow"></i></a>
+		 		</div>
+			</li>
+			<li class="order order_not_out border_after">
+				<p><a href="">未出行</a></p>
+				<div class="arrow_wrap">
+					<a href=""><i class="right_arrow"></i></a>
+				</div>
+			</li>
+			<li class="order order_not_pay border_after">
+				<p><a href="">待付款</a></p>
+				<div class="arrow_wrap">
+					<a href=""><i class="right_arrow"></i></a>
+				</div>
+			</li>
+			<li class="order order_not_comment border_after">
+				<p><a href="">待评价</a></p>
+				<div class="arrow_wrap">
+					<a href=""><i class="right_arrow"></i></a>
+				</div>
+			</li>
+			<li class="order order_cancel border_after">
+				<p><a href="">已取消</a></p>
+				<div class="arrow_wrap">
+					<a href=""><i class="right_arrow"></i></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="ap\ple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/login.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+
+	<style type="text/css">
+		button, input {
+			border: none;
+			outline: 0;
+		}
+		.userLoginWrap{
+			background: url("images/loginbg.jpg") 100% no-repeat;
+			height: 100%;
+		}
+		.userLogin{
+			background: #e3e3e3;
+			width: 2.24rem;
+			margin: 0 auto;
+			position: absolute;
+			top: 2rem;
+			left: 0;
+			right: 0;
+			opacity:0.5;
+			border-radius: 5px;
+		}
+		.form_div{
+			width: 2.24rem;
+			height: .28rem;
+			border: 1px solid #ddd;
+			margin-bottom: .15rem;
+			line-height: .4rem;
+			color: white;
+		}
+		.form_div .label{
+			font-size:.14rem;
+		}
+		.label+input {
+			display: inline-block;
+			vertical-align: middle;
+			width: 1.24rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="userLoginWrap">
+		<div class="login_cont">
+			<div class="login_nav">
+				<div class="nav_slider">
+					<a href="#" class="signup focus">注册</a>
+					<a href="#" class="signin">登录</a>
+				</div>
+			</div>
+			<form>
+				<div class="input_signup active">
+					<input class="input" id="user_name" type="text" aria-label="用户名（包含字母／数字／下划线" placeholder="用户名">
+					<div class="hint">请填写用户名</div>
+					<input class="input" id="password" type="password" aria-label="密码" placeholder="密码（不少于 6 位）">
+					<div class="hint">请填写密码</div>
+					<input class="input" id="repassword" type="password" aria-label="密码" placeholder="再次输入密码">
+					<div class="hint">请再次输入密码</div>
+					<input type="submit" id="submit" class="button" name="button" value="注册">
+				</div>
+			</form>
+			<form>
+				<div class="input_signin">
+					<input class="input" id="login_user_name" type="text" aria-label="用户名" placeholder="用户名">
+					<div class="hint">请输入用户名</div>
+					<input class="input" id="login_password" type="password" aria-label="密码" placeholder="密码">
+					<div class="hint">请输入密码</div>
+					<input type="submit" id="button" class="button" name="button" value="登录">
+					<div class="forget">
+						<a href="forget.html">忘记密码？</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+        $(function(){
+            var _host = "http://192.168.202.21";
+            $(".signin").click(function(){
+                this.className="signin focus";
+                $(".signup")[0].className="signup";
+                $(".input_signin")[0].className="input_signin active";
+                $(".input_signup")[0].className="input_signup";
+            });
+            $(".signup").click(function(){
+                this.className="signup focus";
+                $(".signin")[0].className="signin";
+                $(".input_signup")[0].className="input_signup active";
+                $(".input_signin")[0].className="input_signin";
+            });
+            
+            $("#submit").click(function () {
+				var userName=$("#user_name").val();
+				var passWord=$("#password").val();
+                window.STA.ajax({
+                    url:"/user/reg",
+                    data: {
+                        userName:userName,
+                        passWord:passWord
+                    },
+                    success:function(data){
+						console.log("成功！")
+						window.alert("成功")
+                    }
+                })
+            })
+
+			$("#button").click(function () {
+                var userName=$("#login_user_name").val();
+                var passWord=$("#login_password").val();
+                var token="";
+                /*window.STA.ajax({
+                    url:"/user/login",
+                    data: {
+                        userName:userName,
+                        passWord:passWord
+                    },
+                    success:function(data){
+						if(data.resultCode==0){
+                            window.location.href='index.html';
+                            window.sessionStorage.setItem('token',data.data.token);
+//                            $.session.set('token', data.token)
+//                            token=data.token;
+							console.log("window.sessionStorage",window.sessionStorage)
+						}
+                        window.alert(data.resultMsg)
+                    }
+                })*/
+
+                $ajax.get("user/login",{
+                    userName:userName,
+                    passWord:passWord
+                },function(data){
+                    console.log("***",data)
+                    if(data.resultCode==0){
+                        window.location.href='index.html';
+                        window.sessionStorage.setItem('username',data.data.userName);
+                        window.sessionStorage.setItem('token',data.data.token);
+//                            $.session.set('token', data.token)
+//                            token=data.token;
+                        console.log("window.sessionStorage",window.sessionStorage)
+                    }
+                    window.alert(data.resultMsg)
+                });
+
+
+
+            })
+        })
+	</script>
+	<script type="text/javascript" src="js/form.js"></script>
+
+</body>

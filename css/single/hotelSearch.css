@@ -1,0 +1,123 @@
+.search_box{
+	background-color: #65bdd1;
+	position: relative;
+	margin-top: .44rem;
+	overflow: hidden;
+	display: flex;
+}
+.search{
+	padding: .03rem 0 .03rem .05rem;
+	float: left;
+	flex: 1;
+}
+.search input{
+	display: block;
+	outline: none;
+	border:none;
+	padding: .07rem .075rem .07rem .26rem;
+	/*width: 100%;*/
+	width: calc(100% - .36rem);
+	width: -webkit-calc(100% - .36rem);
+}
+.search_icon{
+	display: block;
+	width: .135rem;
+	height: .135rem;
+	position: absolute;
+	top: .1rem;
+	left: .1rem;
+	background: url(../../images/xmn_key_search.png) no-repeat center center;
+	background-size: .135rem .135rem;
+}
+.header_right{
+	position: absolute;
+	top: .135rem;
+	right: .13rem;
+	width: .13rem;
+	height: .175rem;
+	background: url(../../images/xmn_hotel_local.png) no-repeat right center;
+	background-size: 100%;
+}
+.search{
+	/*display: inline-block;*/
+}
+.search input{
+	/*width: auto;*/
+}
+.select_time{
+	padding: .03rem .05rem .03rem .02rem;
+	/*display: inline-block;*/
+	vertical-align: middle;
+	float: right;
+}
+.time_show{
+    padding: .045rem 0;
+	background-color: white;
+	position: relative;		
+}
+.select_time p{
+	color: #65bdd1;
+	font-size: .09rem;
+	line-height: 1;
+	padding: 0 .2rem 0 .1rem;
+}
+.time_show:after{
+	content: "";
+	position: absolute;
+	top: .12rem;
+	right: .04rem;
+	width: 0;
+	height: 0;
+	border: .044rem solid transparent;
+	border-top: .06rem solid #65bdd1;
+}
+.ft_wrapper{
+	position: absolute;
+	width: 100%;
+	z-index: 199;
+	bottom: 0;
+	left: 0;
+}
+.ft_ul{
+	background-color: #84cada;
+	opacity: .9;
+	color: white;
+	overflow: hidden;
+	display: flex;
+}
+.ft_ul li{
+	float: left;
+	font-size: .11rem;
+	padding: .12rem 0 .12rem .1rem;
+	flex:1;
+	text-align: center;
+	position: relative;
+}
+.ft_ul li:nth-child(1){
+	background:url(../../images/xmn_hotel_sort.png) no-repeat left center;
+	background-size: .125rem .125rem;
+	background-position: .2rem;
+}
+.ft_ul li:nth-child(2){
+	background:url(../../images/xmn_hotel_price.png) no-repeat left center;
+	background-size: .125rem .125rem;
+	background-position: .2rem;
+}
+.ft_ul li:nth-child(3){
+	background:url(../../images/xmn_hotel_select.png) no-repeat left center;
+	background-size: .125rem .125rem;
+	background-position: .2rem;
+}
+.border_right:before {
+    top: 25%;
+    height: 50%;
+    background-color: white;
+}
+
+
+
+
+
+
+
+

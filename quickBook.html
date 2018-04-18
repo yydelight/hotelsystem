@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>快速订酒店</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/single/quickBook.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/rinyDrager.simple.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>  
+</head>
+<body>
+	<div class="quick_header">
+		<div class="header_person">
+			<a href=""></a>
+		</div>
+		<div class="header_nav">
+			<ul class="nav_ul">
+				<li><a href="">酒店</a></li>
+				<li><a class="active" href="">快速订酒店</a></li>
+				<li><a href="">宵夜抢单</a></li>
+				<li><a href="">酒店+餐饮</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 百度地图 -->
+	<div id="container" class="map_wrap"></div>  
+	<!-- 订房时间 -->
+	<div class="book_hotel_wrap">
+		<div class="book_hotel">
+			<div class="check_in_out">
+				<p>入住</p>
+				<a href="">
+					<h5>2月18日</h5>
+					<h6>今天</h6>
+				</a>
+			</div>
+			<div class="check_in_out">
+				<p>离店</p>
+				<a href="">
+					<h5>2月19日</h5>
+					<h6>周五</h6>
+				</a>
+			</div>
+			<div class="book_hotel_star border_before border_star">
+				<a href="">五星级酒店</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 遮罩层 -->
+	<div class="select_wrap"></div>
+	<div class="select_item">
+		<div class="select star_select">
+			<p>星级</p>
+			<div class="hotel_star">
+				<ul class=" hotel_ul">
+					<li><a class="active" href="">不限</a></li>
+					<li><a href="">快捷连锁</a></li>
+					<li><a href="">二星级酒店</a></li>
+					<li><a href="">三星级酒店</a></li>
+					<li><a href="">四星级酒店</a></li>
+					<li><a href="">五星级酒店</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="select price_select">
+			<p>价格</p>
+			<div class="price_part">
+				<ul class="price_ul">
+					<li>¥0</li>
+					<li>¥150</li>
+					<li>¥300</li>
+					<li>¥500</li>
+					<li>¥800</li>
+					<li>不限</li>
+				</ul>
+			</div>
+			<div class="slide_line">
+				<div class="slide_left"></div>
+				<div class="slide_right"></div>
+				<div class="blue_line"></div>
+				<div class="grey_line"></div>
+			</div>
+		</div>
+		<div class="sure_btn">
+			<a href="">确认</a>
+		</div>
+	</div>
+	
+
+	<script type="text/javascript">
+	$(function(){
+		var nav=$(".nav_ul li a");
+		nav.on('click',function(){
+			nav.removeClass("active");
+			$(this).addClass("active");
+			return false;
+		})
+
+		var map = new BMap.Map("container");          // 创建地图实例
+		map.centerAndZoom(new BMap.Point(113.251095,23.121512),17);  //初始化时，即可设置中心点和地图缩放级别。
+
+		var hotel=$(".hotel_ul li a");
+		hotel.on('click',function(){
+			if($(this).hasClass("active")){
+				$(this).removeClass("active");
+			}else{
+				if($(this).text()!="不限"){
+					$(".hotel_ul li").children("a:eq(0)").removeClass("active");
+				}else{
+					hotel.removeClass("active");
+				}
+				$(this).addClass("active");
+			}
+
+			return false;
+		})
+
+		// 价格按钮
+		var bookHotel=$(".book_hotel_star");
+		bookHotel.on('click',function(e){
+			$(".select_wrap").show();
+			$(".select_item").show();
+			return false;
+		})
+
+		// 滑动条
+		function moveLine(){
+			var line=$(".blue_line");
+			var leftWidth=$(".slide_left").offset().left;
+			var rightWidth=$(".slide_right").offset().left;
+			var lineWidth=rightWidth-leftWidth;
+			$('.blue_line').css({'width':lineWidth,'left':leftWidth});
+		}
+		$(".slide_left").rinyDrager({
+			direction:'horizontal',
+			outof:false,
+			connect:'.slide_right',
+			collided:true,
+			fn:function(){
+				moveLine();
+			}
+		})
+
+		// 确认按钮
+		var sure=$(".sure_btn a");
+		sure.on('click',function(){
+			$(".select_wrap").hide();
+			$(".select_item").hide();
+		})
+	})
+	</script>
+</body>
+</html>

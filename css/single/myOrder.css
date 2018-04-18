@@ -1,0 +1,77 @@
+body{
+	background-color: #eeeeee;
+}
+.user_wrap{
+	background: url(../../images/xmn_myorder.png) no-repeat center;
+	text-align: center;
+	background-size: 100% 100%;
+	padding-top: .44rem;
+}
+.user_info{
+	padding: .2rem 0 .28rem;
+}
+.user_head{
+	width: .615rem;
+	height: .615rem;
+	margin: 0 auto;
+	border-radius: 50px;
+	box-shadow: 2px 5px 5px #888888;
+}
+.user_head img{
+	width: 100%;
+}
+.user_tel{
+	color: white;
+	font-size: .1rem;
+	padding-top: .08rem;
+}
+.my_order_wrap{
+	padding-top: .095rem;
+}
+.my_order{
+	position: relative;
+	background-color: white;
+}
+.order{
+	position: relative;
+	padding: 0 .245rem 0 .125rem;
+	height: .4rem;
+	line-height: .4rem;
+	overflow: hidden;
+	background: url(../../images/xmn_order_all.png) no-repeat left center;
+	background-size: .18rem .165rem;
+	background-position: .245rem;
+}
+.order p{
+	float: left;
+	padding-left: .525rem;
+}
+.order p a{
+	font-size: .12rem;
+	color: #555555;	
+}
+.arrow_wrap{
+	float: right;
+	margin-top: .165rem;
+}
+.order_not_out{
+	background: url(../../images/xmn_order_notout.png) no-repeat left center;
+	background-size: .175rem .165rem;
+	background-position: .245rem;
+}
+.order_not_pay{
+	background: url(../../images/xmn_order_notpay.png) no-repeat left center;
+	background-size: .15rem .185rem;
+	background-position: .245rem;
+}
+.order_not_comment{
+	background: url(../../images/xmn_order_comment.png) no-repeat left center;
+	background-size: .17rem .145rem;
+	background-position: .245rem;
+}
+.order_cancel{
+	background: url(../../images/xmn_order_cancel.png) no-repeat left center;
+	background-size: .135rem .16rem;
+	background-position: .245rem;
+}
+

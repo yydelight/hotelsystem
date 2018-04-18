@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酒店评论</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/single/showReviews.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" href="public/css/swiper.min.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="public/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="hd_wrapper">
+		<!-- 酒店头部 -->
+		<div class="header">
+			<div class="header_left">
+				<a class="left_arrow" href="javascript:history.go(-1);"></a>
+			</div>
+			<div class="header_title">广州上下九步行街七天连锁酒店</div>
+		</div>
+		
+		<!-- 总分好评 -->
+		<div class="total_comment">
+			<div class="total">
+				<div class="total_points">
+					<p>总分 <i>4.6</i>分</p>
+				</div>
+				<div class="high_opinion">
+					<p><i>95.37%</i>好评</p>
+				</div>
+			</div>
+			<div class="item_point border_after">
+				<p>设施 <i>4.5</i>分</p>
+				<p>周边 <i>4.5</i>分</p>
+				<p>交通 <i>4.5</i>分</p>
+				<p>卫生 <i>4.5</i>分</p>
+				<p>服务 <i>4.5</i>分</p>
+				<p>性价比 <i>4.5</i>分</p>
+			</div>
+			<div class="all_comment_wrap">
+				<div class="all_comment_tab border_after">
+					<div class="all_comment border_right active" id="all">
+						<p>全部(<i class="all_num">800</i>)</p>
+					</div>
+					<div class="all_comment border_right" id="good">
+						<p>好评(<i class="good_num">500</i>)</p>
+					</div>
+					<div class="all_comment border_right" id="middle">
+						<p>中评(<i class="middle_num">200</i>)</p>
+					</div>
+					<div class="all_comment" id="bad">
+						<p>差评(<i class="bad_num">100</i>)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="scrollWrap">
+		<div class="comment_show"></div>
+	</div>
+</div>
+
+	<script id='template_list' val="1" type="text/template"> 
+    <%
+        for(var i in hotelData){
+            var reviews=hotelData[i];
+    %>
+    	<div class="comment_show">
+		 	<div class="room_show border_after">
+				<p class="room_opinion"><%=reviews.mainComment.substr(0,10)%></p>
+				<p class="room_point"><i><%=reviews.roomPoint%></i>分</p>
+				<div class="room_details"><%=reviews.mainComment%></div>
+				<div class="icon_change"><p class="down_icon" href=""></p></div>
+				<%if(reviews.roomPicNum>0){%>
+					<div class="room_pic">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+							<%
+								for(var j in reviews.roomPic){
+									var pic=reviews.roomPic[j];
+							%>
+								<div class="swiper-slide">
+									<img src="<%=pic%>">
+								</div>
+							<%}%>
+							</div>
+						</div>
+						<div class="total_pic">共<i><%=reviews.roomPicNum%></i>张</div>
+					</div>
+				<%}%>
+				<p class="reviewer">
+				<i class="reviewer_name"><%=reviews.reviewer%></i>
+				<i class="reviewer_date"><%=reviews.date%></i>
+				</p>
+			</div>
+		</div>
+    <%}%>
+    </script>
+
+	<script type="text/javascript">
+
+
+		$(document).on("click",'.room_show',function(e){
+			var parent=$(e.target).parent();
+			if(e.target.className=="icon_change"){
+				$(e.target).find('p').toggleClass("down_icon");
+				$(e.target).find('p').toggleClass("up_icon");
+				$(e.target).prev().toggleClass("room_details_height");
+			}else if(parent.attr("class")=="icon_change"){
+				$(e.target).toggleClass("down_icon");
+				$(e.target).toggleClass("up_icon");
+				parent.prev().toggleClass("room_details_height");
+			}
+			return false;
+		})
+
+		ajaxData(0);
+		function ajaxData(state){
+			window.STA.ajax({
+				url:"data/hotelComment.json",
+				success:function(data){
+					var bat=window.baidu.template;
+					var list="";
+					var goodComment=data.goodComment;
+					var middleComment=data.middleComment;
+					var badComment=data.badComment;
+					if(state==0){
+						var goodList=bat('template_list',{hotelData:goodComment});
+						var middleList=bat('template_list',{hotelData:middleComment});
+						var badList=bat('template_list',{hotelData:badComment});
+						$(".comment_show").html(goodList+middleList+badList);
+					}else if(state==1){
+						var goodList=bat('template_list',{hotelData:goodComment});
+						$(".comment_show").html(goodList);
+					}else if(state==2){
+						var middleList=bat('template_list',{hotelData:middleComment});
+						$(".comment_show").html(middleList);
+					}else if(state==3){
+						var badList=bat('template_list',{hotelData:badComment});
+						$(".comment_show").html(badList);
+					}
+					addDown();
+					var swiper = new Swiper('.swiper-container', {
+					    slidesPerView: 4,
+					    paginationClickable: true,
+					    spaceBetween: 5
+					});
+				}
+			})
+
+		}
+
+
+		$(".all_comment").on('click',function(e){
+			var tham=$(this);
+			var index=$(this).index();
+			if(index==0){
+				ajaxData(0);
+			}else if(index==1){
+				ajaxData(1);
+			}else if(index==2){
+				ajaxData(2);
+			}else if(index==3){
+				ajaxData(3);
+			}
+			$(".all_comment").removeClass("active");
+			$(this).addClass("active");
+		})
+
+		function addDown(){
+			$(".room_details").each(function(){
+				var rowNum=Math.round($(this).height()/parseFloat($(this).css('line-height')));
+				if(rowNum>2){
+					$(this).addClass("room_details_height");
+					$(this).next().show();
+				}else{
+					$(this).removeClass("room_details_height");
+					$(this).next().hide();
+				}
+			})
+		}
+
+		$(window).resize(function(){
+			location.reload();
+		})
+
+	</script>
+</body>
+</html>

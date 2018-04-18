@@ -1,0 +1,163 @@
+body{
+	background-color: white!important;
+}
+.wrap .hd_wrapper{
+	height:1.35rem;
+	background-color: white; 
+}
+.wrap .scrollWrap{
+	padding-top: 1.35rem;
+}
+/*总分好评*/
+.total{
+	padding: .12rem 0 .105rem .175rem;
+	overflow: hidden;
+	font-size: .12rem;
+	background: url(../../images/xmn_dashed_border.png) repeat-x;
+	background-position: 0 100%;
+	background-size: .155rem .005rem;
+}
+.total_points{
+	float: left;
+	padding-right: .4rem;
+}
+.high_opinion{
+	float: left;
+}
+.total i{
+	color: #65bdd1;
+}
+.item_point{
+	padding: .135rem .125rem;
+	overflow: hidden;
+	position: relative;
+}
+.item_point p{
+	float: left;
+	font-size: .125rem;
+	color: #949494;
+	width: 33.33%;
+}
+.item_point p i{
+	color: #333333;
+}
+/*全部评价tab栏*/
+.all_comment_tab{
+	position: relative;
+	overflow: hidden;
+	/*padding: .1rem 0;*/
+	padding:.055rem 0;
+	background-color: white;
+}
+.all_comment{
+	width: 25%;
+	float: left;
+	text-align: center;
+	position: relative;
+	padding: .045rem 0;
+}
+.all_comment p{
+	font-size: .13rem;
+	color: #333333;
+	font-weight: bold;
+}
+.all_comment_tab .active:after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -.055rem;
+	width: 100%;
+	height: .02rem;
+	background-color: #65bdd1;
+}
+/*评论详情*/
+.room_show{
+	overflow: hidden;
+	padding: .125rem;
+	position: relative;
+}
+.room_opinion{
+	font-size: .14rem;
+	color: #555555;
+	float: left;
+	font-weight: bold;
+}
+.room_point{
+	float: right;
+	font-size: .14rem;
+	font-weight: bold;
+	color: #555555;
+}
+.room_details{
+	padding-top: .125rem;
+	clear: both;
+	color: #949494;
+	font-size: .125rem;
+	/*height: .39rem;*/
+	overflow: hidden;
+	line-height: 0.18rem;
+}
+.room_details_height{
+	height: .36rem;
+}
+/*.icon_change{
+	width: .1rem;
+	height: .07rem;
+	margin: .09rem auto 0;
+	position: relative;
+	overflow: hidden;
+	background: white;
+}*/
+.icon_change{
+	width: 100%;
+	position: relative;
+	padding-top: .09rem;
+	overflow: hidden;
+	background: white;
+	cursor: pointer;
+}
+.icon_change .down_icon,.icon_change .up_icon{
+	left: 50%;
+}
+.room_pic{
+	font-size: 0;
+	width: 100%;
+	overflow: hidden;
+	margin-top: .09rem;
+}
+.room_pic .swiper-slide{
+	width: .7rem!important;
+	height: .7rem;
+}
+.swiper-slide img{
+	width: 100%;
+}
+.reviewer{
+	font-size: .1rem;
+	color: #949494;
+	overflow: hidden;
+	padding-top: .075rem;
+}
+.reviewer_name{
+	float: left;
+	padding-right: .27rem;
+}
+.reviewer_date{
+	float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

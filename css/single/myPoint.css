@@ -1,0 +1,86 @@
+body{
+	background-color: #eeeeee;
+}
+.my_point_wrap{
+	padding: .58rem .125rem 0;
+}
+.my_point{
+}
+.current_point{
+	background-color: #fffdea;
+	overflow: hidden;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+.current_point figure{
+	width: .575rem;
+	height: .5rem;
+	padding: .095rem .225rem;
+	float: left;
+}
+.current_point figure img{
+	width: 100%;
+}
+.my_current{
+	float: right;
+	padding: .095rem .12rem;
+}
+.current{
+	font-size: .125rem;
+	color: #555555;
+}
+.point{
+	color: red;
+	font-size: .17rem;
+	font-weight: bold;
+}
+.tips{
+	font-size: .12rem;
+	color: #555555;
+	background-color: white;
+	padding: .115rem .12rem 0;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.exchange{
+	padding: .08rem .345rem; 
+}
+.exchange a{
+	text-align: center;
+	display: block;
+	color: white;
+	width: 100%;
+	background-color: #ff7e01;
+	line-height: .28rem;
+	border-radius: 5px;
+}
+.point_info{
+	margin-top: .1rem;
+	background-color: white;
+	font-size: .12rem;
+	color: #555555;
+	padding: 0 .105rem;
+}
+.point_det{
+	padding: .14rem 0;
+	position: relative;
+}
+.for_record{
+	padding: .14rem 0;
+	position: relative;
+}
+.point_det .right_arrow,.for_record  .right_arrow{
+    left: initial;
+    right: .08rem;
+    top: .165rem;
+}
+
+
+
+
+
+
+
+
+
+

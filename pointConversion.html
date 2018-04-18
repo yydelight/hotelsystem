@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的积分-兑换记录</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/pointDetails.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+</head>
+<body>
+	<!-- 酒店头部 -->
+	<div class="header">
+		<div class="header_left">
+			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+		</div>
+		<div class="header_title">兑换记录</div>
+	</div>
+
+	<div class="point_details_wrap">
+	</div>
+
+	<div class="no_more">
+		<p>没有更多记录了</p>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		function addPoint(data){
+			var html='';
+			for(point of data){
+				html+='<div class="point_details border_after">'+
+							'<div class="hotel_item">'+
+								'<p>'+point.hotelName+'</p>'+
+								'<p>入住酒店抵扣现金</p>'+
+								'<p>'+point.date+'</p>'+
+							'</div>'+
+							'<p class="point">'+point.minus+'</p>'+
+						'</div>'
+			}
+			$(".point_details_wrap").html(html);
+		}
+
+		window.STA.ajax({
+			url:"data/point.json",
+			success:function(data){
+				addPoint(data.forPoint);
+
+			}
+		})
+
+	})
+	</script>
+</body>
+</html>

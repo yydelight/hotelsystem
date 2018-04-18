@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的优惠券</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myCoupons.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="hd_wrapper">
+
+			<!-- 酒店头部 -->
+			<div class="header">
+				<div class="header_left">
+					<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">我的优惠券</div>
+			</div>
+
+			<!-- 选择优惠券 -->
+			<div class="select_coupons border_before">
+				<p class="select_item">全部优惠券</p>
+				<div class="arrow down_icon"></div>
+			</div>
+
+			<div class="drop_down_list">
+				<ul>
+					<li class="border_after"><p class="active">全部优惠券</p></li>
+					<li class="border_after"><p>未使用</p></li>
+					<li class="border_after"><p>已失效</p></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- 遮罩层 -->
+		<div id="drop_down_mask" class="drop mask_wrap" style="	top: 2.12rem;height: calc(100vh - 2.12rem);height: -webkit-calc(100vh - 2.12rem); "></div>
+
+		<div class="scrollWrap">
+			<div class="c_wrap coupons_wrap"></div>
+
+			<!-- 已失效的券 -->
+			<div class="exp_coupons">
+				<div class="exp_line border_after"></div>
+				<div class="exp_title">
+					<p>已失效的券</p>
+				</div>
+			</div>
+			<div class="c_wrap exp_coupons_wrap"></div>
+		</div>
+	</div>
+
+	<!-- 弹窗 -->
+	<div class="mask_wrap"></div>
+	<div class="confirm_box">
+		<p>确认删除该订单？</p>
+		<div class="btn_group">
+			<div class="sure_btn">
+				<a href="">确定</a>
+			</div>
+			<div class="cancel_btn">
+				<a href="">取消</a>
+			</div>
+		</div>
+	</div>
+
+	<script id='template_list' val="1" type="text/template"> 
+        <%
+            for(var i in hotelData){
+                var obj=hotelData[i];
+        %>
+			<div class="coupons_show">
+				<div class="coupons_det border_after">
+					<figure>
+						<img src="images/xmn_order_room.png">
+					</figure>
+					<div class="hotel_det">
+						<p class="hotel_name"><%=obj.hotelName%></p>
+						<p class="life_time">使用期限 <i class="start_date"><%=obj.useStart%></i>-<i class="end_date"><%=obj.userEnd%></i></p>
+						<div class="cancel_icon">
+							<a href="" class="cancel"></a>
+						</div>
+					</div>
+					<div class="coupons coupons_
+						<%if(obj.state=='use'){
+							if(obj.useLimit>98786){%>
+								yellow
+							<%}else if(obj.useLimit>8887){%>
+								green
+							<%}else if(obj.useLimit>887){%>
+								purple
+							<%}
+						}else{%>
+							grey
+						<%}%>
+					">
+						<p class="border_after"><i class="rmb">¥ </i><i class="money"><%=obj.amount%></i></p>
+						<p class="coupons_used">满<i class="used_money"><%=obj.useLimit%></i>使用</p>+
+					</div>
+					<%if(obj.state=='used'){%>
+						<div class="seal">
+							<img src="images/xmn_coupons_used.png">
+						</div>
+					<%}%>
+				</div>
+			</div>
+        <%}%>
+	</script>	
+
+
+	<script type="text/javascript">
+	$(function(){
+		$(".down_icon").on('click',function(){
+			$(this).toggleClass("rotate");
+			$('.drop_down_list').toggle();
+			$('#drop_down_mask').toggle();
+			$('.scrollWrap').css("overflow","hidden");
+		})
+
+
+		var dropItem=$(".drop_down_list li p");
+		dropItem.on('click',function(){
+			var state=$(this).html();
+			$(".select_item").html(state);
+			dropItem.removeClass("active");
+			$(this).toggleClass("active");
+			$('.drop_down_list').toggle();
+			$(".down_icon").toggleClass("rotate");
+			$('#drop_down_mask').toggle();
+			$('.scrollWrap').css("overflow","scroll");
+
+		})
+
+		ajaxData(0);
+		ajaxData(1);
+		function ajaxData(state){
+			window.STA.ajax({
+				url:"data/hotelCoupons.json",
+				success:function(data){
+					var bat=window.baidu.template;
+					var list="";
+					if(state==0){
+						list=bat('template_list',{hotelData:data.coupons});
+						$(".coupons_wrap").html(list);
+					}else if(state==1){
+						list=bat('template_list',{hotelData:data.usedCoupons});
+						$(".exp_coupons_wrap").html(list);
+					}
+				}
+			})
+		}
+
+		$(".c_wrap").bind('click',function(e){
+			if(e.target.className=="cancel"){
+				$('.mask_wrap').show();
+				$('.confirm_box').show();
+				$('#drop_down_mask').hide();
+				$(e.target).parent().addClass("loveClick");
+				$('.scrollWrap').css("overflow","hidden");
+			}
+			return false;
+		})
+
+		$('.confirm_box').bind('click',function(e){
+			var className=$(e.target).parent()[0].className;
+			if(className=='sure_btn'){
+				var deleteDiv=$(".loveClick").parents(".coupons_show");
+				deleteDiv.remove();
+			}else if(className=='cancel_btn'){
+				$('.loveClick').removeClass('loveClick');
+			}
+			$('.scrollWrap').css("overflow","scroll");
+			$('.confirm_box').hide();
+			$('.mask_wrap').hide();
+			return false;
+
+		});
+
+
+	})
+	</script>
+</body>
+</html>

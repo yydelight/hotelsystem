@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/single/index.css">
+	<link rel="stylesheet" href="public/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="public/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/rinyDrager.simple.js"></script>
+</head>
+<body>
+	<div class="index_header">
+		<div class="header_person">
+			<a href="javascript:void(0)"></a>
+		</div>
+		<div class="header_nav">
+			<ul class="nav_ul">
+				<li><a class="active" href="">酒店</a></li>
+				<li><a href="">快速订酒店</a></li>
+				<li><a href="">宵夜抢单</a></li>
+				<li><a href="">酒店+餐饮</a></li>
+			</ul>
+		</div>
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img src="images/xmn_index_banner.png"></div>
+		        <div class="swiper-slide"><img src="images/xmn_index_banner.png"></div>
+		        <div class="swiper-slide"><img src="images/xmn_index_banner.png"></div>
+		    </div>
+		</div>
+		<div class="banner_text border_after">
+			<p>轻松伴你行</p>
+			<p>舒适.便捷.优惠</p>
+		</div>
+	</div>
+	<div class="main_content">
+		<div class="content">
+			<!-- 目的地 -->
+			<div class="destination">
+				<div class="border_after des_left">
+					<p>目的地</p>
+					<a href="">广东省广州市天河区中山大道</a>
+				</div>
+				<div class="des_right">
+					<div class="des_place"></div>
+					<div class="des_place_text"></div>
+				</div>
+			</div>
+			<!-- 入住时间 -->
+			<div class="content_time">
+				<a class="border_after time_main" href="">
+					<span class="time_date">2月18日</span>
+					<span class="time_now">(今天)</span>
+					<span class="time_state">入住</span>
+				</a>
+				<a class="border_after time_main" href="">
+					<span class="time_date">2月19日</span>
+					<span class="time_now">(周五)</span>
+					<span class="time_state">离店</span>
+					<span class="total_time">共<i>1</i>晚</span>
+				</a>
+				<div class="border_after time_main search_key" >
+					<!--<span class="time_date">关键字/位置/品牌/酒店名</span>-->
+                    <input class="time_date" type="text" placeholder="关键字/位置/品牌/酒店名">
+				</div>
+				<a class="border_after time_main price_star" href="">
+					<span class="time_date">价格/星级</span>
+				</a>
+			</div>
+			<div class="query_btn">
+				<a href="javascript:void(0)">查询</a>
+			</div>
+		</div>
+		<div class="mine_center">
+			<div class="mine_order border_right">
+				<a class="order" href="myOrderDetails.html">
+					<p>我的订单</p>
+					<p>修改取消·加急·返现·退款</p>
+				</a>
+			</div>
+			<div class="mine_hotel">
+				<a class="hotel" href="">
+					<p>我的酒店</p>
+					<p>收藏·历史·点评·优惠券</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- 遮罩层 -->
+	<div class="select_wrap"></div>
+	<div class="select_item">
+		<div class="select star_select">
+			<p>星级</p>
+			<div class="hotel_star">
+				<ul class="hotel_ul">
+					<li><a class="active" href="">不限</a></li>
+					<li><a href="">快捷连锁</a></li>
+					<li><a href="">二星级酒店</a></li>
+					<li><a href="">三星级酒店</a></li>
+					<li><a href="">四星级酒店</a></li>
+					<li><a href="">五星级酒店</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="select price_select">
+			<p>价格</p>
+			<div class="price_part">
+				<ul class="price_ul">
+					<li>¥0</li>
+					<li>¥150</li>
+					<li>¥300</li>
+					<li>¥500</li>
+					<li>¥800</li>
+					<li>不限</li>
+				</ul>
+			</div>
+			<div class="slide_line">
+				<div class="slide_left"></div>
+				<div class="slide_right"></div>
+				<div class="blue_line"></div>
+				<div class="grey_line"></div>
+			</div>
+		</div>
+		<div class="sure_btn">
+			<a href="">确认</a>
+		</div>
+	</div>
+
+	<!-- 侧滑栏的关闭按钮 -->
+	<div class="close_icon">
+		<a href="">
+			<figure>
+				<img src="images/xmn_slidebar_close_icon.png">
+			</figure>
+		</a>
+	</div>
+
+	<!-- 侧滑栏 -->
+	<div class="person_center">
+		<div class="border_after per_img">
+			<figure>
+				<img src="images/xmn_slidebar_person_head.png">
+			</figure>
+			<div class="per_tel">150****1371</div>
+		</div>
+		<div class="mine_wrap">
+			<div class="border_after mine">
+				<a class="mine_item" href="myWallet.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">我的钱包</p>
+					<p class="mine_extra">余额·充值·返现</p>
+				</a>
+				<a class="mine_item" href="myOrder.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">我的订单</p>
+				</a>
+				<a class="mine_item" href="myCoupons.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">我的优惠券</p>
+					<p class="mine_extra blue_text">省钱·畅享</p>
+				</a>
+			</div>
+			<div class="border_after mine">
+				<a class="mine_item" href="">
+					<i class="mine_icon"></i>
+					<p class="mine_title my_hotel">我的酒店</p>
+				</a>
+				<a class="mine_item" href="recommendPrize.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">推荐有奖</p>
+				</a>
+				<a class="mine_item" href="memberRight.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">会员权益</p>
+				</a>
+			</div>
+			<div class="mine">
+				<a class="mine_item about_item border_yellow" href="">
+					<i class="mine_icon"></i>
+					<p class="mine_title">关于我们</p>
+				</a>
+				<a class="mine_item quit_item" href="login.html">
+					<i class="mine_icon"></i>
+					<p class="mine_title">退出登陆</p>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		$(function(){     
+			  var mySwiper = new Swiper ('.swiper-container', {
+			    direction: 'horizontal',
+			    loop: true,
+			    autoplay:2000,
+			  })        
+
+			var nav=$(".nav_ul li a");
+			nav.on('click',function(){
+				nav.removeClass("active");
+				$(this).addClass("active");
+				return false;
+			})
+
+			var hotel=$(".hotel_ul li a");
+			hotel.on('click',function(){
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+				}else{
+					if($(this).text()!="不限"){
+						$(".hotel_ul li").children("a:eq(0)").removeClass("active");
+					}else{
+						hotel.removeClass("active");
+					}
+					$(this).addClass("active");
+				}
+
+				return false;
+			})
+
+			// 价格按钮
+			var price=$(".price_star");
+			price.on('click',function(e){
+				$(".select_wrap").show();
+				$(".select_item").show();
+				return false;
+			})
+
+			// 滑动条
+			function moveLine(){
+				var line=$(".blue_line");
+				var leftWidth=$(".slide_left").offset().left;
+				var rightWidth=$(".slide_right").offset().left;
+				var lineWidth=rightWidth-leftWidth;
+				$('.blue_line').css({'width':lineWidth,'left':leftWidth});
+			}
+			$(".slide_left").rinyDrager({
+				direction:'horizontal',
+				outof:false,
+				connect:'.slide_right',
+				collided:true,
+				fn:function(){
+					moveLine();
+				}
+			})
+
+			// 确认按钮
+			var sure=$(".sure_btn a");
+			sure.on('click',function(){
+				$(".select_wrap").hide();
+				$(".select_item").hide();
+			})
+
+			// 点击出现侧滑菜单
+			var head=$(".header_person a");
+			head.on('click',function(){
+			    console.log("111")
+				$('.select_wrap').show();
+				$('.person_center').show();
+				$('.close_icon').show();
+				return false;
+			})
+            
+            //查询酒店
+            $(".query_btn").click(function () {
+                var searchname=$(".search_key .time_date").val();
+                window.location.href="hotelSearch.html?search="+searchname;
+            })
+
+            $(".per_tel").html(window.sessionStorage.username)
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>酒店详情</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/single/hotelDetails.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" href="public/css/swiper.min.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="public/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="hd_wrapper hd_wrapper_44">
+
+			<!-- 酒店头部 -->
+			<div class="header">
+				<div class="header_left">
+					<a class="left_arrow" href="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">广州上下九步行街七天连锁酒店</div>
+			</div>
+
+		</div>
+
+		<div class="scrollWrap">
+			<!-- 轮播 -->
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			        <div class="swiper-slide"><img src="images/xmn_details_banner.png"></div>
+			        <div class="swiper-slide"><img src="images/xmn_details_banner.png"></div>
+			        <div class="swiper-slide"><img src="images/xmn_details_banner.png"></div>
+			    </div>
+			    <div class="swiper-pagination"></div>
+			</div>
+			<!-- 轮播上的小图标 -->
+			<div class="collect">
+				<div class="collect_icon">
+				</div>
+				<div class="collect_alert">
+				<p></p>
+				</div>
+				<div class="photo_num">
+					<p>共<i>90</i>张</p>
+				</div>
+			</div>
+		<!-- 酒店详情 -->
+		<div class="hotel_comment">
+			<div class="hotel_width_common total_point border_after">
+				<div class="hotel_righticon_common ">
+					<p class="all_point">总分<i class="point">4.6</i>分</p>
+					<p class="good_comment"><i class="good_percent">95.37%</i>好评</p>
+					<a href="showReviews.html" class="hotel_right_common total_comment"><i class="comment_num">7894</i>条点评</a>
+				</div>
+			</div>
+			<div class="hotel_width_common hotel_location border_after">
+				<div class="hotel_righticon_common ">
+					<div class="location_detail">
+						<p class="location">广州市上下九步行街15号</p>
+						<p class="district">天河区</p>
+					</div>
+					<a class="hotel_right_common" href="">地图</a>
+				</div>	
+			</div>
+			<div class="hotel_width_common hotel_facilities border_after">
+				<div class="hotel_righticon_common ">
+					<div class="facilities">
+						<figure>
+							<img src="images/xmn_details_wifi.png">
+							<p>房间wifi</p>
+						</figure>
+						<figure>
+							<img src="images/xmn_details_hotwater.png">
+							<p>全天热水</p>
+						</figure>
+						<figure>
+							<img src="images/xmn_details_conditioner.png">
+							<p>空调</p>
+						</figure>
+						<figure>
+							<img src="images/xmn_details_dryer.png">
+							<p>吹风机</p>
+						</figure>
+						<a class="hotel_right_common" href="hotelFacility.html">酒店设施</a>
+					</div>
+				</div>
+			</div>
+			<div class="hotel_width_common hotel_check_time border_after">
+				<div class="hotel_righticon_common ">
+					<a class="calendar_icon" href=""></a>
+					<p class="check_in"><i>02月18日</i>入住</p>
+					<p class="check_out"><i>02日19日</i>离店</p>
+					<a class="hotel_right_common" href="">共<i>1</i>晚</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- 筛选条件 -->
+		<div class="filter_wrap border_before border_after">
+			<p class="filter_title">筛选条件</p>
+			<div class="pay_pattern">
+				<p>支付方式</p>
+				<select>
+				  <option value="volvo">不限</option>
+				  <option value="saab">到付</option>
+				  <option value="opel">现付</option>
+				</select>
+			</div>
+			<div class="breakfast_type">
+				<p>早餐</p>
+				<select>
+				  <option value="volvo">不限</option>
+				  <option value="opel">单早</option>
+				  <option value="audi">无早</option>
+				</select>
+			</div>
+			<div class="bed_type">
+				<p>床型</p>
+				<select>
+				  <option value="volvo">不限</option>
+				  <option value="opel">单床</option>
+				  <option value="audi">双床</option>
+				</select>
+			</div>
+		</div>
+
+		<!-- 房间情况 -->
+		<div class="room_wrap"> 	
+		</div>
+
+		<!-- 酒店政策 -->
+		<div class="hotel_policy border_before border_after">
+			<p class="policy_title">酒店政策</p>
+			<div class="time_rule">
+				<p class="check_in_time">入住时间:</p>
+				<p class="in_time">14:00以后</p>
+				<p class="check_out_time">离店时间:</p>
+				<p class="out_time">12:00以前</p>
+			</div>
+		</div>
+
+		<!-- 附近热销酒店 -->
+		<div class="hotel_width_common near_popular_hotel border_before border_after">
+			<div class="hotel_righticon_common ">
+				<p class="popular_title">附近热销酒店</p>
+				<a href="" class="hotel_right_common popular_num"><i>10</i>家</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script id='template_list' val="1" type="text/template"> 
+        <%
+            for(var i in roomList){
+                var hotel=roomList[i];
+        %>
+	         <div class='room_price border_before border_after'>
+	         	<figure class='room_pic'>
+		         	<!--<img src=<%=hotel.roomPic||''%>-->
+				</figure>
+				<div class='room_type'>
+					<p class='room_name'><%=hotel.roomName%></p>
+					<p class='room_size'><%=hotel.roomSize%></p>
+				</div>
+				<div class='room_money'>
+					<p><span class='money_sign'>¥</span>
+					   <i class='price'><%=hotel.price%></i>
+					   <span class='rise'>起</span>
+					</p>
+					<a href='' class='down_icon'></a>
+				</div>
+				<div class='room_booked_up 
+							<%if(hotel.isPred==0){%>
+								show
+							<%}else{%>
+								hide
+							<%}%>
+							'>
+					<p class='booked_text'>订完</p>
+				</div>
+			</div>
+	        <div class="room_down_details">
+	        	<%if(hotel.isPred!=0){%>
+		        	<div class="more_pic border_after">
+		        		<%
+		        			for(var j in hotel.roomDetailsPic){
+		        				var hotelPic=hotel.roomDetailsPic[j];
+		        		%>
+		        			<figure>
+		        				<img src="<%=hotelPic%>">
+		        			</figure>
+		        		<%}%>
+		        	</div>
+	        	<%}%>
+		        	<%
+		        		for(var k in roomList){
+		        			var hotelDet=roomList[k];
+		        	%>
+    	        		<div class="booking border_after">
+    	        			<div class="standard_price">
+    	        				<p class="standard">
+    	        					<%=hotelDet.standard%>
+    	        				</p>
+    	        				<div class="room_factor">
+    		        				<span><%=hotelDet.breakfast%></span>
+    		        				<span><%=hotelDet.bed%></span>
+    		        				<span><%=hotelDet.pay%></span>
+    	        				</div>
+    	        			</div>
+    	        			<div class="price_book <%if(hotel.roomNum==0){%>booked_up<%}%> border_left">
+    	        				<p><span class="money_sign">¥</span>
+    	        				   <i class="price">618</i>
+    	        				</p>
+    	        				<div class="book_btn">
+    	        					<a href="<%if(hotel.roomNum!=0){%>orderFill.html<%}%>">预定</a>
+    	        				</div>
+    	        			</div>
+    	        		</div>
+    	        	<%}%>
+    	    </div>
+
+        <%}%>
+	</script>
+
+	<script type="text/javascript">
+	$(function(){
+
+        window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
+                }
+            }
+            return theRequest;
+        };
+
+        //请求数据
+        var objRequest=getRequest();
+
+		var mySwiper = new Swiper ('.swiper-container', {
+		  direction: 'horizontal',
+		  loop: true,
+		  autoplay:2000,
+		  pagination : '.swiper-pagination',
+		  autoplayDisableOnInteraction : false,
+		})  
+
+		var collectIcon=$(".collect_icon");
+		var time=0;
+		collectIcon.on('click',function(){
+			var hc=collectIcon.hasClass("collect_active");
+			if(time == 0){
+				time=10;
+				var index = setInterval(function(){
+					time--;
+					if(time==0){
+						clearInterval(index);
+					}
+				},100);
+				if(!hc){
+					collectIcon.addClass("collect_active");
+					$(".collect_alert p").html("收藏成功");
+				}else{
+					collectIcon.removeClass("collect_active");
+					$(".collect_alert p").html("取消收藏");
+				}
+				$(".collect_alert").show(1).delay(1000).hide(1);
+			}
+
+		})
+
+		ajaxData();
+		function ajaxData(){
+            $ajax.get("/hotel/detail/"+objRequest.id,{},function(data){
+                if(data.resultCode==0){
+                    var bat=window.baidu.template;
+                    var list=bat('template_list',data.data);
+                    $(".room_wrap").html(list);
+                }
+                window.alert(data.resultMsg)
+            });
+		}
+
+		// 点击显示酒店订房详情
+		$(".room_wrap").on('click',function(e){
+			if(e.target.className=="down_icon"||e.target.className=="down_icon show_flag"){
+				if(!$(e.target).hasClass('show_flag')){
+					$(e.target).parents('.room_price').next().show();
+					$(e.target).addClass('show_flag');
+				}else{
+					$(e.target).parents('.room_price').next().hide();
+					$(e.target).removeClass('show_flag');
+				}
+				return false;
+			}
+		})
+
+	})
+	</script>
+</body>
+</html>

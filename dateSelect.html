@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日期选择</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/dateSelect.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="hd_wrapper">
+		<!-- 酒店头部 -->
+		<div class="header">
+			<div class="header_left">
+				<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+			</div>
+			<div class="header_title">日期选择</div>
+		</div>
+
+		<!-- 我的订单 -->
+		<div class="date_select_wrap">
+			<div class="date_select_tab border_after">
+				<div class="date_state border_right active" id="making">
+					<p>选择入住日期</p>
+					<span class="show_time">2-18星期四</span>
+				</div>
+				<div class="date_state border_right" id="history">
+					<p>选择离店日期</p>
+					<span class="show_time">2-19星期五</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="scrollWrap pad_79">
+		<div class="order_wrap">
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var orderState=$(".date_state");
+	orderState.bind('click',function(){
+		var tham=$(this);
+		var index=$(this).index();
+		orderState.removeClass("active");
+		tham.addClass("active");
+	})
+
+})
+</script>
+
+
+
+
+
+</body>
+</html>

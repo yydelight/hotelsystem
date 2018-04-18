@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的酒店</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myHotel.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+    <script text="text/javascript" src="public/js/common.js"></script>
+    <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="hd_wrapper">
+
+			<!-- 酒店头部 -->
+			<div class="header">
+				<div class="header_left">
+					<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">我的酒店</div>
+			</div>
+
+			<!-- 我的酒店 -->
+			<div class="hotel_details_wrap">
+				<div class="hotel_details_tab border_after">
+					<div class="hotel_state border_right active" id="scanHistory">
+						<p>浏览历史</p>
+					</div>
+					<div class="hotel_state border_right" id="hotelCollect">
+						<p>酒店收藏</p>
+					</div>
+					<div class="hotel_state border_right" id="myComment">
+						<p>我的评论</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="scrollWrap">
+			<div class="hotel_wrap" id="hotel_wrap">
+			</div>
+			<div class="to_bottom"></div>
+		</div>
+	</div>
+
+	<!-- 弹窗 -->
+	<div class="mask_wrap"></div>
+	<div class="confirm_box">
+		<p>确认取消该收藏？</p>
+		<div class="btn_group">
+			<div class="sure_btn">
+				<a href="">确定</a>
+			</div>
+			<div class="cancel_btn">
+				<a href="">取消</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script id='template_comment_list' val="1" type="text/template"> 
+        <%
+            for(var i in hotelData){
+                var obj=hotelData[i];
+        %>
+	        <div class="my_comment_show border_after">
+	        	<div class="my_comment">
+	        		<p>广州上下九步行街七天连锁酒店</p>
+	        		<p>点评:</p>
+	        		<p class="comment"><%=obj.comment%></p>
+	        	</div>
+	        	<p class="comment comm_date"><%=obj.date%></p>
+	        </div>
+        <%}%>
+	</script>
+
+	<script id='template_list' val="1" type="text/template"> 
+        <%
+            for(var i in hotelData){
+                var obj=hotelData[i];
+        %>
+	        <div class="hotel_show border_after">
+	        	<figure>
+	        		<img class="lazy" data-original="<%=obj.image%>" alt="">
+	        	</figure>
+	        	<p class="hotel_name"><%=obj.hotelName%></p>
+	        	<div class="hotel_detail">
+	        		<p class="hotel_point">
+	        			<i class="hotel_score"><%=obj.hotelPoint%></i>分/
+	        			<i class="comment_num"><%=obj.commentNum%></i>评论
+	        		</p>
+	        		<p class="hotel_star"><%=obj.hotelStar%>
+	        			<i class="park_icon"></i><i class="wifi_icon"></i>
+	        		</p>
+	        		<p class="address"><%=obj.address%></p>
+	        	</div>
+	        	<div class="right_show">
+	        		<p><i class="rmb">¥</i><i class="money"><%=obj.hotelPrice%></i> <i class="up"> 起</i></p>
+	        		<div class="font_bgc">
+	        			<div class="tuan">团</div>
+	        			<div class="phone">手机专享</div>
+	        		</div>
+	        	</div>
+	        	<%if(obj.love){%>
+	        		<div class="love"></div>
+	        	<%}%>
+	        </div>
+        <%}%>
+	</script>
+
+	<script type="text/javascript">
+	$(function(){
+
+		var hotelState=$(".hotel_state")
+		hotelState.on('click',function(){
+			var tham=$(this);
+			var index=$(this).index();
+			hotelState.removeClass("active");
+			tham.addClass("active");
+			if(index==0){
+				ajaxData(0);
+			}
+			if(index==1){
+				ajaxData(1);
+			}
+			if(index==2){
+				ajaxData(2);
+			}
+
+		});
+
+		ajaxData(0);
+
+		function ajaxData(state){
+            $ajax.get("data/myHotel.json",{
+                userName:userName,
+                passWord:passWord
+            },function(result){
+                if(data.resultCode==0){
+                    var bat=window.baidu.template;
+                    var hotel="";
+                    if(state==0){
+                        hotel=data.hotelHistory;
+                        var list=bat('template_list',{hotelData:hotel});
+                        $("#hotel_wrap").html(list);
+                    }else if(state==1){
+                        hotel=data.hotelCollect;
+                        var list=bat('template_list',{hotelData:hotel});
+                        $("#hotel_wrap").html(list);
+                    }else if(state==2){
+                        hotel=data.hotelComment;
+                        var list=bat('template_comment_list',{hotelData:hotel});
+                        $("#hotel_wrap").html(list);
+                    }
+                    lazy()
+                }
+                window.alert(data.resultMsg)
+            });
+			$(".to_bottom").html("到底啦");
+		}
+
+		$('.confirm_box').bind('click',function(e){
+			var className=$(e.target).parent()[0].className;
+			if(className=='sure_btn'){
+				var deleteDiv=$(".loveClick").parent(".hotel_show");
+				deleteDiv.remove();
+			}else if(className=='cancel_btn'){
+				$('.loveClick').removeClass('loveClick');
+			}
+			$('.scrollWrap').css("overflow","scroll");
+			$('.confirm_box').hide();
+			$('.mask_wrap').hide();
+			return false;
+
+		});
+
+		$(".hotel_wrap").bind('click',function(e){
+			if(e.target.className=="love"){
+				$('.mask_wrap').show();
+				$('.confirm_box').show();
+				$(e.target).addClass("loveClick");
+				$('.scrollWrap').css("overflow","hidden");
+			}
+			return false;
+		});
+
+		function lazy(){
+			jQuery("img.lazy").not('.nolazy').show().lazyload({ 
+	           placeholder : "images/xmn_hotel.png",
+	           effect: "fadeIn",
+	           sys:'win',
+	           pattern:'m',
+	           //container: $(sayClass),// 容器
+	           threshold : 600,
+		     });
+		    jQuery('img').addClass('nolazy');
+		};
+
+	});
+
+	</script>
+</body>
+</html>

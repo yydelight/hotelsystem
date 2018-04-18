@@ -1,0 +1,183 @@
+.scrollWrap{
+	padding-top: 0.79rem;
+}
+/*tab栏*/
+.order_wrap{
+	margin-top: -.125rem;
+}
+.hotel_details_tab{
+	position: relative;
+	overflow: hidden;
+	padding:.07rem 0;
+	background-color: white;
+}
+.hotel_state{
+	width: 33.333%;
+	float: left;
+	text-align: center;
+	position: relative;
+	padding: .045rem 0;
+}
+.hotel_state p{
+	font-size: .13rem;
+	color: #333333;
+	font-weight: bold;
+}
+.hotel_details_tab .active p{
+	color: #65bdd1;
+}
+.hotel_details_tab .active:after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -.065rem;
+	width: 100%;
+	height: .02rem;
+	background-color: #65bdd1;
+}
+/*酒店收藏内容*/
+.hotel_show{
+	padding:.145rem .125rem .14rem;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+figure{
+	width: .8rem;
+	height: .8rem;
+	padding-right: .125rem;
+	float: left;
+}
+figure img{
+	width: 100%;
+}
+.hotel_detail{
+	height: .58rem;
+	float: left;
+	overflow: hidden;
+	width: 1.66rem;
+	white-space: nowrap;
+}
+.hotel_name{
+	font-size: .135rem;
+	color: #555555;
+	padding-bottom: .05rem;
+	line-height: 1.2;
+	font-weight: bold;
+}
+.hotel_star{
+	width: 1rem;
+}
+.hotel_point .hotel_score{
+	color: #65bdd1;
+	font-size: .157rem;
+}
+.hotel_detail p:not(.hotel_name){
+	font-size: .09rem;
+	color: #949494;
+}
+.hotel_point:not(.hotel_score),.hotel_star:not(i),.address{
+	line-height: 0.2rem;
+}
+.wifi_icon,.park_icon{
+	display: block;
+	float: right;
+	width: .144rem;
+	height: .105rem;
+	background: url(../../images/xmn_hotel_wifi.png) no-repeat center center;
+	background-size: 100% 100%;
+	margin-top: .03rem;
+}
+.wifi_icon{
+	margin-top: .05rem;
+}
+.park_icon{
+	width: .166rem;
+	height: .166rem;
+	background: url(../../images/xmn_hotel_park.png) no-repeat center center;
+	background-size: 100% 100%;
+	margin-left: .045rem;
+}
+.right_show{
+	/*float: right;*/
+	position: absolute;
+	top: .4rem;
+	right: .125rem;
+	font-size: .09rem;
+	text-align: right;
+}
+.right_show .rmb{
+	display: inline-block;
+	height: .16rem;
+	color: #ff9a14;
+}
+.right_show .money{
+	font-size: .115rem;
+	color: #ff9a14;
+}
+.right_show .up{
+	display: inline-block;
+	height: .16rem;
+	color: #949494;
+}
+.font_bgc{
+	color: white;
+	font-size: .095rem;
+	margin: .02rem 0;
+}
+.tuan{
+	display: inline-block;
+	background-color: #65bdd1;
+	padding:0 .025rem;
+	margin-right: .045rem;
+}
+.phone{
+	display: inline-block;
+	background-color: #ff9a14;
+	padding:0 .025rem;
+}
+.love{
+	position: absolute;
+	right: .125rem;
+	bottom: .04rem;
+	width: .175rem;
+	height: .145rem;
+	background: url(../../images/xmn_hotel_collect.png) no-repeat center center;
+	background-size: 100%;
+}
+.hotel_details_wrap{
+	margin-top: .44rem;
+}
+.my_comment_show{
+	padding: .145rem .125rem;
+	position: relative;
+	overflow: hidden;
+	background-color: white;
+}
+.my_comment{
+	font-size: .13rem;
+	float: left;
+}
+.my_comment p:nth-child(1),.my_comment p:nth-child(2){
+	color: #333333;
+	font-weight: bold;
+	padding-bottom: .14rem;
+}
+.comment{
+	font-size: .115rem;
+	color: #949494;
+}
+.comm_date{
+	float: right;
+	position: absolute;
+	bottom: .145rem;
+	right: .125rem;
+}
+
+
+
+
+
+
+
+

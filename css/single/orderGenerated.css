@@ -1,0 +1,59 @@
+body{
+	background-color: #65bdd1;
+}
+.header{
+	position: relative;
+}
+.order_wrap{
+	padding: 0 .12rem;
+}
+.order_generated{
+	background-color: white;
+	border:1px solid #cfcfcf;
+	border-top: none;
+	padding: 0 .125rem;
+}
+.order_generated p{
+	font-size: .12rem;
+	color: #949494;
+	padding: .125rem 0;
+	float: left;
+	word-wrap:break-word;
+}
+.order{
+	overflow: hidden;
+	display: flex;
+	position: relative;
+}
+.dashed_border:after{
+	content: " ";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background: url(../../images/xmn_dashed.png) repeat-x;
+	background-size: .165rem .1rem;
+}
+.order_details .padding{
+	padding: .055rem 0;
+}
+.order p:nth-child(1){
+	width: .775rem;
+}
+.order p:nth-child(2){
+	flex:1;
+}
+.order p i{
+	color: #333333;
+	font-size: .135rem;
+}
+.room_info p i{
+	padding-right: .14rem;
+}
+.content{
+	line-height: 1.2;
+}
+.remind{
+	overflow: hidden;
+}

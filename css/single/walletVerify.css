@@ -1,0 +1,106 @@
+.payments_wrap{
+	padding-top: .44rem;
+}
+.pay_money{
+	background-color: white;
+	font-size: .13rem;
+	color: #949494;
+	padding: .12rem 0 .12rem .175rem;
+}
+.pay_money i{
+	padding-left: .24rem;
+	color: #333333;
+	font-size: .11rem;
+}
+.card_info{
+	padding-top: .125rem;
+	position: relative;
+}
+.card_num{
+	background: url(../../images/xmn_wallet_unionPay.png) no-repeat left center;
+	background-size: .29rem .18rem;
+	background-color: white;
+	background-position: .175rem;
+	position: relative;
+	padding: .16rem 0;
+}
+.card_id{
+	font-size: .12rem;
+	color: #333333;
+	padding-left: .715rem;
+	line-height: 1.2;
+}
+.card_name{
+	color: #949494;
+	font-size: .1rem;
+	padding-left: .715rem;
+	line-height: 1.2;
+}
+.card{
+	position: relative;
+	overflow: hidden;
+	padding: 0 .17rem;
+	background-color: white;
+}
+.card p{
+    font-size: .115rem;
+    color: #65bdd1;
+    width: .54rem;
+    padding: .14rem 0;
+    float: left;
+    line-height: 1;
+}
+.input_wrap{
+	padding: .07rem 0;
+}
+.input_wrap input{
+	font-size: .13rem; 
+	border: none;
+	outline: none;
+}
+.get_code{
+	position: absolute;
+	bottom: .06rem;
+	right: .21rem;
+}
+.get_code a{
+	display: block;
+	background-color: #ff9a14;
+	color: white;
+	font-size: .09rem;
+	line-height: 1;
+	border-radius: 3px;
+	padding: .08rem .05rem;
+}
+.agree{
+	font-size: .12rem;
+	color: #555555;
+	padding: .115rem 0 0 .175rem;
+}
+.agree i{
+	color: #65bdd1;
+}
+.pay_now{
+	padding: .245rem .24rem;
+	text-align: center;
+}
+.pay_now a{
+	display: block;
+	width: 100%;
+	padding: .14rem 0;
+	color: white;
+	background-color: #65bdd1;
+	border-radius: 5px;
+	font-size: .12rem;
+}
+
+
+
+
+
+
+
+
+
+
+

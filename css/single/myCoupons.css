@@ -1,0 +1,199 @@
+/*html{
+	overflow: hidden;
+}
+body{
+	overflow: hidden;
+}*/
+.scrollWrap{
+	padding-top: .79rem;
+}
+.select_coupons{
+	padding: .125rem .125rem .125rem .05rem;
+	background-color: white; 
+	font-size: .14rem;
+	color: #555555;
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid #cfcfcf;
+	margin-top: .44rem;
+}
+.select_item{
+ 	float: left;
+ 	line-height: 1;
+}
+.arrow{
+	float: right;
+	top: .04rem;
+}
+.rotate{
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); 	/* IE 9 */
+	-moz-transform:rotate(180deg); 	/* Firefox */
+	-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+	-o-transform:rotate(180deg); 	/* Opera */
+	top: -.03rem;
+}
+.drop_down_list{
+	position: absolute;
+	width: 100%;
+	display: none;
+	z-index: 2;
+}
+.drop_down_list ul li{
+	font-size: .14rem;
+	padding: .125rem .125rem .125rem .05rem;
+	color: #555555;
+	position: relative;
+	background-color: #eeeeee;
+}
+.drop_down_list ul li p{
+	display: inline-block;
+}
+.drop_down_list .active{
+	color: #65bdd1;
+}
+
+/*显示优惠券*/
+.coupons_show{
+}
+.coupons_det{
+	background-color: white;
+	padding: .1rem .125rem .04rem;
+	overflow: hidden;
+	position: relative;
+}
+.coupons_det figure{
+	width: .5rem;
+	height: .5rem;
+	padding-right: .07rem;
+	float: left;
+}
+.coupons_det figure img{
+	width: 100%;
+}
+.hotel_det{
+	float: left;
+	height: .5rem;
+	position: relative;
+	overflow: hidden;
+	width: 1.4rem;
+}
+.hotel_det .hotel_name{
+	font-size: .13rem;
+	color: #555555;
+	padding: .06rem 0 .105rem;
+	line-height: 1.2;
+	display: inline-block;
+}
+.hotel_det .life_time{
+	font-size: .09rem;
+	color: #949494;
+}
+.cancel_icon{
+	position: absolute;
+	left: 1.2rem;
+	top: .07rem;
+}
+.cancel{
+	display: block;
+	width: .1rem;
+	height: .13rem;
+	background: url(../../images/xmn_order_delete.png) no-repeat center center;
+	background-size: 100%;
+}
+.coupons .rmb{
+	display: inline-block;
+	font-size: .09rem;
+	height: .16rem;
+	transform: scaleY(0.75);
+}
+.coupons{
+	color: white;
+	float: right;
+	width: .665rem;
+	height: .45rem;
+	text-align: center;
+	margin-top: .025rem;
+}
+.coupons_yellow{
+	background: url(../../images/xmn_coupons_yellow.png) no-repeat center center;
+	background-size: .665rem .45rem;
+}
+.coupons_grey{
+	background: url(../../images/xmn_coupons_grey.png) no-repeat center center;
+	background-size: .665rem .45rem;
+}
+.coupons_purple{
+	background: url(../../images/xmn_coupons_purple.png) no-repeat center center;
+	background-size: .665rem .45rem;
+}
+.coupons_green{
+	background: url(../../images/xmn_coupons_green.png) no-repeat center center;
+	background-size: .665rem .45rem;
+}
+.coupons .money{
+	font-size: .12rem;
+}
+.coupons p{
+	position: relative;
+	width: calc(100% - .16rem);
+	width: -webkit-calc(100% - .16rem);
+	margin: 0 .08rem;
+}
+.coupons .coupons_used{
+	font-size: .09rem;
+	margin: 0 0;
+	width: 100%;
+}
+.coupons p.border_after:after{
+	background-color: white;
+}
+/*已失效的券*/
+.exp_coupons{
+	position: relative;
+	width: 100%;
+}
+.exp_line{
+	width: calc(100% - .38rem);
+	width: -webkit-calc(100% - .38rem);
+	height: .005rem;
+	margin: .205rem auto;
+	position: relative;
+}
+.exp_title{
+	display: inline-block;
+	position: absolute;
+	top: -.15rem;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+.exp_title p{
+	display: inline-block;
+	font-size: .125rem;
+	background-color: #eeeeee;
+	padding: 0 .185rem;
+}
+.seal{
+	width: .565rem;
+	height: .45rem;
+	position: absolute;
+	top: .12rem;
+	right: .175rem;
+	overflow: hidden;
+}
+.seal img{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+

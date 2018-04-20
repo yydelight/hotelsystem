@@ -165,18 +165,26 @@
         %>
 	         <div class='room_price border_before border_after'>
 	         	<figure class='room_pic'>
-		         	<!--<img src=<%=hotel.roomPic||''%>-->
+		         	<img src="images/xmn_hotel.png">
 				</figure>
 				<div class='room_type'>
 					<p class='room_name'><%=hotel.roomName%></p>
-					<p class='room_size'><%=hotel.roomSize%></p>
+					<p class='room_size'>18㎡大床房</p>
+                    <div class="room_factor">
+                        <span>无早</span>
+                        <span><%=hotel.type==1?'双人床':'单人床'%></span>
+                        <span>现付</span>
+                    </div>
 				</div>
 				<div class='room_money'>
 					<p><span class='money_sign'>¥</span>
 					   <i class='price'><%=hotel.price%></i>
-					   <span class='rise'>起</span>
+					   <!--<span class='rise'>起</span>-->
 					</p>
-					<a href='' class='down_icon'></a>
+					<!--<a href='' class='down_icon'></a>-->
+                    <div class="book_btn">
+                        <a href="<%if(hotel.roomNum!=0){%>orderFill.html?id=<%=hotel.id%>&name=<%=hotel.roomName%>&bed=<%=hotel.type==1?'双人床':'单人床'%><%}%>">预定</a>
+                    </div>
 				</div>
 				<div class='room_booked_up 
 							<%if(hotel.isPred==0){%>
@@ -221,7 +229,7 @@
     	        				   <i class="price">618</i>
     	        				</p>
     	        				<div class="book_btn">
-    	        					<a href="<%if(hotel.roomNum!=0){%>orderFill.html<%}%>">预定</a>
+    	        					<a href="<%if(hotel.isPred!=0){%>orderFill.html<%}%>">预定</a>
     	        				</div>
     	        			</div>
     	        		</div>
@@ -287,15 +295,23 @@
 
 		ajaxData();
 		function ajaxData(){
-            $ajax.get("/hotel/detail/"+objRequest.id,{},function(data){
+            $ajax.get("hotel/detail/"+objRequest.id,{},function(data){
                 if(data.resultCode==0){
                     var bat=window.baidu.template;
                     var list=bat('template_list',data.data);
                     $(".room_wrap").html(list);
+                    hotelinfo(data.data.hotel);
                 }
-                window.alert(data.resultMsg)
             });
 		}
+
+		function hotelinfo(data){
+            $(".header_title").html(data.name);//酒店名称
+            $(".all_point .point").html(data.score);//酒店评分
+            $(".comment_num").html(data.evaluateNum);//评价数量
+            $(".location_detail .location").html(data.cityCode+data.areaCode+data.address);//酒店地址
+            $(".location_detail .district").html(data.areaCode);//酒店区域
+        }
 
 		// 点击显示酒店订房详情
 		$(".room_wrap").on('click',function(e){

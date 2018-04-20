@@ -30,6 +30,9 @@ html{
 a{
 	text-decoration:none;
 }
+.hide{
+    display: none;
+}
 /*border的缩放*/
 .border_after:after{
     content: " ";

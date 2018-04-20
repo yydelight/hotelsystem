@@ -35,9 +35,9 @@
 						<p>无早</p>
 					</div>
 					<div class="room_date">
-						<p>入住:2月18日</p>
-						<p>离店:2月19日</p>
-						<p>1晚</p>
+						<p>入住:<i class="in_date">2月18日</i></p>
+						<p>离店:<i class="out_date">new Date(1492572314659)2月19日</i></p>
+						<p class="book_night">1晚</p>
 						<a class="revise" href="">
 							修改<i class="right_arrow revise_arrow"></i>
 						</a>
@@ -87,10 +87,10 @@
 					<p>总额</p>
 					<p class="money"><i class="rmb">¥ </i><i class="total"> 168</i></p>
 					<div class="pay_btn">
-						<a href="orderPay.html">支付</a>
+						<a href="javascript:void(0)">支付</a>
 					</div>
 				</div>
-				<div class="pay_btn reserve_btn">
+				<div class="pay_btn reserve_btn hide">
 					<a href="">预定</a>
 				</div>
 			</div>
@@ -134,7 +134,42 @@
 	</div>
 	<script type="text/javascript">
 	$(function(){
-		var roomTime=$(".room_time");
+
+        window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
+                }
+            }
+            return theRequest;
+        };
+
+        //请求数据
+        var objRequest=getRequest();
+
+
+        $(".room_type").html(decodeURI(objRequest.name));//房间名称
+        $(".room_bed p:first-child").html(decodeURI(objRequest.bed));//床型
+        $(".in_date").html(Date().format("yyyy-MM-dd"));
+        $(".out_date").html(Date().addDay(1).format("yyyy-MM-dd"));
+
+        function addDay(dayNumber, date) {
+            date = date ? date : new Date();
+            var ms = dayNumber * (1000 * 60 * 60 * 24)
+            var newDate = Date(date.getTime() + ms);
+            return newDate;
+        }
+
+
+
+        var roomTime=$(".room_time");
 		var roomNum=$(".room_num");
 		var mask=$(".mask_wrap");
 		var select=$(".select_time");
@@ -180,6 +215,16 @@
 		
 		$(".pay_btn").click(function () {
 			var roomnum=$(".room_num info i").text();
+            $ajax.get("order/submit", {
+                rid:objRequest.id,
+                startTime:,
+                endTime:,
+                rnum:roomnum,
+            },function(data){
+                if(data.resultCode==0){
+                    window.location.href="orderPay.html"
+                }
+            });
         })
 
 	})

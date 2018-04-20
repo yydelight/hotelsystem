@@ -236,12 +236,13 @@ body{
 	font-size: .12rem;
 	color: #333333;
 	padding-right: .125rem;
-	background: url(../../images/xmn_right_icon.png) no-repeat right center;
-	background-size: .07rem .1rem;
+	/*background: url(../../images/xmn_right_icon.png) no-repeat right center;*/
+	/*background-size: .07rem .1rem;*/
 }
 .room_size{
 	font-size: .12rem;
 	color: #949494;
+    margin: .05rem 0;
 }
 .room_money{
 	float: right;
@@ -341,13 +342,13 @@ body{
 	color: #333333;
 }
 .room_factor{
-	font-size: .11rem;
+	/*font-size: .11rem;*/
 	font-size: 0;
 	color: #949494;
 }
 .room_factor span{
-	padding-right: .11rem;
-	font-size: .12rem;
+    padding-right: .05rem;
+    font-size: .12rem;
 }
 .price_book{
 	float: right;
@@ -363,6 +364,7 @@ body{
 	/*padding: .1rem .06rem;*/
 	width: .35rem;
 	height: .3rem;
+    line-height: .3rem;
 	float: left;
 }
 .book_btn a{

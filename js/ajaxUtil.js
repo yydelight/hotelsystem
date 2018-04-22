@@ -1,4 +1,4 @@
-var _host = "http://192.168.202.21/"
+var _host = "http://192.168.0.104/"
 var $ajax = {
     run: function(url, data, success, type, async, header) {
         $.ajax({
@@ -7,14 +7,15 @@ var $ajax = {
             data: data,
             async: async,
             dataType: "json",
-            headers: {userId:header.id},
+            headers: {'token': window.sessionStorage.token},
             success: function(result) {
                 if( result.resultCode == 0) {
                     console.log("result",result)
                     success(result);
                 } else if( result.resultCode == 401) {
                     //login
-                    window.location.href='index.html';
+                    window.alert("请先登录")
+                    window.location.href='login.html';
                 } else if( result.resultCode == 500) {
                     alert(result.resultMsg);
                 }

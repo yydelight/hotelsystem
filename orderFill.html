@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/single/orderFill.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -36,7 +38,7 @@
 					</div>
 					<div class="room_date">
 						<p>入住:<i class="in_date">2月18日</i></p>
-						<p>离店:<i class="out_date">new Date(1492572314659)2月19日</i></p>
+						<p>离店:<i class="out_date">2月19日</i></p>
 						<p class="book_night">1晚</p>
 						<a class="revise" href="">
 							修改<i class="right_arrow revise_arrow"></i>
@@ -157,8 +159,9 @@
 
         $(".room_type").html(decodeURI(objRequest.name));//房间名称
         $(".room_bed p:first-child").html(decodeURI(objRequest.bed));//床型
-        $(".in_date").html(Date().format("yyyy-MM-dd"));
-        $(".out_date").html(Date().addDay(1).format("yyyy-MM-dd"));
+        $(".in_date").html(moment(window.sessionStorage.indate).format('M月DD号'));//入住时间
+        $(".out_date").html(moment(window.sessionStorage.outdate).format('M月DD号'));//离店时间
+        $(".total").html(objRequest.price);//价钱
 
         function addDay(dayNumber, date) {
             date = date ? date : new Date();
@@ -210,22 +213,28 @@
 			number.removeClass("active");
 			thisLi.toggleClass("active");
 			$(".room_num .info i").html($(this).text());
+			$(".total").html($(this).text()*objRequest.price);
 			mask.trigger("click");
 		})
 		
-		$(".pay_btn").click(function () {
-			var roomnum=$(".room_num info i").text();
+		$(".pay_btn a").click(function () {
+			var roomnum=$(".room_num .info i").html();
+			var count=$(".total").html();
+			window.sessionStorage.setItem('count',count);
             $ajax.get("order/submit", {
                 rid:objRequest.id,
-                startTime:,
-                endTime:,
+                startTime:'2018-'+window.sessionStorage.indate,
+                endTime:'2018-'+window.sessionStorage.outdate,
                 rnum:roomnum,
             },function(data){
                 if(data.resultCode==0){
+                	 window.sessionStorage.setItem('orderid',moment().format('MMDDhhmmss'));
                     window.location.href="orderPay.html"
                 }
             });
         })
+
+
 
 	})
 	</script>

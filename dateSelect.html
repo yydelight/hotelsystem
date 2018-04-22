@@ -15,6 +15,8 @@
 	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
     <script text="text/javascript" src="public/js/common.js"></script>
     <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+    <script src="js/riny.tools.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -28,18 +30,16 @@
 		</div>
 
 		<!-- 我的订单 -->
-		<div class="date_select_wrap">
-			<div class="date_select_tab border_after">
-				<div class="date_state border_right active" id="making">
-					<p>选择入住日期</p>
-					<span class="show_time">2-18星期四</span>
-				</div>
-				<div class="date_state border_right" id="history">
-					<p>选择离店日期</p>
-					<span class="show_time">2-19星期五</span>
-				</div>
-			</div>
-		</div>
+		<ul class="nav border_after">
+			<li class="active">
+				<span><div>选择入住日期</div><p class="check_in_date">2-18星期四</p></span>
+			</li>
+			<li>
+				<span class="border_left"><div>选择离店日期</div><p class="check_out_date">2-18星期四</p></span>
+			</li>
+		</ul>
+		<div class="main"></div>
+
 	</div>
 
 	<div class="scrollWrap pad_79">
@@ -48,18 +48,220 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-$(function(){
-	var orderState=$(".date_state");
-	orderState.bind('click',function(){
-		var tham=$(this);
-		var index=$(this).index();
-		orderState.removeClass("active");
-		tham.addClass("active");
+	<script type="text/template" id="template_calendar">
+	<%
+		for(var i=0;i<6;i++){
+	%>
+		<div class="calendar_wrap">
+			<div class="calendar">
+				<div class="calendar_year_month year_month<%=i%>">
+					<span><i></i>年</span><!--
+					--><em><i></i>月</em>
+				</div>
+				<ul class="calendar_week week<%=i%>"></ul>
+				<ul class="calendar_day day<%=i%>"></ul>
+			</div>
+		</div>
+	<%}%>
+	</script>
+	<script>
+	$(function(){
+
+		$('.main').append(window.baidu.template('template_calendar'));
+		$('.check_in_date').html(window.sessionStorage.indate+moment(window.sessionStorage.indate).format('dddd'))
+		/***初始化日历***/
+		var date=new Date();
+		var month=date.getMonth();
+
+		for(var i=0;i<6;i++){
+
+			var initMonth=month+i;
+			
+			new rinyCalendar().initCalendar({
+				yearInner:$('.year_month'+i+' span i'),
+				monthInner:$('.year_month'+i+' em i'),
+				weeksInner:$('.week'+i),
+				weeksTemplate:'<li>weeksTemplate</li>',
+				daysInner:$('.day'+i),
+				daysTemplate:'<li>daysTemplate</li>',
+				m:initMonth
+			});
+
+		};
+
+		for(var lastDays=$('.rinyCalendar_day').length-1;lastDays>$('.rinyCalendar_day').length-7;lastDays--){
+			$('.rinyCalendar_day').eq(lastDays).addClass('last_days');
+		};
+
+		$('.rinyCalendar_today').text('今天');
+
+		for(var c=0;c<$('.calendar_day span').length;c++){
+
+			if( c%7==5  || c%7==6 ){
+				$('.calendar_day span').eq(c).addClass('weekend');
+			};
+
+		};
+
+		for(var d=0;d<$('.calendar_week span').length;d++){
+			if( d%7==5  || d%7==6 ){
+				$('.calendar_week span').eq(d).addClass('weekend');
+			};
+		};
+
+
+		/***声明页面状态变量(true为选择入住日期页面)***/
+		var pageState=true;
+
+
+		/***获取星期***/
+		function getWeek(obj){
+			var date=new Date();
+			date.setFullYear(obj.curYear,obj.curMonth,obj.curDay);
+			var curWeek=date.getDay();
+			var weekArr=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+			var curWeekNum=curWeek;
+			curWeek=weekArr[curWeek];
+
+			return {'curYear':obj.curYear,'curMonth':obj.curMonth+1,'curWeek':curWeek,'curDay':obj.curDay,'curWeekNum':curWeekNum};
+		};
+
+
+		/***不同页面下的日历前端表现***/
+		function calendarStyle(){
+			var checkInIndex=$('.check_in_date').data('index');
+			var checkOutIndex=$('.check_out_date').data('index');
+
+			if(!checkInIndex){
+				checkInIndex=$('.rinyCalendar_today').index('.rinyCalendar_day');
+			};
+			if(!checkOutIndex){
+				checkOutIndex=checkInIndex+1;
+			};
+			
+			for(var i=0;i<$('.rinyCalendar_day').length;i++){
+				$('.rinyCalendar_day').eq(i).removeClass('gray_day').removeClass('selected').removeClass('check_in').removeClass('check_out');
+			};
+
+			if(pageState){
+
+				$('.rinyCalendar_day').eq(checkInIndex).addClass('check_in');
+
+			}else{
+
+				for(var j=0;j<$('.rinyCalendar_day').length;j++){
+					if(j<=checkInIndex){
+						$('.rinyCalendar_day').eq(j).addClass('gray_day');
+					};
+				};
+
+				$('.rinyCalendar_day').eq(checkInIndex).addClass('selected');
+
+				$('.rinyCalendar_day').eq(checkOutIndex).addClass('check_out');
+					
+			};
+
+		};
+
+		calendarStyle();
+
+
+		/***选择日期***/
+		$('.calendar').on('click',function(e){
+			if($(e.target).hasClass('rinyCalendar_day') && !$(e.target).hasClass('rinyCalendar_oldday') && !$(e.target).hasClass('gray_day') && !$(e.target).hasClass('last_days')){
+
+				//获取选中日期
+				var curDay=$(e.target).data('riny-day');
+				var curYear=$(e.target).parents('.calendar').find('.calendar_year_month span i').text();
+				var curMonth=$(e.target).parents('.calendar').find('.calendar_year_month em i').text()-1;				
+				var curDate=getWeek({'curYear':curYear,'curMonth':curMonth,'curDay':curDay});
+
+				//不同页面选择日期执行不同逻辑
+				var _index=$(e.target).index('.rinyCalendar_day');
+
+				if(pageState){
+
+					$('.check_in_date').data('index','');
+					$('.check_out_date').data('index','');
+
+					for(var i=0;i<$('.rinyCalendar_day').length;i++){
+						$('.rinyCalendar_day').eq(i).removeClass('check_in');
+						if(i<=_index){
+							$('.rinyCalendar_day').eq(i).addClass('gray_day');
+						};
+
+					};
+
+					$('.rinyCalendar_day').eq(_index+1).addClass('check_out');
+
+
+					//给nav中显示选中日期的元素绑上个中data以及做出相应的样式变化
+					$('.check_in_date').text(curDate.curMonth+'-'+curDate.curDay+''+curDate.curWeek);
+
+					$('.check_in_date').data('checkin-year',curYear);
+					$('.check_in_date').data('checkin-month',curMonth);
+					$('.check_in_date').data('checkin-day',curDay);
+					$('.check_in_date').data('checkin-week',curDate.curWeekNum);
+
+					$('.check_in_date').data('index',_index);
+
+					$('.check_out_date').parents('li').addClass('active').siblings('li').removeClass('active');
+
+					//切换页面
+					pageState=false;
+
+				}else{
+
+					for(var i=0;i<$('.rinyCalendar_day').length;i++){
+						$('.rinyCalendar_day').eq(i).removeClass('check_out');
+
+					};
+
+					$('.check_out_date').text(curDate.curMonth+'-'+curDate.curDay+''+curDate.curWeek);
+
+					$('.check_out_date').data('checkout-year',curYear);
+					$('.check_out_date').data('checkout-month',curMonth);
+					$('.check_out_date').data('checkout-day',curDay);
+					$('.check_out_date').data('checkout-week',curDate.curWeekNum);
+
+					$('.check_out_date').data('index',_index);
+					
+
+
+				};
+
+				$(e.target).addClass('selected');
+
+
+			};
+		});
+
+
+		$('.nav li').click(function(){
+			$(this).addClass('active').siblings('li').removeClass('active');
+			if($(this).find('.check_in_date').length>0){
+				pageState=true;
+			};
+			if($(this).find('.check_out_date').length>0){
+				pageState=false;
+			};
+			calendarStyle();
+		});
+
+		
 	})
 
-})
-</script>
+	$(function(){
+		var orderState=$(".date_state");
+		orderState.bind('click',function(){
+			var tham=$(this);
+			var index=$(this).index();
+			orderState.removeClass("active");
+			tham.addClass("active");
+		})
+
+	})
+	</script>
 
 
 

@@ -36,8 +36,8 @@
 				<span class="search_icon"></span>
 				<div class="select_time">
 					<div class="time_show">
-						<p>住 <i>2-18</i></p>
-						<p>离 <i>2-19</i></p>
+						<p class="in">住 <i>2-18</i></p>
+						<p class="out">离 <i>2-19</i></p>
 					</div>
 				</div>
 			</div>
@@ -148,6 +148,7 @@
 
         //请求数据
         var objRequest=getRequest();
+        console.log("obj",decodeURI(objRequest.search))
 
 		var hotelState=$(".hotel_state")
 		hotelState.on('click',function(){
@@ -191,15 +192,16 @@
 					lazy()
 				}
 			});*/
-            $ajax.get("hotel/list",{name:objRequest.search},function(data){
+            $ajax.get("hotel/list",{name:decodeURI(objRequest.search)},function(data){
                 if(data.resultCode==0){
                     var bat=window.baidu.template;
                     var hotel=data.data;
                     var list=bat('template_list',{hotelData:hotel});
                     $("#hotel_wrap").html(list);
                     lazy()
+                }else{
+                	window.alert(data.resultMsg)
                 }
-                window.alert(data.resultMsg)
             });
 
             $(".to_bottom").html("到底啦");
@@ -242,6 +244,9 @@
 		     });
 		    jQuery('img').addClass('nolazy');
 		};
+
+		$(".time_show .in").html(window.sessionStorage.indate);
+		$(".time_show .out").html(window.sessionStorage.outdate);
 
 	});
 

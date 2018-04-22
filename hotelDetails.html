@@ -17,6 +17,7 @@
 	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
     <script text="text/javascript" src="public/js/common.js"></script>
     <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -183,7 +184,7 @@
 					</p>
 					<!--<a href='' class='down_icon'></a>-->
                     <div class="book_btn">
-                        <a href="<%if(hotel.roomNum!=0){%>orderFill.html?id=<%=hotel.id%>&name=<%=hotel.roomName%>&bed=<%=hotel.type==1?'双人床':'单人床'%><%}%>">预定</a>
+                        <a href="<%if(hotel.roomNum!=0){%>orderFill.html?id=<%=hotel.id%>&price=<%=hotel.price%>&name=<%=hotel.roomName%>&bed=<%=hotel.type==1?'双人床':'单人床'%><%}%>">预定</a>
                     </div>
 				</div>
 				<div class='room_booked_up 
@@ -326,6 +327,9 @@
 				return false;
 			}
 		})
+
+        $(".check_in i").html(moment(window.sessionStorage.indate).format('M月DD号'));
+        $(".check_out i").html(moment(window.sessionStorage.outdate).format('M月DD号'));
 
 	})
 	</script>

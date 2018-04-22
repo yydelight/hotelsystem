@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/single/orderPay.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>
 </head>
 <body>
 	<!-- 酒店头部 -->
@@ -41,7 +43,7 @@
 	<div class="pay_part border_before">
 		<div class="need_pay border_after">
 			<p>还需支付：</p>
-			<span><i>138</i>元</span>
+			<span><i class="need_money">138</i>元</span>
 		</div>
 		<div class="pay_mode pay_balance border_after">
 			<p>我的余额<i class="rmb">¥ </i><i class="balance"> 50</i></p>
@@ -52,14 +54,14 @@
 				<p class="pay_type">银行卡支付</p>
 				<p class="pay_tips">支持信用卡储蓄卡</p>
 			</div>
-			<div class="select selected"></div>
+			<div class="select select_none"></div>
 		</div>
 		<div class="pay_mode pay_wechat border_after">
 			<div class="pay">
 				<p class="pay_type">微信支付</p>
 				<p class="pay_tips">推荐安装微信5.0及以上版本的使用</p>
 			</div>
-			<div class="select selected"></div>
+			<div class="select select_none"></div>
 		</div>
 		<div class="pay_mode pay_alipay border_after">
 			<div class="pay">
@@ -71,7 +73,7 @@
 	</div>
 
 	<div class="sure_btn">
-		<a href="">确认支付</a>
+		<a href="javascript:void(0)">确认支付</a>
 	</div>
 	
 	<!-- 弹出框 -->
@@ -95,10 +97,21 @@
 		})
 
 		$(".sure_btn").on('click',function(){
-			$(".pop_up").show(1).delay(1000).hide(1);
-			setTimeout(function(){window.location="orderGenerated.html";},1000);
-			return false;
+			$ajax.get("order/pay/11", {
+            },function(data){
+                if(data.resultCode==0){
+					$(".pop_up").show(1).delay(1000).hide(1);
+					setTimeout(function(){window.location="orderGenerated.html";},1000);
+                }
+            });
+
+			// return false;
 		})
+
+		$(".money").html(window.sessionStorage.count);//订单总额
+		$(".balance").html(window.sessionStorage.account);//账户余额
+		$(".need_money").html(window.sessionStorage.count);//订单总额
+		$(".name").html(window.sessionStorage.orderid);//订单id
 	})
 	</script>
 

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="css/defaultstyle.css">
+	<link rel="stylesheet" href="css/normal_header.css">
+	<script src="js/riny.core.js"></script>
+	<script src="js/riny.js"></script>
+	<script src="js/riny.plugin.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/baiduTemplate.js"></script>
+	<title>城市选择</title>
+	<style>
+	.header.border_after:after{
+		background-color:#58a5b7;
+	}
+	.search_bar{
+		background-color:#65bdd1;
+		padding:.02rem .125rem;
+		position:absolute;
+		width:calc( 100% - .25rem );
+		left:0;
+		top:.45rem;
+		z-index:9999;
+	}
+	.search_bar_inner{
+		background-color:#fff;
+		width:100%;
+		font-size:0;
+		line-height:.255rem;
+		height:.255rem;
+		overflow:hidden;
+	}
+	.search_bar span{
+		width:.34rem;
+		height:100%;
+		display:block;
+		float:left;
+		background:url('images/xmn_search_icon.png') no-repeat left .075rem center/.135rem;
+	}
+	.search_bar input{
+		font-size:.125rem;
+		color:#949494;
+		display:block;
+		float:left;
+		height:100%;
+		margin-top:.01rem;
+	    width:calc( 100% - .34rem );
+	    width:-webkit-calc( 100% - .34rem );
+	}
+	.main{
+		padding-top:.745rem;
+	}
+	.tibs_list{
+		position:absolute;
+		width:calc( 100% - .25rem );
+		left:.125rem;
+		top:.275rem;
+		z-index:99;
+	}
+	.tibs_list li{
+		font-size:.125rem;
+		color:#555;
+		background-color:#fff;
+		padding:.05rem;
+		border-top:1px solid #eee;
+	}
+	.main_title{
+		background-color:#eee;
+		color:#949494;
+		font-size:.125rem;
+		text-indent:.05rem;
+		line-height:1;
+		padding:.125rem 0 .065rem;
+	}
+	.content_wrap{
+		position:relative;
+	}
+	.content_inner{
+		font-size:.125rem;
+		color:#555;
+		background-color:#fff;
+	}
+	.current_city{
+		padding:0 .265rem;
+		line-height:.4rem;
+		position:relative;
+		background:#fff url('images/xmn_city_icon.png') no-repeat left .05rem center/.14rem;
+	}
+	.border_top:before,.border_after:after{
+		background-color:#cfcfcf;
+		z-index:10;
+	}
+	.content_inner.border_left:before{
+		height:100%;
+		color:#cfcfcf;
+		left:-1px;
+	}
+	.content_wrap.border_top:before{
+		top:-1px;
+	}
+	.hot_city{
+		overflow:hidden;
+		padding:.04rem .03rem;
+	}
+	.hot_city li{
+		float:left;
+		margin:.015rem;
+		width:.7rem;
+		height:.315rem;
+		background-color:#fff;
+		line-height:.315rem;
+		text-align:center;
+		border:1px solid #cfcfcf;
+		box-sizing:border-box;
+		border-radius:.02rem;
+	}
+	.scroll_bar{
+		position:absolute;
+		right:.04rem;
+		top:.795rem;
+		z-index:999;
+		text-align:center;
+	}
+	.scroll_bar li{
+		font:.125rem/1.3 arial;
+		color:#65bdd1;
+	}
+	.alert_box{
+		width:1.5rem;
+		height:.8rem;
+		background-color:rgba(0,0,0,.5);
+		border-radius:.05rem;
+		text-align:center;
+		font:.15rem/.8rem arial;
+		position:absolute;
+		left:0;
+		top:0;
+		right:0;
+		bottom:0;
+		margin:auto;
+		z-index:99999;
+		color:rgba(255,255,255,.9);
+		opacity:0;
+		-webkit-opacity:0;
+		transition:all 500ms ease;
+		-webkit-transition:all 500ms ease;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header border_after">
+			<a href="javascript:history.go(-1);" class="header_back_btn"><img src="images/xmn_back_icon.png" alt=""></a>
+			<p class="header_txt">城市选择</p>
+		</div>
+		<ul class="scroll_bar">
+			<li>当前</li>
+			<li>历史</li>
+			<li>热门</li>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+			<li>D</li>
+			<li>E</li>
+			<li>F</li>
+			<li>G</li>
+			<li>H</li>
+			<li>I</li>
+			<li>J</li>
+			<li>K</li>
+			<li>L</li>
+			<li>M</li>
+			<li>N</li>
+			<li>O</li>
+			<li>P</li>
+			<li>Q</li>
+			<li>R</li>
+			<li>S</li>
+			<li>T</li>
+			<li>U</li>
+			<li>V</li>
+			<li>W</li>
+			<li>X</li>
+			<li>Y</li>
+			<li>Z</li>
+		</ul>
+		<div class="search_bar">
+			<div class="search_bar_inner">
+				<span></span>
+				<input type="text" placeholder="城市/行政区/拼音"  id="city_search" />
+			</div>
+			<ul class="tibs_list"></ul>
+		</div>
+		<div class="main">
+			<div class="main_content" data-city-index='当前'>
+				<p class="main_title">当前城市</p>
+				<div class="border_top border_after content_wrap">
+					<p class="current_city border_left border_right content_inner">点击获取当前城市</p>
+				</div>
+			</div>
+			<div class="city_area"></div>
+		</div>
+		<div class="alert_box">没有该城市！</div>
+	</div>
+	<script id='template_city' type="text/template">    
+        <%
+            for(var i in city_data){
+                var parent=city_data[i];
+        %>
+			<div class="main_content" data-city-index="<%=parent.cityIndex%>">
+				<p class="main_title"><%=parent.title%></p>
+				<div class="border_top border_after content_wrap">
+					<ul class="hot_city border_left border_right content_inner">
+					<%
+			            for(var j in parent.city){
+			                var child=parent.city[j];
+			        %>
+						<li><%=child.name%></li>
+					<%}%>
+					</ul>
+				</div>
+			</div>
+	    <%}%>
+	</script>
+	<script>
+	$(function(){
+
+		/***加载城市***/
+
+		window.STA.ajax({	
+            url:"data/city_data.js",
+            async:false,
+            success:function(data){
+            	var bat=window.baidu.template;
+				var list=bat('template_city',data);
+				$('.city_area').append(list);
+				cityData=searchData(data).obj;
+				cityTagArr=searchData(data).arr;
+            }  
+        });
+
+        /***返回所有城市***/
+
+		var cityData;
+		var cityTagArr;
+
+		function searchData(data){
+
+			var data=data.city_data;
+
+			var _data_obj=[];
+			var _data_arr=[];
+
+			for(var i=0;i<data.length;i++){
+				for(var j=0;j<data[i].city.length;j++){
+					_data_obj.push(data[i].city[j]);
+					_data_arr.push(data[i].city[j].tag);
+				};
+			};
+
+			return {'obj':_data_obj,'arr':_data_arr}
+
+		};
+
+        /***页面索引***/
+
+        $('.scroll_bar').on('click','li',function(e){
+        	var _index=$(e.target).text();
+        	var content=$('.main_content');
+        	for(var i=0;i<content.length;i++){
+        		var cityIndex=$(content[i]).data('city-index');
+        		if(cityIndex==_index){
+        			var top=($(content[i]).offset().top)+($('.main').scrollTop())-($('.header').outerHeight()+$('.search_bar').outerHeight());
+        			$('.main').scrollTop(top);
+        		};
+        	};
+        });
+
+        /***搜索提示实例***/
+
+		$('#city_search').searchTibs({
+			text:'没有数据',
+			list:$('.tibs_list'),
+			limit:10,
+			data:cityData,
+			name:'name',
+			spell:'spell',
+			tag:'tag'
+		});
+
+        /***搜索逻辑***/
+
+        var timeout=true;
+
+        $('.search_bar').on('click keyup',function(e){
+        	var _val=$('.search_bar input').val();
+        	if(e.type=='keyup' && e.keyCode==13){
+        		if(cityTagArr.indexOf(_val)==-1){
+        			$('.alert_box').css('opacity',1);
+        			if(timeout){
+        				timeout=false;
+        				var timer=setTimeout(function(){
+	        				$('.alert_box').css('opacity',0);
+	        				timeout=true;
+	        			},2000);
+        			};      			
+        			return;
+        		};
+        		console.log('选择了'+_val);
+        	};
+        	if(e.type=='click' && e.target.tagName=='LI'){
+        		if(cityTagArr.indexOf($(e.target).text())==-1){
+        			return;
+        		};
+        		console.log('选择了'+$(e.target).text());
+        	};
+        });
+
+	});
+	</script>
+</body>
+</html>

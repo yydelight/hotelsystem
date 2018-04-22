@@ -15,6 +15,7 @@
 	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
     <script text="text/javascript" src="public/js/common.js"></script>
     <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="js/ajaxUtil.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -140,10 +141,7 @@
 		ajaxData(0);
 
 		function ajaxData(state){
-            $ajax.get("data/myHotel.json",{
-                userName:userName,
-                passWord:passWord
-            },function(result){
+            $ajax.get("data/myHotel.json",{},function(result){
                 if(data.resultCode==0){
                     var bat=window.baidu.template;
                     var hotel="";

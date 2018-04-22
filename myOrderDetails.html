@@ -70,28 +70,28 @@
 	        <div class="order_show">
 				<div class="make_order border_before border_after">
 					<figure>
-						<img src="<%=obj.roomImg%>">
+						<img src="./images/xmn_order_room.png">
 					</figure>
 					<div class="hotel_det">
-						<p class="hotel_name"><%=obj.hotelName%></p>
-						<p><%=obj.roomName%></p>
-						<p><%=obj.wifi%></p>
-						<p class="breakf"><%=obj.breakf%></p>
+						<p class="hotel_name"><%=obj.hotel.name%></p>
+						<p><%=obj.room.name%></p>
+						<p>宽带 Wi-Fi</p>
+						<p class="breakf">无早</p>
 					</div>
 					<a href=""><div class="right_arrow"></div></a>
-					<div class="cancel_order">
+					<div class="cancel_order hide">
 						<a href="" class="cancel">取消订单</a>
 					</div>
 				</div>
 				<div class="pay_order border_after">
 					<div class="act_pay">
-						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.pay%></i></p>
+						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.order.totalCount%></i></p>
 					</div>
 					<div class="pay_state">
 						<a href="">
-							<%if(obj.state==1){%>已付款<%}%>
-							<%if(obj.state==2){%>去支付<%}%>
-							<%if(obj.state==3){%>到付<%}%>
+							<%if(obj.order.status==1){%>去支付<%}%>
+							<%if(obj.order.status==2){%>已付款<%}%>
+							<%if(obj.order.status==0){%>取消<%}%>
 						</a>
 					</div>
 				</div>
@@ -107,10 +107,10 @@
 	        <div class="order_show">
 				<div class="make_order history_order border_before border_after">
 					<figure>
-						<img src="<%=obj.roomImg%>">
+						<img src="./images/xmn_order_room.png">
 					</figure>
 					<div class="hotel_det">
-						<p class="hotel_name"><%=obj.hotelName%></p>
+						<p class="hotel_name"><%=obj.hotel.name%></p>
 						<p><%=obj.roomName%></p>
 						<p><%=obj.wifi%></p>
 						<p class="breakf"><%=obj.breakf%></p>
@@ -157,7 +157,7 @@
 
 		function ajaxData(state){
             console.log("***",window.sessionStorage)
-			window.STA.ajax({
+			/*window.STA.ajax({
 				url:"/order/list",
                 dataType : "json",
 				success:function(data){
@@ -174,7 +174,24 @@
 						$(".order_wrap").html(list);
 					}
 				}
-			})			
+			})	*/
+			$ajax.get("order/list",{},function(data){
+                if(data.resultCode==0){
+					var bat=window.baidu.template;
+					var list="";
+					if(state==0){
+						var make=data.data;
+						list=bat('template_list',{hotelData:make});
+						$(".order_wrap").html(list);
+					}else if(state==1){
+						var history=data.historyOrder;
+						list=bat('history_list',{hotelData:history});
+						$(".order_wrap").html(list);
+					}
+                }else{
+                	window.alert(data.resultMsg)
+                }
+            });		
 		}
 
 		$(".order_wrap").bind('click',function(e){

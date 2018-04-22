@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<title>index</title>
+	<style>
+	body,div{
+		margin:0;
+		padding:0;
+		font-family: "SourceHanSansCN-Regular",Arial,"Microsoft YaHei";
+	}
+	ul{
+		list-style: none;
+		-webkit-margin-before: 0;
+		-webkit-margin-after: 0;
+		-webkit-padding-start: 0;
+	}
+	a{
+		text-decoration: none;
+	}
+	/*头部*/
+	header{
+		width: 100%;
+		text-align: center;
+		background-image: url("./images/background.png");
+		background-size: 100% 100%;
+		padding: 35px 0 37px 0;
+	}
+	.header_portait{
+		position: relative;
+		margin: 0 auto;
+		margin-bottom: 13px;
+		width: 68px;
+		height: 68px;
+	}
+	.header_portait img{
+		width:100%;
+	}
+	.header_name{
+		color: #fff;
+		letter-spacing: 2px;
+	}
+	.header_name h5{
+		-webkit-margin-before: 0;
+		-webkit-margin-after: 0;
+		font-size: 12px;
+		margin-bottom: 13px;
+		font-weight: normal;
+	}
+	.header_name p{
+		-webkit-margin-before: 0;
+		-webkit-margin-after: 0;
+		font-size: 16px; 
+		margin-bottom: 12px;
+	}
+	.header_medal img{
+		width: 16px;
+		height: 22px;
+	}
+	/*主要内容*/
+	.main ul{
+		padding: 15px 20px 64px 28px;
+		line-height: 30px;
+	}
+	.menu_item{
+		padding: 11px 0;
+	}
+	.menu_icon{
+	    display: inline-block;
+		position: relative;
+		margin-top: 0;
+		margin-right: 16px;
+		height: 14px;
+		width: 14px;
+		background-image: url(./images/icons.png);
+		background-position: 0px 0px;
+		background-size: 100%;
+	}
+	.icon_order{
+		background-position: 0px -61px;
+	}
+	.icon_offline{
+		background-position: 0px -122px;
+	}
+	.icon_backstage{
+		background-position: 0px -183px;
+	}
+	.icon_perfecting{
+		background-position: 0px -244px;
+	}
+	.menu_title{
+		font-size: 16px;
+		color: rgb(51,51,51);
+		letter-spacing: 2px;
+	}
+	.menu_button{
+		display: inline-block;
+		position: absolute;
+		right: 20px;
+		width: 80px;
+		height: 30px;
+		border: 1px solid rgb(97,177,14);
+		border-radius: 16px;
+		font-size: 14px;
+		text-align: center;
+		color: rgb(97,177,14);
+		letter-spacing: 2px;
+	}
+	/*尾部*/
+	footer{
+		margin-bottom: 39px;
+		color: rgb(51,51,51);
+		text-align: center;
+	}
+	.footer_copyright{
+		display: inline-block;
+		width: 11px;
+		height: 11px;
+		background-image: url(./images/icon_copyright.png);
+		background-size: 100%;
+		margin-right: 7px;
+	}
+	.footer_title{
+		display: inline-block;
+	}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="header_portait">
+			<img src="./images/portait.png">
+		</div>
+		<div class="header_name">
+			<h5>Admin</h5>
+			<p>管理员</p>
+		</div>
+		<div class="header_medal">
+			<img src="./images/icon_medal.png">
+		</div>
+	</header>
+	<div class="main">
+		<ul>
+			<li class="menu_item">
+				<i class="menu_icon"></i>
+				<span class="menu_title">我的推广二维码</span>
+				<a class="menu_button">查看</a>
+			</li>
+			<li class="menu_item">
+				<i class="menu_icon icon_order"></i>
+				<span class="menu_title">核销过的订单</span>
+				<a class="menu_button">查看</a>
+			</li>
+			<li class="menu_item">
+				<i class="menu_icon icon_offline"></i>
+				<span class="menu_title">我的下线</span>
+				<a class="menu_button">查看</a>
+			</li>
+			<li class="menu_item">
+				<i class="menu_icon icon_backstage"></i>
+				<span class="menu_title">核销后台</span>
+				<a href="cancel.html" class="menu_button">查看</a>
+			</li>
+			<li class="menu_item">
+				<i class="menu_icon icon_perfecting"></i>
+				<span class="menu_title">资料完善</span>
+				<a class="menu_button">查看</a>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<i class="footer_copyright"></i>
+		<p class="footer_title">酒店预订系统</p>
+	</footer>
+</body>
+</html>

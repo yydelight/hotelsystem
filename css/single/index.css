@@ -180,9 +180,11 @@ body{
 	color: #949494;
 }
 .time_now{
-	font-size: .11rem;
-	color: #b2b2b2;
-	padding-right: .21rem;
+    font-size: .11rem;
+    color: #b2b2b2;
+    padding-right: .01rem;
+    width: .5rem;
+    display: inline-block;
 }
 .time_state{
 	color: #8b8b8b;
@@ -376,6 +378,7 @@ body{
 .sure_btn{
 	text-align: center;
 	padding: .125rem .24rem;
+	width: 80%;
 }
 .sure_btn a{
 	display: block;

@@ -106,7 +106,7 @@
             $("#submit").click(function () {
 				var userName=$("#user_name").val();
 				var passWord=$("#password").val();
-                window.STA.ajax({
+                /*window.STA.ajax({
                     url:"/user/reg",
                     data: {
                         userName:userName,
@@ -116,13 +116,25 @@
 						console.log("成功！")
 						window.alert("成功")
                     }
-                })
+                })*/
+                $ajax.get("user/reg",{
+                    userName:userName,
+                    passWord:passWord
+                },function(data){
+                    console.log("***",data)
+                    if(data.resultCode==0){
+						console.log("成功！")
+						window.alert("注册成功")
+                    }
+                    window.alert(data.resultMsg)
+                });
             })
 
 			$("#button").click(function () {
                 var userName=$("#login_user_name").val();
                 var passWord=$("#login_password").val();
                 var token="";
+                console.log("*****lll")
                 /*window.STA.ajax({
                     url:"/user/login",
                     data: {
@@ -154,8 +166,9 @@
 //                            $.session.set('token', data.token)
 //                            token=data.token;
                         console.log("window.sessionStorage",window.sessionStorage)
+                    }else{
+                    	window.alert(data.resultMsg)
                     }
-                    window.alert(data.resultMsg)
                 });
 
 

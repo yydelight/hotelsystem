@@ -13,10 +13,6 @@
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
 	<script type="text/javascript" src="js/ajaxUtil.js"></script>
 	<style type="text/css">
-		.order_wrap{
-			/*margin-top: -.125rem;*/
-			margin-top: .375rem;
-		}
 		.ob_date{
 			color: #949494;
 			font-size: .08rem;
@@ -27,17 +23,23 @@
 	</style>
 </head>
 <body>
-	<!-- 酒店头部 -->
-	<div class="header">
-		<div class="header_left">
-			<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+	<div class="wrap">
+		<div class="hd_wrapper hd_wrapper_44">
+			<!-- 酒店头部 -->
+			<div class="header">
+				<div class="header_left">
+					<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">未出行(<i>3</i>)</div>
+			</div>
 		</div>
-		<div class="header_title">未出行(<i>3</i>)</div>
+		<div class="scrollWrap">
+			<div class="order_wrap">
+
+			</div>
+		</div>
 	</div>
 
-	<div class="order_wrap">
-
-	</div>
 
 
 	<script type="text/javascript">
@@ -47,19 +49,19 @@
 			var i=0;
 			for(order of data){
 				// 1=已付款，2=去支付，3=到付
-				if(order.state!=1){
-					continue;
-				}
+				// if(order.state!=1){
+				// 	continue;
+				// }
 				html+='<div class="order_show">'+
 							'<div class="make_order border_before border_after">'+
 								'<figure>'+
-									'<img src="'+order.roomImg+'">'+
+									'<img src="images/xmn_hotel.png">'+
 								'</figure>'+
 								'<div class="hotel_det">'+
-									'<p class="hotel_name">'+order.hotelName+'</p>'+
-									'<p>'+order.roomName+'</p>'+
-									'<p>'+order.wifi+'</p>'+
-									'<p class="breakf">'+order.breakf+'</p>'+
+									'<p class="hotel_name">'+order.hotel.name+'</p>'+
+									'<p>'+order.room.roomName+'</p>'+
+									'<p>宽带 Wi-Fi</p>'+
+									'<p class="breakf">无早</p>'+
 								'</div>'+
 								'<a href=""><div class="right_arrow"></div></a>'+
 								'<div class="cancel_order">'+
@@ -68,7 +70,7 @@
 							'</div>'+
 							'<div class="pay_order border_after">'+
 								'<div class="act_pay">'+
-									'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.pay+'</i></p>'+
+									'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.order.totalCount+'</i></p>'+
 								'</div>'+
 								'<div class="pay_state">'+
 									'<a href="">已付款</a>'+
@@ -82,13 +84,23 @@
 			$(".order_wrap").html(html);
 		}
 
-		window.STA.ajax({
-			url:"data/hotelOrder.json",
-			success:function(data){
-				var make=data.makeOrder;
+		// window.STA.ajax({
+		// 	url:"data/hotelOrder.json",
+		// 	success:function(data){
+		// 		var make=data.makeOrder;
+		// 		addMakeOrder(make);
+		// 	}
+		// })
+
+		$ajax.get("order/list",{ status:2 },function(data){
+            if(data.resultCode==0){
+                var make=data.data;
 				addMakeOrder(make);
-			}
-		})
+                $(".header_title i").html(data.data.length)
+            }else{
+                window.alert(data.resultMsg)
+            }
+        });
 	})
 	</script>
 </body>

@@ -157,14 +157,11 @@
                     userName:userName,
                     passWord:passWord
                 },function(data){
-                    console.log("***",data)
                     if(data.resultCode==0){
                         window.location.href='index.html';
                         window.sessionStorage.setItem('username',data.data.userName);
                         window.sessionStorage.setItem('account',data.data.account);
                         window.sessionStorage.setItem('token',data.data.token);
-//                            $.session.set('token', data.token)
-//                            token=data.token;
                         console.log("window.sessionStorage",window.sessionStorage)
                     }else{
                     	window.alert(data.resultMsg)

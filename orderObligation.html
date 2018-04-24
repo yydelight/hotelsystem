@@ -81,14 +81,33 @@
 			$(".order_wrap").html(html);
 		}
 
-		window.STA.ajax({
-			url:"data/hotelOrder.json",
-			success:function(data){
-				var make=data.makeOrder;
-				addMakeOrder(make);
-			}
-		})
-	})
+//		window.STA.ajax({
+//			url:"order/list",
+//			success:function(data){
+//				var make=data.makeOrder;
+//				addMakeOrder(make);
+//			}
+//		})
+
+        $ajax.get("order/list",{ status:1 },function(data){
+            if(data.resultCode==0){
+                var bat=window.baidu.template;
+                var list="";
+                if(state==0){
+                    var make=data.data;
+                    list=bat('template_list',{hotelData:make});
+                    $(".order_wrap").html(list);
+                }else if(state==1){
+                    var history=data.historyOrder;
+                    list=bat('history_list',{hotelData:history});
+                    $(".order_wrap").html(list);
+                }
+                $(".header_title i").html(data.data.length)
+            }else{
+                window.alert(data.resultMsg)
+            }
+        });
+    })
 	</script>
 </body>
 </html>

@@ -86,7 +86,28 @@
 	
 	<script type="text/javascript">
 	$(function(){
-		$(".select").on('click',function(){
+
+        window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
+                }
+            }
+            return theRequest;
+        };
+
+        //请求数据
+        var objRequest=getRequest();
+
+
+        $(".select").on('click',function(){
 			if($(this).hasClass("selected")){
 				$(this).removeClass("selected");
 				$(this).addClass("select_none");
@@ -97,7 +118,7 @@
 		})
 
 		$(".sure_btn").on('click',function(){
-			$ajax.get("order/pay/11", {
+			$ajax.get("order/pay/"+window.sessionStorage.orderid, {
             },function(data){
                 if(data.resultCode==0){
 					$(".pop_up").show(1).delay(1000).hide(1);
@@ -111,7 +132,7 @@
 		$(".money").html(window.sessionStorage.count);//订单总额
 		$(".balance").html(window.sessionStorage.account);//账户余额
 		$(".need_money").html(window.sessionStorage.count);//订单总额
-		$(".name").html(window.sessionStorage.orderid);//订单id
+		$(".name").html(window.sessionStorage.orderno);//订单id
 	})
 	</script>
 

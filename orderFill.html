@@ -228,8 +228,9 @@
                 rnum:roomnum,
             },function(data){
                 if(data.resultCode==0){
-                	 window.sessionStorage.setItem('orderid',moment().format('MMDDhhmmss'));
-                    window.location.href="orderPay.html"
+                    window.sessionStorage.setItem('orderid',data.data.id);
+                    window.sessionStorage.setItem('orderno',data.data.ono);
+                    window.location.href="orderPay.html";
                 }
             });
         })

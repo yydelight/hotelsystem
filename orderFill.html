@@ -70,13 +70,13 @@
 					<div class="room room_person border_after">
 						<p>入住人</p>
 						<div class="input_wrap">
-							<input placeholder="姓名,一间房填一个人">
+							<input class="person_input" placeholder="姓名,一间房填一个人">
 						</div>
 					</div>
 					<div class="room room_tel border_after">
 						<p>手机</p>
 						<div class="input_wrap">
-							<input placeholder="用于接受通知">
+							<input class="tel_input" placeholder="用于接受通知">
 						</div>
 					</div>
 				</div>
@@ -220,6 +220,16 @@
 		$(".pay_btn a").click(function () {
 			var roomnum=$(".room_num .info i").html();
 			var count=$(".total").html();
+			var people=$(".person_input").val();
+			var tel=$(".tel_input").val();
+			console.log(people,tel)
+			if(people.length==0){
+				window.alert("入住人不能为空");
+				return false;
+			}else if(tel.length==0){
+				window.alert("手机不能为空");
+				return false;
+			}
 			window.sessionStorage.setItem('count',count);
             $ajax.get("order/submit", {
                 rid:objRequest.id,

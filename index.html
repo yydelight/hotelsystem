@@ -290,11 +290,20 @@
             function getDate(){
             	var nowdate = new Date();
 				var day=nowdate.toLocaleString();
-				$(".in_date").html(moment().format('M月DD号'));
-				$(".out_date").html(moment().add(1, 'days').format('M月DD号'));
-				$(".out_week").html('('+moment().add(1, 'days').format('dddd')+')')
-                window.sessionStorage.setItem('indate',moment().format('M-DD'));
-                window.sessionStorage.setItem('outdate',moment().add(1, 'days').format('M-DD'));		
+				if(window.sessionStorage.indate==null||window.sessionStorage.outdate==null){
+					$(".in_date").html(moment().format('M月D号'));
+					$(".out_date").html(moment().add(1, 'days').format('M月D号'));
+					$(".out_week").html('('+moment().add(1, 'days').format('dddd')+')')
+					window.sessionStorage.setItem('indate',moment().format('M-D'));
+                	window.sessionStorage.setItem('outdate',moment().add(1, 'days').format('M-D'))	
+				}else{
+					$(".in_date").html(moment(window.sessionStorage.indate).format('M月D号'));
+					$(".out_date").html(moment(window.sessionStorage.outdate).format('M月D号'));
+					$(".in_week").html('('+moment(window.sessionStorage.indate).format('dddd')+')');
+					$(".out_week").html('('+moment(window.sessionStorage.outdate).format('dddd')+')');
+					$(".total_time i").html(moment.duration(moment(window.sessionStorage.outdate)-moment(window.sessionStorage.indate)).as('day'))
+				}
+                	
             }
 
 		})

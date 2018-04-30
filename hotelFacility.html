@@ -10,6 +10,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
 	<style type="text/css">
 		i{
 			font-style: normal;
@@ -141,10 +142,44 @@
 		<div class="hotel_intro">
 			<p class="intro_title">酒店介绍：</p>
 			<p class="room_num">房间数：<i class="num">120</i>间</p>
-			<p class="intro">广州市上下九步行街七天连锁酒店位于天河区,距离火车站、汽车客运总站约3公里,距离绵阳机场仅约10公里。距离长虹集团、九州集团仅10分钟左右车程;沃尔玛超市、佰腾数码广场、绵阳科技大楼近在咫尺.</p>
+			<p class="intro">广州市上下九步行街七天连锁酒店位于天河区,距离火车站、汽车客运总站约3公里,距离绵阳机场仅约10公里。距离长虹集团、九州集团仅10分钟左右车程;沃尔玛超市、佰腾数码广场、绵阳科技大楼近在咫尺. 乐居连锁酒店(东圃店)本着“服务从心开始”的宗旨，坚持以客人为本的服务理念，系统合理的降低成本并注重提供高效优质的服务。</p>
 		</div>
 	</div>
 </div>
+	<script type="text/javascript">
+	$(function(){
 
+		window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
+                }
+            }
+            return theRequest;
+        };
+
+        //请求数据
+        var objRequest=getRequest();//objRequest.id酒店id
+
+		var hotelState=$(".hotel_state")
+
+		$ajax.get("hotel/detail/"+objRequest.id,{},function(data){
+			hotelData=data.data;
+            $(".hotel_tel_content .tel").html(hotelData.hotel.tel);
+            $(".hotel_intro .room_num .num").html(hotelData.hotel.roomNum)
+            $(".intro").html(hotelData.hotel.remark)
+		})
+
+
+	});
+
+	</script>
 </body>
 </html>

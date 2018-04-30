@@ -179,10 +179,11 @@ a{
     color: white;
     line-height: .44rem;
     font-size: .13rem;
+    padding-left: .3rem;
 }
 .header_left{
     position: absolute;
-    padding: .125rem; 
+    padding: .125rem .05rem; 
 }
 .header_left a{
     display: block;
@@ -258,7 +259,7 @@ a{
     padding-top: .44rem;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding-bottom: 1rem;
+    /*padding-bottom: 1rem;*/
 
 }
 .pad_79{
@@ -274,4 +275,10 @@ body,html{
     font-size: .12rem;
     color: #949494;
     padding: .1rem 0 .1rem;
+}
+/*超出省略号显示*/
+.overflow_ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

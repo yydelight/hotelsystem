@@ -6,7 +6,7 @@
 	display: flex;
 }
 .search{
-	padding: .03rem 0 .03rem .05rem;
+    padding: .05rem 0 .03rem .05rem;
 	float: left;
 	flex: 1;
 }
@@ -14,7 +14,7 @@
 	display: block;
 	outline: none;
 	border:none;
-	padding: .07rem .075rem .07rem .26rem;
+    padding: .07rem .075rem .07rem .26rem;
 	/*width: 100%;*/
 	width: calc(100% - .36rem);
 	width: -webkit-calc(100% - .36rem);
@@ -24,7 +24,7 @@
 	width: .135rem;
 	height: .135rem;
 	position: absolute;
-	top: .1rem;
+	top: .12rem;
 	left: .1rem;
 	background: url(../../images/xmn_key_search.png) no-repeat center center;
 	background-size: .135rem .135rem;
@@ -38,20 +38,14 @@
 	background: url(../../images/xmn_hotel_local.png) no-repeat right center;
 	background-size: 100%;
 }
-.search{
-	/*display: inline-block;*/
-}
-.search input{
-	/*width: auto;*/
-}
 .select_time{
-	padding: .03rem .05rem .03rem .02rem;
+	padding: .05rem .05rem .03rem .02rem;
 	/*display: inline-block;*/
 	vertical-align: middle;
 	float: right;
 }
 .time_show{
-    padding: .045rem 0;
+    padding: .025rem 0;
 	background-color: white;
 	position: relative;		
 }

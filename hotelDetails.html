@@ -69,8 +69,8 @@
 						<p class="location">广州市上下九步行街15号</p>
 						<p class="district">天河区</p>
 					</div>
-					<a class="hotel_right_common" href="">地图</a>
 				</div>	
+				<a class="hotel_right_common hotel_ditu" href="">地图</a>
 			</div>
 			<div class="hotel_width_common hotel_facilities border_after">
 				<div class="hotel_righticon_common ">
@@ -91,7 +91,7 @@
 							<img src="images/xmn_details_dryer.png">
 							<p>吹风机</p>
 						</figure>
-						<a class="hotel_right_common" href="hotelFacility.html">酒店设施</a>
+						<a class="hotel_right_common hotel_facility" href="hotelFacility.html">酒店设施</a>
 					</div>
 				</div>
 			</div>
@@ -260,7 +260,8 @@
         };
 
         //请求数据
-        var objRequest=getRequest();
+        var objRequest=getRequest();//objRequest.id酒店id
+        $(".hotel_facility").attr("href","hotelFacility.html?id="+objRequest.id); 
 
 		var mySwiper = new Swiper ('.swiper-container', {
 		  direction: 'horizontal',
@@ -273,24 +274,28 @@
 		var collectIcon=$(".collect_icon");
 		var time=0;
 		collectIcon.on('click',function(){
-			var hc=collectIcon.hasClass("collect_active");
-			if(time == 0){
-				time=10;
-				var index = setInterval(function(){
-					time--;
-					if(time==0){
-						clearInterval(index);
+			$ajax.get("order/collection/"+objRequest.id,{},function(data){
+                if(data.resultCode==0){
+					var hc=collectIcon.hasClass("collect_active");
+					if(time == 0){
+						time=10;
+						var index = setInterval(function(){
+							time--;
+							if(time==0){
+								clearInterval(index);
+							}
+						},100);
+						if(!hc){
+							collectIcon.addClass("collect_active");
+							$(".collect_alert p").html("收藏成功");
+						}else{
+							collectIcon.removeClass("collect_active");
+							$(".collect_alert p").html("取消收藏");
+						}
+						$(".collect_alert").show(1).delay(1000).hide(1);
 					}
-				},100);
-				if(!hc){
-					collectIcon.addClass("collect_active");
-					$(".collect_alert p").html("收藏成功");
-				}else{
-					collectIcon.removeClass("collect_active");
-					$(".collect_alert p").html("取消收藏");
-				}
-				$(".collect_alert").show(1).delay(1000).hide(1);
-			}
+                }
+            });
 
 		})
 

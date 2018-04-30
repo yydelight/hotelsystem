@@ -11,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/single/orderGenerated.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>
 </head>
 <body>
 	<!-- 酒店头部 -->
@@ -66,8 +69,92 @@
 			</div>
 		</div>
 	</div>
+		<script id='template_list' val="1" type="text/template"> 
+        <%
+            var obj=hotelData.orderdata;
+        %>
+			<div class="order order_num border_after">
+				<p>订单号：</p>
+				<p><i class="o_num"><%=obj.order.ono%></i></p>
+			</div>
+			<div class="order hotel_name dashed_border content">
+				<p>酒店名称：</p>
+				<p><i class="name"><%=obj.hotel.name%></i></p>
+			</div>
+			<div class="order hotel_address border_after content">
+				<p>酒店地址：</p>
+				<p><i class="addresss"><%=obj.hotel.cityCode%><%=obj.hotel.areaCode%><%=obj.hotel.address%></i></p>
+			</div>
+			<div class="order room_info dashed_border">
+				<p>房间信息：</p>
+				<p><i class="room"><%=obj.room.roomName%></i><i class="bed"><%=obj.room.type==1?'双人床':'单人床'%></i><i class="breakf">无早</i></p>
+			</div>
+			<div class="order check_in dashed_border">
+				<p>入住时间：</p>
+				<p><i class="in_date"><%=hotelData.indate%></i></p>
+			</div>
+			<div class="order check_out border_after">
+				<p>离店时间：</p>
+				<p><i class="out_date"><%=hotelData.outdate%></i><i class="time">共<%=moment.duration(moment(obj.order.endTime)-moment(obj.order.startTime)).as('day')%>晚</i></p>
+			</div>
+			<div class="order room_num dashed_border">
+				<p>房间数：</p>
+				<p><i class="o_num"><%=obj.order.rnum%>间</i></p>
+			</div>
+			<div class="order person dashed_border">
+				<p>房间入住人：</p>
+				<p><i class="p_name"><%=obj.order.consume_user%></i></p>
+			</div>
+			<div class="order conn_tel border_after">
+				<p>联系电话：</p>
+				<p><i class="tel"><%=obj.order.consume_phone%></i></p>
+			</div>
+			<div class="order person dashed_border">
+				<p>消费码：</p>
+				<p><i class="p_name"><%=obj.order.consume_code%></i></p>
+			</div>
+	</script>
+
 	<script type="text/javascript">
 	$(function(){
+
+		window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
+                }
+            }
+            return theRequest;
+        };
+
+        //请求数据
+        var objRequest=getRequest();
+
+    	$ajax.get("order/detail/"+objRequest.id, {
+        },function(data){
+            if(data.resultCode==0){
+				var bat=window.baidu.template;
+                var hotel=data.data;
+                var indate=moment(hotel.order.startTime).format('M月DD号');
+                var outdate=moment(hotel.order.endTime).format('M月DD号');
+
+                var data =
+ 				{orderdata:data.data,indate:indate,outdate:outdate};
+                console.log("hotel",hotel,indate,outdate,data)
+
+                var list=bat('template_list',{hotelData:data});
+
+                $(".order_details").html(list);
+            }
+        });
+
 		$(".content p").each(function(){
 			var rowNum=Math.round($(this).height()/parseFloat($(this).css('line-height')));
 			if(rowNum>2||rowNum==2){

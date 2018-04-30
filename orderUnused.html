@@ -58,14 +58,14 @@
 									'<img src="images/xmn_hotel.png">'+
 								'</figure>'+
 								'<div class="hotel_det">'+
-									'<p class="hotel_name">'+order.hotel.name+'</p>'+
+									'<p class="hotel_name overflow_ellipsis">'+order.hotel.name+'</p>'+
 									'<p>'+order.room.roomName+'</p>'+
 									'<p>宽带 Wi-Fi</p>'+
 									'<p class="breakf">无早</p>'+
 								'</div>'+
-								'<a href=""><div class="right_arrow"></div></a>'+
+								'<a href="orderGenerated.html?id='+order.order.id+'"><div class="right_arrow"></div></a>'+
 								'<div class="cancel_order">'+
-									'<p class="cancel ob_date">'+order.date+'</p>'+
+									'<p class="cancel ob_date">'+order.order.order_time+'</p>'+
 								'</div>'+
 							'</div>'+
 							'<div class="pay_order border_after">'+

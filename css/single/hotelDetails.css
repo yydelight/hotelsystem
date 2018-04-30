@@ -79,6 +79,12 @@ body{
 .total_point .total_comment,.hotel_check_time .hotel_right_common,.near_popular_hotel .popular_num{
 	transform: translate(0, 0);
 }
+.hotel_ditu{
+    position: absolute;
+    right: .15rem;
+    top: 50%;
+    transform: translateY(-50%)!important;
+}
 /*公用*/
 .hotel_width_common{
 	padding: .165rem .125rem;
@@ -91,6 +97,7 @@ body{
 	background: url(../../images/xmn_right_icon.png) right center no-repeat;
 	background-size: .07rem .1rem;
 	overflow: hidden;
+	position: relative;
 }
 .hotel_right_common{
 	margin-right: .15rem;
@@ -100,11 +107,13 @@ body{
 }
 /*酒店地址*/
 .hotel_location{
-	padding: .115rem .125rem .1rem;
+	padding: .1rem .125rem .1rem;
 }
 .location_detail{
 	float: left;
 	font-size: .12rem;
+	position: relative;
+	width: 100%;
 }
 .district{
 	padding-top: .055rem;
@@ -235,7 +244,7 @@ body{
 .room_name{
 	font-size: .12rem;
 	color: #333333;
-	padding-right: .125rem;
+	padding-right: .12rem;
 	/*background: url(../../images/xmn_right_icon.png) no-repeat right center;*/
 	/*background-size: .07rem .1rem;*/
 }

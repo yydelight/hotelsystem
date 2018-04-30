@@ -92,19 +92,28 @@
 	        	<figure>
 	        		<img class="lazy" data-original="<%=obj.image%>" alt="">
 	        	</figure>
-	        	<p class="hotel_name"><%=obj.hotelName%></p>
+	        	<p class="hotel_name"><%=obj.name%></p>
 	        	<div class="hotel_detail">
 	        		<p class="hotel_point">
-	        			<i class="hotel_score"><%=obj.hotelPoint%></i>分/
-	        			<i class="comment_num"><%=obj.commentNum%></i>评论
+	        			<i class="hotel_score"><%=obj.score%></i>分/
+	        			<i class="comment_num"><%=obj.evaluateNum%></i>评论
 	        		</p>
-	        		<p class="hotel_star"><%=obj.hotelStar%>
+	        		<p class="hotel_star">
+	        			<%if(obj.level==1){%>
+							经济型酒店
+						<%}else if(obj.level==2){%>
+							三星级酒店
+						<%}else if(obj.level==3){%>
+							四星级酒店
+						<%}else if(obj.level==4){%>
+							五星级酒店
+						<%}%>
 	        			<i class="park_icon"></i><i class="wifi_icon"></i>
 	        		</p>
 	        		<p class="address"><%=obj.address%></p>
 	        	</div>
 	        	<div class="right_show">
-	        		<p><i class="rmb">¥</i><i class="money"><%=obj.hotelPrice%></i> <i class="up"> 起</i></p>
+	        		<p><i class="rmb">¥</i><i class="money"><%=obj.minPrice%></i> <i class="up"> 起</i></p>
 	        		<div class="font_bgc">
 	        			<div class="tuan">团</div>
 	        			<div class="phone">手机专享</div>
@@ -127,18 +136,28 @@
 			hotelState.removeClass("active");
 			tham.addClass("active");
 			if(index==0){
-				ajaxData(0);
+				// ajaxData(0);
 			}
 			if(index==1){
-				ajaxData(1);
+				ajaxCollection();
+				// ajaxData(1);
 			}
 			if(index==2){
-				ajaxData(2);
+				// ajaxData(2);
 			}
 
 		});
 
 		ajaxData(0);
+
+		function ajaxCollection(){
+			var bat=window.baidu.template;
+			$ajax.get("order/collectionList",{},function(data){
+				hotel=data.data;
+                var list=bat('template_list',{hotelData:hotel});
+                $("#hotel_wrap").html(list);
+			})
+		}
 
 		function ajaxData(state){
             $ajax.get("data/myHotel.json",{},function(result){

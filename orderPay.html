@@ -122,7 +122,7 @@
             },function(data){
                 if(data.resultCode==0){
 					$(".pop_up").show(1).delay(1000).hide(1);
-					setTimeout(function(){window.location="orderGenerated.html";},1000);
+					setTimeout(function(){window.location="orderGenerated.html?id="+objRequest.id;},1000);
                 }
             });
 
@@ -132,7 +132,7 @@
 		$(".money").html(window.sessionStorage.count);//订单总额
 		$(".balance").html(window.sessionStorage.account);//账户余额
 		$(".need_money").html(window.sessionStorage.count);//订单总额
-		$(".name").html(window.sessionStorage.orderno);//订单id
+		$(".name").html(window.sessionStorage.orderno);//订单编号
 	})
 	</script>
 

@@ -72,7 +72,7 @@
 					<figure>
 						<img src="./images/xmn_order_room.png">
 					</figure>
-					<div class="hotel_det">
+					<div class="hotel_det myorder_det">
 						<p class="hotel_name"><%=obj.hotel.name%></p>
 						<p><%=obj.room.name%></p>
 						<p>宽带 Wi-Fi</p>
@@ -109,7 +109,7 @@
 					<figure>
 						<img src="./images/xmn_order_room.png">
 					</figure>
-					<div class="hotel_det">
+					<div class="hotel_det myorder_det">
 						<p class="hotel_name"><%=obj.hotel.name%></p>
 						<p><%=obj.roomName%></p>
 						<p><%=obj.wifi%></p>
@@ -140,83 +140,40 @@
 
 	<script type="text/javascript">
 	$(function(){
-		var orderState=$(".order_state");
-		orderState.bind('click',function(){
-			var tham=$(this);
-			var index=$(this).index();
-			orderState.removeClass("active");
-			tham.addClass("active");
-			if(index==0){
-				ajaxData(0);
-			}else if(index==1){
-				ajaxData(1);
-			}
-		})
-
-		ajaxData(0);
-
-		function ajaxData(state){
-            console.log("***",window.sessionStorage)
-			/*window.STA.ajax({
-				url:"/order/list",
-                dataType : "json",
-				success:function(data){
-				    debugger;
-					var bat=window.baidu.template;
-					var list="";
-					if(state==0){
-						var make=data.makeOrder;
-						list=bat('template_list',{hotelData:make});
-						$(".order_wrap").html(list);
-					}else if(state==1){
-						var history=data.historyOrder;
-						list=bat('history_list',{hotelData:history});
-						$(".order_wrap").html(list);
-					}
-				}
-			})	*/
-			$ajax.get("order/list",{},function(data){
-                if(data.resultCode==0){
-					var bat=window.baidu.template;
-					var list="";
-					if(state==0){
-						var make=data.data;
-						list=bat('template_list',{hotelData:make});
-						$(".order_wrap").html(list);
-					}else if(state==1){
-						var history=data.historyOrder;
-						list=bat('history_list',{hotelData:history});
-						$(".order_wrap").html(list);
-					}
-                }else{
-                	window.alert(data.resultMsg)
+		window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                if(strs&&strs.length>0){
+                    for (var i = 0; i < strs.length; i++) {
+                        var temItem=strs[i].split("=");
+                        theRequest[temItem[0]] = (temItem[1]);
+                    }
                 }
-            });		
-		}
+            }
+            return theRequest;
+        };
 
-		$(".order_wrap").bind('click',function(e){
-			if(e.target.className=="cancel delete"||e.target.className=="cancel"){
-				$('.mask_wrap').show();
-				$('.confirm_box').show();
-				$(e.target).parent().addClass("loveClick");
-			}
-			return false;
-		})	
+        //请求数据
+        var objRequest=getRequest();//objRequest.id酒店id
+        $(".hotel_facility").attr("href","hotelFacility.html?id="+objRequest.id); 
 
-		$('.confirm_box').bind('click',function(e){
-			var className=$(e.target).parent()[0].className;
-			if(className=='sure_btn'){
-				var deleteDiv=$(".loveClick").parents(".order_show");
-				deleteDiv.remove();
-			}else if(className=='cancel_btn'){
-				$('.loveClick').removeClass('loveClick');
-			}
-			$('.scrollWrap').css("overflow","scroll");
-			$('.confirm_box').hide();
-			$('.mask_wrap').hide();
-			return false;
+		var orderState=$(".order_state");
+		var bat=window.baidu.template;
+		$ajax.get("order/list",{},function(data){
+	        if(data.resultCode==0){
+				hotel=data.data;
+                var list=bat('template_list',{hotelData:hotel});
+                console.log("list",list)
+                $(".order_wrap").html(list);
+	        }else{
+	        	window.alert(data.resultMsg)
+	        }
+	    });	
 
-		});
+
 
 	})
 

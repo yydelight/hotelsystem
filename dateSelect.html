@@ -199,7 +199,7 @@
 
 					//给nav中显示选中日期的元素绑上个中data以及做出相应的样式变化
 					$('.check_in_date').text(curDate.curMonth+'-'+curDate.curDay+''+curDate.curWeek);
-
+					window.sessionStorage.setItem('indate',curDate.curMonth+'-'+curDate.curDay);
 					$('.check_in_date').data('checkin-year',curYear);
 					$('.check_in_date').data('checkin-month',curMonth);
 					$('.check_in_date').data('checkin-day',curDay);
@@ -220,6 +220,8 @@
 					};
 
 					$('.check_out_date').text(curDate.curMonth+'-'+curDate.curDay+''+curDate.curWeek);
+                	window.sessionStorage.setItem('outdate',curDate.curMonth+'-'+curDate.curDay);			
+
 
 					$('.check_out_date').data('checkout-year',curYear);
 					$('.check_out_date').data('checkout-month',curMonth);

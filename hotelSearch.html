@@ -59,21 +59,6 @@
 		</div>
 	</div>
 
-	<!-- 弹窗 -->
-	<div class="mask_wrap"></div>
-	<div class="confirm_box">
-		<p>确认取消该收藏？</p>
-		<div class="btn_group">
-			<div class="sure_btn">
-				<a href="">确定</a>
-			</div>
-			<div class="cancel_btn">
-				<a href="">取消</a>
-			</div>
-		</div>
-	</div>
-
-
 	<script id='template_comment_list' val="1" type="text/template"> 
         <%
             for(var i in hotelData){
@@ -106,7 +91,16 @@
 							<i class="hotel_score"><%=obj.score%></i>分/
 							<i class="comment_num"><%=obj.evaluateNum%></i>评论
 						</p>
-						<p class="hotel_star"><%=obj.hotelStar%>
+						<p class="hotel_star">
+							<%if(obj.level==1){%>
+								经济型酒店
+							<%}else if(obj.level==2){%>
+								三星级酒店
+							<%}else if(obj.level==3){%>
+								四星级酒店
+							<%}else if(obj.level==4){%>
+								五星级酒店
+							<%}%>
 							<i class="park_icon"></i><i class="wifi_icon"></i>
 						</p>
 						<p class="address"><%=obj.address%></p>
@@ -148,90 +142,20 @@
 
         //请求数据
         var objRequest=getRequest();
-        console.log("obj",decodeURI(objRequest.search))
 
-		var hotelState=$(".hotel_state")
-		hotelState.on('click',function(){
-			var tham=$(this);
-			var index=$(this).index();
-			hotelState.removeClass("active");
-			tham.addClass("active");
-			if(index==0){
-				ajaxData(0);
-			}
-			if(index==1){
-				ajaxData(1);
-			}
-			if(index==2){
-				ajaxData(2);
-			}
-
-		});
-
-		ajaxData(0);
-
-		function ajaxData(state){
-			/*window.STA.ajax({
-				url:"data/myHotel.json",
-				success:function(data){
-					var bat=window.baidu.template;
-					var hotel="";
-					if(state==0){
-						hotel=data.hotelHistory;
-						var list=bat('template_list',{hotelData:hotel});
-						$("#hotel_wrap").html(list);
-					}else if(state==1){
-						hotel=data.hotelCollect;
-						var list=bat('template_list',{hotelData:hotel});
-						$("#hotel_wrap").html(list);
-					}else if(state==2){
-						hotel=data.hotelComment;
-						var list=bat('template_comment_list',{hotelData:hotel});
-						$("#hotel_wrap").html(list);
-					}
-					lazy()
-				}
-			});*/
-            $ajax.get("hotel/list",{name:decodeURI(objRequest.search)},function(data){
-                if(data.resultCode==0){
-                    var bat=window.baidu.template;
-                    var hotel=data.data;
-                    var list=bat('template_list',{hotelData:hotel});
-                    $("#hotel_wrap").html(list);
-                    lazy()
-                }else{
-                	window.alert(data.resultMsg)
-                }
-            });
-
-            $(".to_bottom").html("到底啦");
-		}
-
-		$('.confirm_box').bind('click',function(e){
-			var className=$(e.target).parent()[0].className;
-			if(className=='sure_btn'){
-				var deleteDiv=$(".loveClick").parent(".hotel_show");
-				deleteDiv.remove();
-			}else if(className=='cancel_btn'){
-				$('.loveClick').removeClass('loveClick');
-			}
-			$('.scrollWrap').css("overflow","scroll");
-			$('.confirm_box').hide();
-			$('.mask_wrap').hide();
-			return false;
-
-		});
-
-		$(".hotel_wrap").bind('click',function(e){
-			if(e.target.className=="love"){
-				$('.mask_wrap').show();
-				$('.confirm_box').show();
-				$(e.target).addClass("loveClick");
-				$('.scrollWrap').css("overflow","hidden");
-                return false;
+        $ajax.get("hotel/list",{name:decodeURI(objRequest.search)},function(data){
+            if(data.resultCode==0){
+                var bat=window.baidu.template;
+                var hotel=data.data;
+                var list=bat('template_list',{hotelData:hotel});
+                $("#hotel_wrap").html(list);
+                lazy()
+            }else{
+            	window.alert(data.resultMsg)
             }
-		});
+        });
 
+        $(".to_bottom").html("到底啦");
 
 		function lazy(){
 			jQuery("img.lazy").not('.nolazy').show().lazyload({ 
@@ -247,6 +171,24 @@
 
 		$(".time_show .in").html(window.sessionStorage.indate);
 		$(".time_show .out").html(window.sessionStorage.outdate);
+
+		$('#myinput').bind('search', function () {
+		    //coding
+		   var value=$("#myinput").val();
+		   console.log(value);
+		   $.ajax({
+		    type:"get",
+		    url:"",
+		    async:true,
+		    data:{
+		    "val":value
+		    },
+		    success:function(){
+		    
+		    }
+		   });
+
+		});
 
 	});
 

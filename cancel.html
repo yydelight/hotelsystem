@@ -9,6 +9,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="format-detection" content="telephone=no" />	
 	<script src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
 	<style>
 	*{
 		margin:0;
@@ -119,7 +120,7 @@
 		background-size: 100% 100%;
 		position: absolute;
 		right: .35rem;
-		top: 1.15rem;
+		top: 1.65rem;
 		display: none;
 	}
 	/*按钮*/
@@ -172,7 +173,7 @@
 			<input class="input_code" placeholder="请输入">
 			<div class="close_icon"></div>
 		</div>
-		<div class="btn"><a href="">提交</a></div>
+		<div class="btn"><a href="javascript:void(0)">提交</a></div>
 		<p class="or hide">Or</p>
 		<div class="btn btn_scan hide">扫二维码核销</div>
 	</div>
@@ -202,6 +203,12 @@
 				e.preventDefault();
 				alert("请输入消费码");
 				return;
+			}else{
+				$ajax.get("order/consume/"+inputValue,{},function(data){
+	                if(data.resultCode==0){
+						window.alert(data.resultMsg);
+	                }
+	            });
 			}
 		})
 

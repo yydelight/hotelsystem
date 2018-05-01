@@ -158,11 +158,14 @@
                     passWord:passWord
                 },function(data){
                     if(data.resultCode==0){
-                        window.location.href='index.html';
-                        window.sessionStorage.setItem('username',data.data.userName);
-                        window.sessionStorage.setItem('account',data.data.account);
-                        window.sessionStorage.setItem('token',data.data.token);
-                        console.log("window.sessionStorage",window.sessionStorage)
+                    	if(data.data.type==2){
+							window.location.href='agents.html';
+                    	}else{
+	                        window.location.href='index.html';
+	                        window.sessionStorage.setItem('username',data.data.userName);
+	                        window.sessionStorage.setItem('account',data.data.account);
+                    	}
+                    	window.sessionStorage.setItem('token',data.data.token);
                     }else{
                     	window.alert(data.resultMsg)
                     }

@@ -66,6 +66,7 @@
         <%
             for(var i in hotelData){
                 var obj=hotelData[i];
+                if(obj.order.status!=3){
         %>
 	        <div class="order_show">
 				<div class="make_order border_before border_after">
@@ -91,12 +92,13 @@
 						<a href="">
 							<%if(obj.order.status==1){%>去支付<%}%>
 							<%if(obj.order.status==2){%>已付款<%}%>
+							<%if(obj.order.status==3){%>已完成<%}%>
 							<%if(obj.order.status==0){%>取消<%}%>
 						</a>
 					</div>
 				</div>
 			</div>
-        <%}%>
+        <%}}%>
 	</script>	
 
 	<script id='history_list' val="1" type="text/template"> 
@@ -166,12 +168,22 @@
 	        if(data.resultCode==0){
 				hotel=data.data;
                 var list=bat('template_list',{hotelData:hotel});
-                console.log("list",list)
                 $(".order_wrap").html(list);
 	        }else{
 	        	window.alert(data.resultMsg)
 	        }
 	    });	
+
+	    function getlist(){
+
+
+
+
+
+
+
+	    	
+	    }
 
 
 

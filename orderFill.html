@@ -39,8 +39,8 @@
 					<div class="room_date">
 						<p>入住:<i class="in_date">2月18日</i></p>
 						<p>离店:<i class="out_date">2月19日</i></p>
-						<p class="book_night">1晚</p>
-						<a class="revise" href="">
+						<p class="book_night"><i>1</i>晚</p>
+						<a class="revise" href="dateSelect.html">
 							修改<i class="right_arrow revise_arrow"></i>
 						</a>
 					</div>
@@ -161,9 +161,12 @@
         $(".room_bed p:first-child").html(decodeURI(objRequest.bed));//床型
         $(".in_date").html(moment(window.sessionStorage.indate).format('M月DD号'));//入住时间
         $(".out_date").html(moment(window.sessionStorage.outdate).format('M月DD号'));//离店时间
-        $(".total").html(objRequest.price);//价钱
+        var night=moment.duration(moment(window.sessionStorage.outdate)-moment(window.sessionStorage.indate)).as('day');
+        $(".total").html(objRequest.price*night);//价钱
+        $(".book_night i").html(night);
 
-        function addDay(dayNumber, date) {
+
+      function addDay(dayNumber, date) {
             date = date ? date : new Date();
             var ms = dayNumber * (1000 * 60 * 60 * 24)
             var newDate = Date(date.getTime() + ms);
@@ -213,16 +216,20 @@
 			number.removeClass("active");
 			thisLi.toggleClass("active");
 			$(".room_num .info i").html($(this).text());
-			$(".total").html($(this).text()*objRequest.price);
+            var booknight=$(".book_night i").html();
+			$(".total").html($(this).text()*booknight*objRequest.price);
 			mask.trigger("click");
 		})
 		
 		$(".pay_btn a").click(function () {
 			var roomnum=$(".room_num .info i").html();
+			var name=$(".person_input").val();
+            var tel=$(".tel_input").val();
 			var count=$(".total").html();
 			var people=$(".person_input").val();
-			var tel=$(".tel_input").val();
-			console.log(people,tel)
+			var night=$(".book_night i").html();
+			var totalNum=parseInt(roomnum)+parseInt(night);
+			console.log("people,tel",people,tel,totalNum)
 			if(people.length==0){
 				window.alert("入住人不能为空");
 				return false;
@@ -235,7 +242,9 @@
                 rid:objRequest.id,
                 startTime:'2018-'+window.sessionStorage.indate,
                 endTime:'2018-'+window.sessionStorage.outdate,
-                rnum:roomnum,
+                rnum:totalNum,
+                consume_user:name,
+                consume_phone:tel,
             },function(data){
                 if(data.resultCode==0){
                     window.sessionStorage.setItem('orderid',data.data.id);

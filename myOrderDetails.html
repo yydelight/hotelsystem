@@ -113,21 +113,21 @@
 					</figure>
 					<div class="hotel_det myorder_det">
 						<p class="hotel_name"><%=obj.hotel.name%></p>
-						<p><%=obj.roomName%></p>
-						<p><%=obj.wifi%></p>
-						<p class="breakf"><%=obj.breakf%></p>
+						<p><%=obj.room.name%></p>
+						<p>宽带 Wi-Fi</p>
+						<p class="breakf">无早</p>
 					</div>
-					<a href=""><div class="right_arrow"></div></a>
+					<a href="orderGenerated.html?id=<%=obj.order.id%>"><div class="right_arrow"></div></a>
 					<div class="cancel_order">
 						<a href="" class="cancel delete"></a>
 					</div>
 					<div class="seal">
-						<img src="images/xmn_order_<%if(obj.state==1){%>finish<%}%><%if(obj.state==0){%>canceled<%}%>.png">
+						<img src="images/xmn_order_<%if(obj.order.status==3){%>finish<%}%><%if(obj.order.status==0){%>canceled<%}%>.png">
 					</div>
 				</div>
 				<div class="pay_order border_after">
 					<div class="act_pay">
-						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.pay%></i></p>
+						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.order.totalCount%></i></p>
 					</div>
 					<p class="comment"><a href="hotelReviews.html">点击评论</a></p>
 					<div class="pay_state">
@@ -164,26 +164,51 @@
 
 		var orderState=$(".order_state");
 		var bat=window.baidu.template;
-		$ajax.get("order/list",{},function(data){
-	        if(data.resultCode==0){
-				hotel=data.data;
-                var list=bat('template_list',{hotelData:hotel});
-                $(".order_wrap").html(list);
-	        }else{
-	        	window.alert(data.resultMsg)
-	        }
-	    });	
+//		var listdata=[];
+//		$ajax.get("order/list",{},function(data){
+//	        if(data.resultCode==0){
+//                listdata=data.data;
+//                var list=bat('template_list',{hotelData:listdata});
+//                $(".order_wrap").html(list);
+//	        }else{
+//	        	window.alert(data.resultMsg)
+//	        }
+//	    });
 
-	    function getlist(){
+        getlist(0);
+	    function getlist(state){
+          var listdata=[];
+	      var url='order/list';
+	      var template='template_list';
+          if(state==1){
+            url='order/list/3';
+            template='history_list';
+          }
+          $ajax.get(url,{},function(data){
+            if(data.resultCode==0){
+              listdata=data.data;
+              var list=bat(template,{hotelData:listdata});
+              $(".order_wrap").html(list);
+            }else{
+              window.alert(data.resultMsg)
+            }
+          });
+        }
 
+      var orderState=$(".order_state")
+      orderState.on('click',function(){
+        var tham=$(this);
+        var index=$(this).index();
+        orderState.removeClass("active");
+        tham.addClass("active");
+        if(index==0){
+          getlist(0);
+        }
+        if(index==1){
+          getlist(1);
+        }
 
-
-
-
-
-
-	    	
-	    }
+      });
 
 
 

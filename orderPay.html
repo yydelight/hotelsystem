@@ -30,8 +30,8 @@
 				<p class="name_p">订单名称：<i class="name">08154545545</i></p>
 				<p>支付金额：<i class="money">168</i></p>
 			</div>
-			<div class="order_details">
-				<a href="orderGenerated.html">
+			<div class="order_details hide">
+				<a href="">
 				<p>订单详情</p>
 				<div class="right_arrow"></div>
 				</a>
@@ -105,6 +105,7 @@
 
         //请求数据
         var objRequest=getRequest();
+        $(".order_details a").attr("href","orderGenerated.html?id="+objRequest.id)
 
 
         $(".select").on('click',function(){

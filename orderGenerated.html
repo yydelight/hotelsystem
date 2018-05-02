@@ -72,6 +72,8 @@
 		<script id='template_list' val="1" type="text/template"> 
         <%
             var obj=hotelData.orderdata;
+            var objnight=moment.duration(moment(obj.order.endTime)-moment(obj.order.startTime)).as('day')
+
         %>
 			<div class="order order_num border_after">
 				<p>订单号：</p>
@@ -95,11 +97,11 @@
 			</div>
 			<div class="order check_out border_after">
 				<p>离店时间：</p>
-				<p><i class="out_date"><%=hotelData.outdate%></i><i class="time">共<%=moment.duration(moment(obj.order.endTime)-moment(obj.order.startTime)).as('day')%>晚</i></p>
+				<p><i class="out_date"><%=hotelData.outdate%></i><i class="time">共<%=objnight%>晚</i></p>
 			</div>
 			<div class="order room_num dashed_border">
 				<p>房间数：</p>
-				<p><i class="o_num"><%=obj.order.rnum%>间</i></p>
+				<p><i class="o_num"><%=obj.order.rnum==1?obj.order.rnum:obj.order.rnum-objnight%>间</i></p>
 			</div>
 			<div class="order person dashed_border">
 				<p>房间入住人：</p>
@@ -107,7 +109,7 @@
 			</div>
 			<div class="order conn_tel border_after">
 				<p>联系电话：</p>
-				<p><i class="tel"><%=obj.order.consume_phone%></i></p>
+				<p><i class="tel"><%=obj.order.consume_user%></i></p>
 			</div>
 			<div class="order person dashed_border">
 				<p>消费码：</p>
@@ -142,8 +144,8 @@
             if(data.resultCode==0){
 				var bat=window.baidu.template;
                 var hotel=data.data;
-                var indate=moment(hotel.order.startTime).format('M月DD号');
-                var outdate=moment(hotel.order.endTime).format('M月DD号');
+                var indate=moment(hotel.order.startTime).format('M月D号');
+                var outdate=moment(hotel.order.endTime).format('M月D号');
 
                 var data =
  				{orderdata:data.data,indate:indate,outdate:outdate};

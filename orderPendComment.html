@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="js/ajaxUtil.js"></script>
 	<style type="text/css">
 		.order_wrap{
-			margin-top: -.125rem;
+			margin-top: .44rem;
 		}
 		.date{
 			color: #949494;
@@ -43,23 +43,23 @@
 			var i=0;
 			for(order of data){
 				// 1=已付款，2=去支付，3=到付
-				if(order.state!=1){
-					continue;
-				}
+				// if(order.state!=1){
+				// 	continue;
+				// }
 				html+='<div class="order_show">'+
 						'<div class="make_order history_order border_before border_after">'+
 							'<figure>'+
-								'<img src="'+order.roomImg+'">'+
+								'<img src="images/xmn_hotel.png">'+
 							'</figure>'+
 							'<div class="hotel_det">'+
-								'<p class="hotel_name">'+order.hotelName+'</p>'+
-								'<p>'+order.roomName+'</p>'+
-								'<p>'+order.wifi+'</p>'+
-								'<p class="breakf">'+order.breakf+'</p>'+
+								'<p class="hotel_name overflow_ellipsis">'+order.hotel.name+'</p>'+
+								'<p>'+order.room.roomName+'</p>'+
+								'<p>宽带 Wi-Fi</p>'+
+								'<p class="breakf">无早</p>'+
 							'</div>'+
 							'<a href=""><div class="right_arrow"></div></a>'+
 							'<div class="cancel_order">'+
-								'<p class="date">'+order.date+'</p>'+
+								'<p class="date">'+order.order.order_time+'</p>'+
 							'</div>'+
 							'<div class="seal">'+
 								'<img src="images/xmn_order_finish.png">'+
@@ -67,7 +67,7 @@
 						'</div>'+
 						'<div class="pay_order border_after">'+
 							'<div class="act_pay">'+
-								'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.pay+'</i></p>'+
+								'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.order.totalCount+'</i></p>'+
 							'</div>'+
 							'<p class="comment"><a href="hotelReviews.html">点击评论</a></p>'+
 							'<div class="pay_state">'+
@@ -81,13 +81,23 @@
 			$(".order_wrap").html(html);
 		}
 
-		window.STA.ajax({
-			url:"data/hotelOrder.json",
-			success:function(data){
-				var history=data.historyOrder;
-				addOrder(history);
-			}
-		})
+		// window.STA.ajax({
+		// 	url:"data/hotelOrder.json",
+		// 	success:function(data){
+		// 		var history=data.historyOrder;
+		// 		addOrder(history);
+		// 	}
+		// })
+
+		$ajax.get("order/list",{ status:3 },function(data){
+            if(data.resultCode==0){
+                var make=data.data;
+				addOrder(make);
+                $(".header_title i").html(data.data.length)
+            }else{
+                window.alert(data.resultMsg)
+            }
+        });
 	})
 	</script>
 </body>

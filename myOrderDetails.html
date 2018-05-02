@@ -180,11 +180,12 @@
           var listdata=[];
 	      var url='order/list';
 	      var template='template_list';
+	      var body={};
           if(state==1){
-            url='order/list/3';
             template='history_list';
+            body={ status:3 }
           }
-          $ajax.get(url,{},function(data){
+          $ajax.get(url,body,function(data){
             if(data.resultCode==0){
               listdata=data.data;
               var list=bat(template,{hotelData:listdata});

@@ -1,5 +1,5 @@
-var _host = "http://192.168.120.1/"
-// var _host = "http://192.168.202.21/"
+// var _host = "http://192.168.120.1/" //台式ip
+var _host = "http://192.168.0.104/" //手提ip
 var $ajax = {
     run: function(url, data, success, type, async, header) {
         $.ajax({

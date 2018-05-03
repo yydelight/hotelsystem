@@ -9,6 +9,9 @@
 	<meta name="format-detection" content="telephone=no" />
 	<title>index</title>
 	<style>
+    html,body{
+        height: 100%;
+    }
 	body,div{
 		margin:0;
 		padding:0;
@@ -23,6 +26,9 @@
 	a{
 		text-decoration: none;
 	}
+    .hide{
+        display: none;
+    }
 	/*头部*/
 	header{
 		width: 100%;
@@ -111,6 +117,9 @@
 		color: rgb(97,177,14);
 		letter-spacing: 2px;
 	}
+    .main{
+        min-height: 50%;
+    }
 	/*尾部*/
 	footer{
 		margin-bottom: 39px;
@@ -145,7 +154,7 @@
 	</header>
 	<div class="main">
 		<ul>
-			<li class="menu_item">
+			<li class="menu_item hide">
 				<i class="menu_icon"></i>
 				<span class="menu_title">我的推广二维码</span>
 				<a class="menu_button">查看</a>
@@ -155,17 +164,17 @@
 				<span class="menu_title">核销过的订单</span>
 				<a class="menu_button">查看</a>
 			</li>
-			<li class="menu_item">
+			<li class="menu_item hide">
 				<i class="menu_icon icon_offline"></i>
 				<span class="menu_title">我的下线</span>
 				<a class="menu_button">查看</a>
 			</li>
-			<li class="menu_item">
+			<li class="menu_item hides">
 				<i class="menu_icon icon_backstage"></i>
 				<span class="menu_title">核销后台</span>
 				<a href="cancel.html" class="menu_button">查看</a>
 			</li>
-			<li class="menu_item">
+			<li class="menu_item hide">
 				<i class="menu_icon icon_perfecting"></i>
 				<span class="menu_title">资料完善</span>
 				<a class="menu_button">查看</a>

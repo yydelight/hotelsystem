@@ -71,11 +71,11 @@
 	        <div class="order_show">
 				<div class="make_order border_before border_after">
 					<figure>
-						<img src="./images/xmn_order_room.png">
+						<img src="./images/xmn_hotel.png">
 					</figure>
 					<div class="hotel_det myorder_det">
 						<p class="hotel_name"><%=obj.hotel.name%></p>
-						<p><%=obj.room.name%></p>
+						<p><%=obj.room.roomName%></p>
 						<p>宽带 Wi-Fi</p>
 						<p class="breakf">无早</p>
 					</div>
@@ -89,7 +89,10 @@
 						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.order.totalCount%></i></p>
 					</div>
 					<div class="pay_state">
-						<a href="">
+						<a href="
+							<%if(obj.order.status==1){%>orderPay.html?id=<%=obj.order.id%><%}%>
+							<%if(obj.order.status==2||obj.order.status==3){%>javascript:void(0)<%}%>
+							<%if(obj.order.status==0){%>#<%}%>">
 							<%if(obj.order.status==1){%>去支付<%}%>
 							<%if(obj.order.status==2){%>已付款<%}%>
 							<%if(obj.order.status==3){%>已完成<%}%>
@@ -109,11 +112,11 @@
 	        <div class="order_show">
 				<div class="make_order history_order border_before border_after">
 					<figure>
-						<img src="./images/xmn_order_room.png">
+						<img src="./images/xmn_hotel.png">
 					</figure>
 					<div class="hotel_det myorder_det">
 						<p class="hotel_name"><%=obj.hotel.name%></p>
-						<p><%=obj.room.name%></p>
+						<p><%=obj.room.roomName%></p>
 						<p>宽带 Wi-Fi</p>
 						<p class="breakf">无早</p>
 					</div>
@@ -131,7 +134,7 @@
 					</div>
 					<p class="comment"><a href="hotelReviews.html">点击评论</a></p>
 					<div class="pay_state">
-						<a href="">再次预定</a>
+						<a href="<%if(obj.hotel.roomNum!=0){%>orderFill.html?id=<%=obj.room.id%>&price=<%=obj.room.price%>&name=<%=obj.room.roomName%>&bed=<%=obj.room.type==1?'双人床':'单人床'%><%}%>">再次预定</a>
 					</div>
 				</div>
 			</div>

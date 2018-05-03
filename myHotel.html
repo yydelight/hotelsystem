@@ -32,10 +32,10 @@
 			<!-- 我的酒店 -->
 			<div class="hotel_details_wrap">
 				<div class="hotel_details_tab border_after">
-					<div class="hotel_state border_right active" id="scanHistory">
+					<div class="hotel_state border_right  hide" id="scanHistory">
 						<p>浏览历史</p>
 					</div>
-					<div class="hotel_state border_right" id="hotelCollect">
+					<div class="hotel_state border_right active" id="hotelCollect">
 						<p>酒店收藏</p>
 					</div>
 					<div class="hotel_state border_right" id="myComment">
@@ -83,14 +83,14 @@
         <%}%>
 	</script>
 
-	<script id='template_list' val="1" type="text/template"> 
+	<script id='template_list' val="1" type="text/template">
         <%
             for(var i in hotelData){
                 var obj=hotelData[i];
         %>
 	        <div class="hotel_show border_after">
 	        	<figure>
-	        		<img class="lazy" data-original="<%=obj.image%>" alt="">
+	        		<img class="lazy" data-original="./images/xmn_order_room.png" alt="" src="./images/xmn_order_room.png">
 	        	</figure>
 	        	<p class="hotel_name"><%=obj.name%></p>
 	        	<div class="hotel_detail">
@@ -148,15 +148,17 @@
 
 		});
 
-		ajaxData(0);
-
+//		ajaxData(1);
+        ajaxCollection();
 		function ajaxCollection(){
 			var bat=window.baidu.template;
 			$ajax.get("order/collectionList",{},function(data){
 				hotel=data.data;
                 var list=bat('template_list',{hotelData:hotel});
                 $("#hotel_wrap").html(list);
+                lazy()
 			})
+            $(".to_bottom").html("到底啦");
 		}
 
 		function ajaxData(state){
@@ -211,7 +213,7 @@
 
 		function lazy(){
 			jQuery("img.lazy").not('.nolazy').show().lazyload({ 
-	           placeholder : "images/xmn_hotel.png",
+	           placeholder : "./images/xmn_order_room.png",
 	           effect: "fadeIn",
 	           sys:'win',
 	           pattern:'m',

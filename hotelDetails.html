@@ -100,13 +100,13 @@
 					<a class="calendar_icon" href=""></a>
 					<p class="check_in"><i>02月18日</i>入住</p>
 					<p class="check_out"><i>02日19日</i>离店</p>
-					<a class="hotel_right_common" href="">共<i>1</i>晚</a>
+					<a class="hotel_right_common hotel_night" href="">共<i>1</i>晚</a>
 				</div>
 			</div>
 		</div>
 
 		<!-- 筛选条件 -->
-		<div class="filter_wrap border_before border_after">
+		<div class="filter_wrap border_before border_after hide">
 			<p class="filter_title">筛选条件</p>
 			<div class="pay_pattern">
 				<p>支付方式</p>
@@ -335,6 +335,8 @@
 
         $(".check_in i").html(moment(window.sessionStorage.indate).format('M月DD号'));
         $(".check_out i").html(moment(window.sessionStorage.outdate).format('M月DD号'));
+        $(".hotel_night i").html(moment.duration(moment(window.sessionStorage.outdate)-moment(window.sessionStorage.indate)).as('day'));
+
 
 	})
 	</script>

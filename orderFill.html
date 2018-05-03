@@ -243,8 +243,8 @@
                 startTime:'2018-'+window.sessionStorage.indate,
                 endTime:'2018-'+window.sessionStorage.outdate,
                 rnum:totalNum,
-                consume_user:name,
-                consume_phone:tel,
+                consumeUser:name,
+                consumePhone:tel,
             },function(data){
                 if(data.resultCode==0){
                     window.sessionStorage.setItem('orderid',data.data.id);

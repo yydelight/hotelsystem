@@ -142,7 +142,7 @@ figure img{
 .love{
 	position: absolute;
 	right: .125rem;
-	bottom: .04rem;
+    bottom: 0.55rem;
 	width: .175rem;
 	height: .145rem;
 	background: url(../../images/xmn_hotel_collect.png) no-repeat center center;

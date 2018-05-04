@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>已核销订单</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/single/myOrderDetails.css">
+	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
+    <script text="text/javascript" src="public/js/baiduTemplate.js"></script>
+	<style type="text/css">
+		.ob_date{
+			color: #949494;
+			font-size: .08rem;
+		}
+		.pay_state .ob_cancel{
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="hd_wrapper hd_wrapper_44">
+			<!-- 酒店头部 -->
+			<div class="header">
+				<div class="header_left">
+					<a class="left_arrow" href="#" onclick="javascript:history.go(-1);"></a>
+				</div>
+				<div class="header_title">订单已核销(<i>3</i>)</div>
+			</div>
+		</div>
+		<div class="scrollWrap">
+			<div class="order_wrap">
+
+			</div>
+		</div>
+	</div>
+    <script id='history_list' val="1" type="text/template">
+        <%
+        for(var i in hotelData){
+        var obj=hotelData[i];
+        %>
+        <div class="order_show">
+            <div class="make_order history_order border_before border_after">
+                <figure>
+                    <img src="./images/xmn_hotel.png">
+                </figure>
+                <div class="hotel_det myorder_det">
+                    <p class="hotel_name"><%=obj.hotel.name%></p>
+                    <p><%=obj.room.roomName%></p>
+                    <p>宽带 Wi-Fi</p>
+                    <p class="breakf">无早</p>
+                </div>
+                <a href="orderGenerated.html?id=<%=obj.order.id%>"><div class="right_arrow"></div></a>
+                <div class="cancel_order">
+                    <a href="" class="cancel delete"></a>
+                </div>
+                <div class="seal">
+                    <img src="images/xmn_order_<%if(obj.order.status==3){%>finish<%}%><%if(obj.order.status==0){%>canceled<%}%>.png">
+                </div>
+            </div>
+            <div class="pay_order border_after">
+                <div class="act_pay">
+                    <p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.order.totalCount%></i></p>
+                </div>
+                <p class="comment hide"><a href="hotelReviews.html?hid=<%=obj.hotel.id%>&name=<%=obj.hotel.name%>&level=<%=obj.hotel.level%>">点击评论</a></p>
+                <div class="pay_state">
+                    <a href="javascript:void(0)">已核销</a>
+                </div>
+            </div>
+        </div>
+        <%}%>
+    </script>
+
+
+    <script type="text/javascript">
+	$(function(){
+		function addMakeOrder(data){
+			var html="";
+			var i=0;
+			for(order of data){
+				// 1=已付款，2=去支付，3=到付
+				// if(order.state!=1){
+				// 	continue;
+				// }
+				html+='<div class="order_show">'+
+							'<div class="make_order border_before border_after">'+
+								'<figure>'+
+									'<img src="images/xmn_hotel.png">'+
+								'</figure>'+
+								'<div class="hotel_det">'+
+									'<p class="hotel_name overflow_ellipsis">'+order.hotel.name+'</p>'+
+									'<p>'+order.room.roomName+'</p>'+
+									'<p>宽带 Wi-Fi</p>'+
+									'<p class="breakf">无早</p>'+
+								'</div>'+
+								'<a href="orderGenerated.html?id='+order.order.id+'"><div class="right_arrow"></div></a>'+
+								'<div class="cancel_order">'+
+									'<p class="cancel ob_date">'+order.order.order_time+'</p>'+
+								'</div>'+
+							'</div>'+
+							'<div class="pay_order border_after">'+
+								'<div class="act_pay">'+
+									'<p>实付款：<i class="rmb">¥</i><i class="money">'+order.order.totalCount+'</i></p>'+
+								'</div>'+
+								'<div class="pay_state">'+
+									'<a href="">已付款</a>'+
+									'<a class="ob_cancel" href="">取消</a>'+
+								'</div>'+
+							'</div>'+
+						'</div>'
+						i++;
+			}
+			$(".header_title i").html(i);
+			$(".order_wrap").html(html);
+		}
+
+		// window.STA.ajax({
+		// 	url:"data/hotelOrder.json",
+		// 	success:function(data){
+		// 		var make=data.makeOrder;
+		// 		addMakeOrder(make);
+		// 	}
+		// })
+        var bat=window.baidu.template;
+		$ajax.get("order/list",{ status:3 },function(data){
+            if(data.resultCode==0){
+                var make=data.data;
+//				addMakeOrder(make);
+                $(".header_title i").html(data.data.length)
+                var list=bat('history_list',{hotelData:make});
+                $(".order_wrap").html(list);
+            }else{
+                window.alert(data.resultMsg)
+            }
+        });
+	})
+	</script>
+</body>
+</html>

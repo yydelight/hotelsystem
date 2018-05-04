@@ -113,15 +113,13 @@
 	        		<p class="address"><%=obj.address%></p>
 	        	</div>
 	        	<div class="right_show">
-	        		<p><i class="rmb">¥</i><i class="money"><%=obj.minPrice%></i> <i class="up"> 起</i></p>
+	        		<p class="hide"><i class="rmb">¥</i><i class="money"><%=obj.minPrice%></i> <i class="up"> 起</i></p>
 	        		<div class="font_bgc">
 	        			<div class="tuan">团</div>
 	        			<div class="phone">手机专享</div>
 	        		</div>
 	        	</div>
-	        	<%if(obj.love){%>
-	        		<div class="love"></div>
-	        	<%}%>
+                <div class="love"></div>
 	        </div>
         <%}%>
 	</script>

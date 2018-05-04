@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="public/css/swiper.min.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
 	<script type="text/javascript" src="public/js/swiper.jquery.min.js"></script>
-	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript" src="js/ajaxUtil.js"></script>
 	<script text="text/javascript" src="public/js/baiduTemplate.js"></script>
     <script text="text/javascript" src="public/js/common.js"></script>
     <script text="text/javascript" src="public/js/jquery.lazyload.min.js"></script>
@@ -50,16 +50,16 @@
 			<div class="all_comment_wrap">
 				<div class="all_comment_tab border_after">
 					<div class="all_comment border_right active" id="all">
-						<p>全部(<i class="all_num">800</i>)</p>
+						<p>全部</p>
 					</div>
 					<div class="all_comment border_right" id="good">
-						<p>好评(<i class="good_num">500</i>)</p>
+						<p>好评</p>
 					</div>
 					<div class="all_comment border_right" id="middle">
-						<p>中评(<i class="middle_num">200</i>)</p>
+						<p>中评</p>
 					</div>
 					<div class="all_comment" id="bad">
-						<p>差评(<i class="bad_num">100</i>)</p>
+						<p>差评</p>
 					</div>
 				</div>
 			</div>
@@ -76,13 +76,16 @@
         for(var i in hotelData){
             var reviews=hotelData[i];
     %>
+        <%if(state==1&&reviews.score<4){ console.log("state",state,reviews.score);continue; }%>
+        <%if(state==2&&(reviews.score>3||reviews.score<2)){ continue; }%>
+        <%if(state==3&&reviews.score>2){ continue; }%>
     	<div class="comment_show">
 		 	<div class="room_show border_after">
-				<p class="room_opinion"><%=reviews.mainComment.substr(0,10)%></p>
-				<p class="room_point"><i><%=reviews.roomPoint%></i>分</p>
-				<div class="room_details"><%=reviews.mainComment%></div>
+				<p class="room_opinion"><%=reviews.content.substr(0,10)%></p>
+				<p class="room_point"><i><%=reviews.score%></i>分</p>
+				<div class="room_details"><%=reviews.content%></div>
 				<div class="icon_change"><p class="down_icon" href=""></p></div>
-				<%if(reviews.roomPicNum>0){%>
+				<%if(reviews.urls){%>
 					<div class="room_pic">
 						<div class="swiper-container">
 							<div class="swiper-wrapper">
@@ -100,8 +103,8 @@
 					</div>
 				<%}%>
 				<p class="reviewer">
-				<i class="reviewer_name"><%=reviews.reviewer%></i>
-				<i class="reviewer_date"><%=reviews.date%></i>
+				<i class="reviewer_name"><%=reviews.userName%></i>
+				<i class="reviewer_date"><%=reviews.createAt%></i>
 				</p>
 			</div>
 		</div>
@@ -109,7 +112,24 @@
     </script>
 
 	<script type="text/javascript">
+          window.getRequest=function() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+              var str = url.substr(1);
+              var strs = str.split("&");
+              if(strs&&strs.length>0){
+                for (var i = 0; i < strs.length; i++) {
+                  var temItem=strs[i].split("=");
+                  theRequest[temItem[0]] = (temItem[1]);
+                }
+              }
+            }
+            return theRequest;
+          };
 
+          //请求数据
+          var objRequest=getRequest();//objRequest.id酒店id
 
 		$(document).on("click",'.room_show',function(e){
 			var parent=$(e.target).parent();
@@ -125,9 +145,19 @@
 			return false;
 		})
 
-		ajaxData(0);
+        $ajax.get("hotel/detail/"+objRequest.id,{},function(data){
+          if(data.resultCode==0){
+            $(".header_title").html(data.data.hotel.name);
+            $(".total_points i").html(data.data.hotel.score);
+            $(".high_opinion i").html(data.data.hotel.score*20+"%");
+          }
+        });
+
+          var bat=window.baidu.template;
+          var hoteldata=[];
+          ajaxData(0);
 		function ajaxData(state){
-			window.STA.ajax({
+			/*window.STA.ajax({
 				url:"data/hotelComment.json",
 				success:function(data){
 					var bat=window.baidu.template;
@@ -157,7 +187,26 @@
 					    spaceBetween: 5
 					});
 				}
-			})
+			})*/
+            $ajax.get("comment/list/"+objRequest.id,{},function(data){
+                if(data.resultCode==0){
+                  var list="";
+                  var goodComment=data.goodComment;
+                  var middleComment=data.middleComment;
+                  var badComment=data.badComment;
+                  hoteldata=data;
+                  var goodList=bat('template_list',{hotelData:data.data.list,state:state});
+                  $(".comment_show").html(goodList);
+                  addDown();
+                  var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 4,
+                    paginationClickable: true,
+                    spaceBetween: 5
+                  });
+                }else{
+                  window.alert(data.resultMsg)
+                }
+            });
 
 		}
 
@@ -168,12 +217,18 @@
 			if(index==0){
 				ajaxData(0);
 			}else if(index==1){
-				ajaxData(1);
+              var goodList=bat('template_list',{hotelData:hoteldata.data.list,state:1});
+              $(".comment_show").html(goodList);
 			}else if(index==2){
-				ajaxData(2);
+              var goodList=bat('template_list',{hotelData:hoteldata.data.list,state:2});
+              $(".comment_show").html(goodList);
 			}else if(index==3){
-				ajaxData(3);
+              var goodList=bat('template_list',{hotelData:hoteldata.data.list,state:3});
+              $(".comment_show").html(goodList);
 			}
+            if(index!=0&&goodList.length==41){
+              $(".comment_show").html("<p style='text-align: center;line-height:.44rem;font-size: .14rem'>暂无评价</p>");
+            }
 			$(".all_comment").removeClass("active");
 			$(this).addClass("active");
 		})

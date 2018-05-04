@@ -261,9 +261,11 @@
 
         //请求数据
         var objRequest=getRequest();//objRequest.id酒店id
-        $(".hotel_facility").attr("href","hotelFacility.html?id="+objRequest.id); 
+        $(".hotel_facility").attr("href","hotelFacility.html?id="+objRequest.id);
+        $(".total_comment").attr("href","showReviews.html?id="+objRequest.id);
 
-		var mySwiper = new Swiper ('.swiper-container', {
+
+      var mySwiper = new Swiper ('.swiper-container', {
 		  direction: 'horizontal',
 		  loop: true,
 		  autoplay:2000,
@@ -307,6 +309,11 @@
                     var list=bat('template_list',data.data);
                     $(".room_wrap").html(list);
                     hotelinfo(data.data.hotel);
+                    if(data.data.isCollect){
+                      collectIcon.addClass("collect_active");
+                    }else{
+                      collectIcon.removeClass("collect_active");
+                    }
                 }
             });
 		}

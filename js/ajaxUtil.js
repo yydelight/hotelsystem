@@ -1,5 +1,6 @@
-var _host = "http://192.168.120.1/" //台式ip
+// var _host = "http://192.168.120.1/" //台式ip
 // var _host = "http://192.168.0.104/" //手提ip
+var _host = "http://192.168.201.31/" //小七ip
 var $ajax = {
     run: function(url, data, success, type, async, header) {
         $.ajax({
@@ -8,7 +9,7 @@ var $ajax = {
             data: data,
             async: async,
             dataType: "json",
-            headers: {'token': window.sessionStorage.token},
+            headers: {'token': window.sessionStorage.token||''},
             success: function(result) {
                 if( result.resultCode == 0) {
                     console.log("result",result)
@@ -36,7 +37,7 @@ var $ajax = {
         this.run(url, data, success, "POST", async, this.header());
     },
     header: function() {
-        var state = {"token":window.sessionStorage.token};
+        var state = {"token":window.sessionStorage.token||''};
 
         return {};
     }

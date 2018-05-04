@@ -123,7 +123,9 @@ body{
 	height: .7rem;
 }
 .add_pic{
-	padding: .125rem 0 0 .105rem;
+	padding: 0 .105rem .125rem .105rem;
+    text-align: center;
+    width: .8rem;
 }
 .add_pic a{
 	color: #65bdd1;

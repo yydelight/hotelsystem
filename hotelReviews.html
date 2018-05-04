@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/single/hotelReviews.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<script text="text/javascript" src='public/js/jquery-3.1.1.min.js'></script>
+    <script type="text/javascript" src="js/ajaxUtil.js"></script>
+    <script type="text/javascript" src="js/imgFileupload.js"></script>
 </head>
 <body>
 	<!-- 酒店头部 -->
@@ -66,10 +68,11 @@
 		<div class="photo_frame">
 			<figure class="photo_img">
 				<img src="images/xmn_reviews_photo.png">
-				<div class="add_pic">
-					<a href="">添加图片</a>
-				</div>
 			</figure>
+            <div class="add_pic">
+                <a href="javascript:void(0)" class="add_btn">添加图片</a>
+                <input type="file" id="btn_file" style="display:none">
+            </div>
 		</div>
 		<div class="photo_arrow">
 			<figure>
@@ -81,14 +84,34 @@
 
 	<!-- 发表评论 -->
 	<div class="make_comments">
-		<a class="post_btn" href="">发表评论</a>
+		<a class="post_btn" href="javascript:void(0)">发表评论</a>
 	</div>
 
 
 	<script type="text/javascript">
 	$(function(){
+      window.getRequest=function() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+          var str = url.substr(1);
+          var strs = str.split("&");
+          if(strs&&strs.length>0){
+            for (var i = 0; i < strs.length; i++) {
+              var temItem=strs[i].split("=");
+              theRequest[temItem[0]] = (temItem[1]);
+            }
+          }
+        }
+        return theRequest;
+      };
 
-		$(".score_ul li").on('click',function(){
+      //请求数据
+      var objRequest=getRequest();//objRequest.id酒店id
+      $(".header_title").html(decodeURI(objRequest.name));
+      $(".hotel_name").html(decodeURI(objRequest.name))
+
+      $(".score_ul li").on('click',function(){
 		    var $ts = $(this);
 		    var hscl = $ts.hasClass("active");
 			var index = $ts.index();
@@ -98,9 +121,58 @@
 		        $(".score_ul li:lt("+(index+1)+")").addClass("active").children("a").children("img").attr("src","images/xmn_yellow_star_icon.png");
 		    }
 		    return false;
-		})
+      })
+      var image = new Image();
+      var i=0;
+      $(".add_btn").click(function () {
+        var state=false;
+        $("#btn_file").click();
+        if(i>0){
+          $('.photo_frame figure').append("<img class='hide' src=''>");
+        }
+        //在input file内容改变的时候触发事件
+        $('#btn_file').change(function(){
+          //获取input file的files文件数组;
+          //$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
+          //这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
+          var file = $('#btn_file').get(0).files[0];
+          console.log("file",file)
+          if(typeof(file)=='undefined'){
+            console.log("是undefined")
+            $('.photo_frame figure img.hide').remove();
 
-		var textarea=$(".share_hotel textarea");
+          }else{
+            //创建用来读取此文件的对象
+            var reader = new FileReader();
+            //使用该对象读取file文件
+            reader.readAsDataURL(file);
+            $(".photo_arrow").hide();
+            //读取文件成功后执行的方法函数
+            reader.onload=function(e){
+              //读取成功后返回的一个参数e，整个的一个进度事件
+              console.log("iiii",i);
+              //选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+              //的base64编码格式的地址
+//            console.log("***",$('.photo_frame figure img').get(0).src)
+              if($('.photo_frame figure img').get(0).src.indexOf('images/xmn_reviews_photo.png') >= 0){
+                $('.photo_frame figure img').get(0).src = e.target.result;
+                console.log("原来的原来的")
+              }else{
+                $('.photo_frame figure img').get(i).src = e.target.result;
+                $(".photo_frame figure img").eq(i).removeClass('hide');
+                console.log("第二张")
+              }
+              i++;
+              state=true;
+            }
+          }
+
+        })
+
+      })
+
+
+      var textarea=$(".share_hotel textarea");
 		var text=$(".text_show");
 		textarea.focus(function(){
 			text.hide();
@@ -119,6 +191,26 @@
 		    // var html="<p>最少输入10个字,还可以输入<i>"+length+"字</i></p>";
 		    $(".text_tips p i").html(length);
 		});
+
+
+		$(".post_btn").click(function(){
+            var posttext=$(".share_hotel textarea").val();
+            var poststar=$(".score_ul li.active").length;
+            console.log("aaa",posttext,poststar)
+            var body={
+              hid:objRequest.hid,
+              content:posttext,
+              score:poststar,
+              level:objRequest.level,
+              urls:''
+            }
+            $ajax.get("comment/add",body,function(data){
+              if(data.resultCode==0){
+                alert("评论成功");
+              }
+            })
+
+        })
 	})
 	</script>
 </body>

@@ -206,7 +206,7 @@
 			}else{
 				$ajax.get("order/consume/"+inputValue,{},function(data){
 	                if(data.resultCode==0){
-						window.alert(data.resultMsg);
+						window.alert("核销成功，可正常入住");
 	                }
 	            });
 			}

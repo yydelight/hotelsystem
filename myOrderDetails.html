@@ -79,7 +79,7 @@
 						<p>宽带 Wi-Fi</p>
 						<p class="breakf">无早</p>
 					</div>
-					<a href=""><div class="right_arrow"></div></a>
+					<a href="<%=obj.order.status==2?'orderGenerated.html?id='+obj.order.id:'javascript:void'%>"><div class="right_arrow"></div></a>
 					<div class="cancel_order hide">
 						<a href="" class="cancel">取消订单</a>
 					</div>
@@ -132,7 +132,7 @@
 					<div class="act_pay">
 						<p>实付款：<i class="rmb">¥</i><i class="money"><%=obj.order.totalCount%></i></p>
 					</div>
-					<p class="comment"><a href="hotelReviews.html">点击评论</a></p>
+					<p class="comment"><a href="hotelReviews.html?hid=<%=obj.hotel.id%>&name=<%=obj.hotel.name%>&level=<%=obj.hotel.level%>">点击评论</a></p>
 					<div class="pay_state">
 						<a href="<%if(obj.hotel.roomNum!=0){%>orderFill.html?id=<%=obj.room.id%>&price=<%=obj.room.price%>&name=<%=obj.room.roomName%>&bed=<%=obj.room.type==1?'双人床':'单人床'%><%}%>">再次预定</a>
 					</div>

@@ -6,16 +6,19 @@ body{
 	background-color: white; 
 }
 .wrap .scrollWrap{
-	padding-top: 1.35rem;
+	padding-top: 1.75rem;
 }
 /*总分好评*/
+.total_comment{
+    padding-top: .44rem;
+}
 .total{
 	padding: .12rem 0 .105rem .175rem;
 	overflow: hidden;
 	font-size: .12rem;
 	background: url(../../images/xmn_dashed_border.png) repeat-x;
 	background-position: 0 100%;
-	background-size: .155rem .005rem;
+	/*background-size: .155rem .005rem;*/
 }
 .total_points{
 	float: left;
